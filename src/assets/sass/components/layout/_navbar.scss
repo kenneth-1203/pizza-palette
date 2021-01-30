@@ -1,0 +1,87 @@
+.nav {
+  &-link {
+    font-family: "Montserrat", serif;
+    font-weight: 400;
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+
+    &:hover {
+      color: $hover;
+    }
+  }
+
+  &-search {
+    background: $light-grey;
+    margin-left: 1em;
+    margin-right: 1em;
+    border-radius: 20px;
+
+    &-input {
+      width: 0;
+      padding: 0;
+      
+      &.active {
+        animation-name: expandSearch;
+        animation-duration: 0.2s;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+
+  &-cart {
+    background: $light-grey;
+    border-radius: 10px;
+    position: relative;
+
+    & .active {
+      background: white;
+      border-radius: 10px;
+
+      & i {
+        color: $dark-grey;
+      }
+    }
+  }
+
+  &-profile {
+    color: $light-grey;
+    background: white;
+    border-radius: 100%;
+  }
+
+  &-sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    overflow-x: hidden;
+    transition: .3s;
+    background-color: $dark-grey;
+  }
+}
+
+.navbar {
+  &-brand {
+    font-family: "Potta One", cursive;
+  }
+  &-nav {
+    flex-direction: row;
+  }
+  &-toggler {
+    background: $light-grey;
+  }
+}
+
+.badge {
+  border-radius: 20px;
+  background: $orange;
+  position: absolute;
+  top: -10px;
+}
+
+.nav-sidebar {
+  position: absolute;
+  left: 100%;
+}

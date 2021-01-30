@@ -1,0 +1,32 @@
+* {
+  color: white;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+html,
+body {
+  // overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    0deg,
+    $light-grey 0%,
+    $dark-grey 100%
+  );
+}
+
+input {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
