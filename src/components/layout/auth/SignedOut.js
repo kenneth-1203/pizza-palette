@@ -6,12 +6,12 @@ const SignedOut = () => {
   return (
     <React.Fragment>
       <li className="nav-item">
-        <Link to="/" className="p-2 nav-link text-center">
+        <Link to="/signin" className="p-2 nav-link text-center">
           Sign In
         </Link>
       </li>
       <li className="nav-item">
-        <Link to="/" className="p-2 nav-link text-center">
+        <Link to="/signup" className="p-2 nav-link text-center">
           Sign Up
         </Link>
       </li>

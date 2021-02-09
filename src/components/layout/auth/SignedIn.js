@@ -11,7 +11,7 @@ const SignedIn = () => {
         </Link>
       </li>
       <li className="nav-item d-flex flex-column justify-content-center">
-        <Link to="/" className="btn btn-primary p-0">
+        <Link to="/profile" className="btn btn-primary p-0">
           KK
         </Link>
       </li>

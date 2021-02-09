@@ -5,7 +5,7 @@ export default class Menu extends Component {
     return (
       <div>
         <div className="container">
-          
+          <h1>Menu</h1>
         </div>
       </div>
     );

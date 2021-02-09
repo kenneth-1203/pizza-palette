@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { Link } from "react-router-dom";
+
 import Logo from "../../../assets/images/company-logo.png";
 import SignedIn from "../auth/SignedIn";
 import SignedOut from "../auth/SignedOut";
@@ -11,7 +13,7 @@ export default class Navbar extends Component {
     expandSearch: false,
   };
 
-  componentDidMount() {
+  componentDidMount(e) {
     document.querySelectorAll("a[href^='.']").forEach((node) => {
       node.addEventListener("click", (e) => {
         e.preventDefault();
@@ -35,9 +37,9 @@ export default class Navbar extends Component {
             <nav className="navbar navbar-expand-xl">
               <div className="col-xl-3 col-md-2 col-4">
                 <div className="d-flex justify-content-center">
-                  <a className="navbar-brand" href=".">
+                  <Link className="navbar-brand" to="/">
                     <img src={Logo} width="80px" alt="" />
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="col-xl-6 col-md-10 col-12 py-3 mx-auto">
@@ -45,29 +47,29 @@ export default class Navbar extends Component {
                   <div className="col-md-10">
                     <ul className="navbar-nav justify-content-center">
                       <li className="nav-item">
-                        <a className="nav-link active" href=".">
-                          About
-                        </a>
+                        <Link className="nav-link active" to="/">
+                          Home
+                        </Link>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link" href=".">
+                        <Link className="nav-link" to="/menu">
                           Menu
-                        </a>
+                        </Link>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link" href=".">
-                          Contact
-                        </a>
+                        <Link className="nav-link" to="/about">
+                          About
+                        </Link>
                       </li>
                       <li className="nav-item nav-search d-flex align-items-center">
-                        <a
+                        <span
                           className="nav-link"
                           id="searchInput"
                           href="."
                           onClick={this.toggleSearch}
                         >
                           <i className="fas fa-search"></i>
-                        </a>
+                        </span>
                         <input
                           type="text"
                           className={`nav-search-input ${
