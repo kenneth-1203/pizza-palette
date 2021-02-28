@@ -9,6 +9,7 @@ import Menu from './components/layout/content/Menu';
 import SignIn from './components/store/auth/SignIn';
 import SignUp from './components/store/auth/SignUp';
 import Profile from './components/store/profile/Profile';
+import Cart from './components/store/cart/Cart';
 
 export default class App extends Component {
   render() {
@@ -23,6 +24,7 @@ export default class App extends Component {
             <Route path="/signin" component={ SignIn }></Route>
             <Route path="/signup" component={ SignUp }></Route>
             <Route path="/profile" component={ Profile }></Route>
+            <Route path="/cart" component={ Cart }></Route>
           </Switch>
         </div>
       </Router>

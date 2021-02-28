@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Logo from "../../../assets/images/company-logo.png";
 import SignedIn from "../auth/SignedIn";
 import SignedOut from "../auth/SignedOut";
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   state = {
-    items: 0,
+    products: this.props.products,
     sideNav: false,
     expandSearch: false,
   };
@@ -19,6 +20,7 @@ export default class Navbar extends Component {
         e.preventDefault();
       });
     });
+    console.log(this.state);
   }
 
   toggleSidenav = () => {
@@ -102,15 +104,15 @@ export default class Navbar extends Component {
                 <div className="d-flex mx-auto">
                   <ul className="navbar-nav">
                     <li className="nav-item nav-cart">
-                      {this.state.items > 0 ? (
-                        <a className="p-2 nav-link active" href=".">
+                      {this.state.products.length > 0 ? (
+                        <Link className="p-2 nav-link active" to="/cart">
                           <i className="fas fa-shopping-bag"></i>
-                          <span className="badge">{this.state.items}</span>
-                        </a>
+                          <span className="badge">{this.state.products.length}</span>
+                        </Link>
                       ) : (
-                        <a className="p-2 nav-link" href=".">
+                        <Link className="p-2 nav-link" to="/cart">
                           <i className="fas fa-shopping-bag"></i>
-                        </a>
+                        </Link>
                       )}
                     </li>
                     <SignedIn />
@@ -141,3 +143,11 @@ export default class Navbar extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    products: state.product.products,
+  };
+};
+
+export default connect(mapStateToProps)(Navbar);
