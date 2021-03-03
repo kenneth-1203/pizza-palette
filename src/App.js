@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Navbar from './components/layout/navbar/Navbar';
+import CreateProduct from './components/layout/products/CreateProduct';
 import Home from './components/layout/content/Home';
 import About from './components/layout/content/About';
 import Menu from './components/layout/content/Menu';
@@ -25,6 +26,7 @@ export default class App extends Component {
             <Route path="/signup" component={ SignUp }></Route>
             <Route path="/profile" component={ Profile }></Route>
             <Route path="/cart" component={ Cart }></Route>
+            <Route path="/create" component={ CreateProduct }></Route>
           </Switch>
         </div>
       </Router>
