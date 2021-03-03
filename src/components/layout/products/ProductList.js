@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import ProductSummary from "./ProductSummary";
 
 const ProductList = ({ products }) => {
@@ -6,7 +8,11 @@ const ProductList = ({ products }) => {
     <div className="container">
       {products &&
         products.map((product) => {
-          return <ProductSummary product={product} key={product.id} />;
+          return (
+            <Link to={`/product/${product.id}`}>
+              <ProductSummary product={product} key={product.id} />
+            </Link>
+          );
         })}
     </div>
   );
