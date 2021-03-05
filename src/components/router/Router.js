@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { Switch, Route } from "react-router-dom";
 
@@ -8,22 +8,24 @@ import About from "../../components/layout/content/About";
 import Menu from "../../components/layout/content/Menu";
 import Profile from "../../components/store/profile/Profile";
 import Cart from "../../components/store/cart/Cart";
-import ProtectedRoute from "./ProtectedRoute";
+import SignIn from "../../components/store/auth/SignIn";
+import SignUp from "../../components/store/auth/SignUp";
+import CreateProduct from "../../components/layout/products/CreateProduct";
 
-class Router extends Component {
-  render() {
-    return (
-      <Switch>
-        <Route exact path="/" component={Home}></Route>
-        <Route path="/about" component={About}></Route>
-        <Route path="/menu" component={Menu}></Route>
-        <Route path="/profile" component={Profile}></Route>
-        <Route path="/cart" component={Cart}></Route>
-        <Route path="/product/:id" component={ProductDetails}></Route>
-        <ProtectedRoute />
-      </Switch>
-    );
-  }
-}
+const Router = () => {
+  return (
+    <Switch>
+      <Route exact path="/" component={Home}></Route>
+      <Route path="/about" component={About}></Route>
+      <Route path="/menu" component={Menu}></Route>
+      <Route path="/profile" component={Profile}></Route>
+      <Route path="/cart" component={Cart}></Route>
+      <Route path="/product/:id" component={ProductDetails}></Route>
+      <Route path="/signin" component={SignIn}></Route>
+      <Route path="/signup" component={SignUp}></Route>
+      <Route path="/create" component={CreateProduct}></Route>
+    </Switch>
+  );
+};
 
 export default Router;
