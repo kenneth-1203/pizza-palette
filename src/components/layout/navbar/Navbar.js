@@ -9,19 +9,10 @@ import SignedOut from "../auth/SignedOut";
 
 class Navbar extends Component {
   state = {
-    products: this.props.products,
+    cart: 0,
     sideNav: false,
     expandSearch: false,
   };
-
-  componentDidMount(e) {
-    document.querySelectorAll("a[href^='.']").forEach((node) => {
-      node.addEventListener("click", (e) => {
-        e.preventDefault();
-      });
-    });
-    console.log(this.state);
-  }
 
   toggleSidenav = () => {
     this.setState({ sideNav: !this.state.sideNav });
@@ -32,6 +23,19 @@ class Navbar extends Component {
   };
 
   render() {
+    const { auth } = this.props; 
+    const cart = this.state.cart ? (
+      <Link className="p-2 nav-link active" to="/cart">
+        <i className="fas fa-shopping-bag"></i>
+        <span className="badge">{this.state.cart}</span>
+      </Link>
+    ) : (
+      <Link className="p-2 nav-link" to="/cart">
+        <i className="fas fa-shopping-bag"></i>
+      </Link>
+    );
+    const links = auth.uid ? <SignedIn /> : <SignedOut />;
+
     return (
       <React.Fragment>
         <div className="content">
@@ -104,19 +108,9 @@ class Navbar extends Component {
                 <div className="d-flex mx-auto">
                   <ul className="navbar-nav">
                     <li className="nav-item nav-cart">
-                      {this.state.products.length > 0 ? (
-                        <Link className="p-2 nav-link active" to="/cart">
-                          <i className="fas fa-shopping-bag"></i>
-                          <span className="badge">{this.state.products.length}</span>
-                        </Link>
-                      ) : (
-                        <Link className="p-2 nav-link" to="/cart">
-                          <i className="fas fa-shopping-bag"></i>
-                        </Link>
-                      )}
+                      { cart }
                     </li>
-                    <SignedIn />
-                    <SignedOut />
+                    { auth.isLoaded && links ? links : null }
                   </ul>
                 </div>
               </div>
@@ -136,7 +130,7 @@ class Navbar extends Component {
             &times;
           </span>
           <div className="container">
-            <a href=".">Sign In</a>
+            <Link to="/signin">Sign In</Link>
           </div>
         </div>
       </React.Fragment>
@@ -145,8 +139,9 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    products: state.product.products,
+    auth: state.firebase.auth
   };
 };
 

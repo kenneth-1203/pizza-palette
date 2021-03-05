@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+
 import { connect } from "react-redux";
-import { createProduct } from '../../store/actions/productActions';
+import { createProduct } from "../../store/actions/productActions";
+import { Redirect } from "react-router-dom";
 
 class CreateProduct extends Component {
   state = {
@@ -21,6 +23,9 @@ class CreateProduct extends Component {
   };
 
   render() {
+    // const { auth } = this.props;
+    // if (auth.uid !== "yfgkkO3RS2RqHYUN1iX9d6fVYkP2") return <Redirect to="/" />
+
     return (
       <div className="container">
         <h1>Add New Product</h1>
@@ -67,10 +72,16 @@ class CreateProduct extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        createProduct: (product) => dispatch(createProduct(product))
-    }
-}
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+  };
+};
 
-export default connect(null, mapDispatchToProps)(CreateProduct);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createProduct: (product) => dispatch(createProduct(product)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateProduct);
