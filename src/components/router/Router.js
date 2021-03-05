@@ -8,7 +8,9 @@ import About from "../../components/layout/content/About";
 import Menu from "../../components/layout/content/Menu";
 import Profile from "../../components/store/profile/Profile";
 import Cart from "../../components/store/cart/Cart";
-import ProtectedRoute from "./ProtectedRoute";
+import SignIn from "../../components/store/auth/SignIn";
+import SignUp from "../../components/store/auth/SignOut";
+import CreateProduct from "../../components/layout/products/CreateProduct";
 
 class Router extends Component {
   render() {
@@ -20,7 +22,9 @@ class Router extends Component {
         <Route path="/profile" component={Profile}></Route>
         <Route path="/cart" component={Cart}></Route>
         <Route path="/product/:id" component={ProductDetails}></Route>
-        <ProtectedRoute />
+        <Route path="/signin" component={SignIn}></Route>
+        <Route path="/signup" component={SignUp}></Route>
+        <Route path="/create" component={CreateProduct}></Route>
       </Switch>
     );
   }
