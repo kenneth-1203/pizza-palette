@@ -9,8 +9,9 @@ import Menu from "../../components/layout/content/Menu";
 import Profile from "../../components/store/profile/Profile";
 import Cart from "../../components/store/cart/Cart";
 import SignIn from "../../components/store/auth/SignIn";
-import SignUp from "../../components/store/auth/SignOut";
+import SignUp from "../../components/store/auth/SignUp";
 import CreateProduct from "../../components/layout/products/CreateProduct";
+import ProtectedRoute from "../router/ProtectedRoute";
 
 class Router extends Component {
   render() {

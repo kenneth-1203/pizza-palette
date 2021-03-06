@@ -23,8 +23,8 @@ class CreateProduct extends Component {
   };
 
   render() {
-    // const { auth } = this.props;
-    // if (auth.uid !== "yfgkkO3RS2RqHYUN1iX9d6fVYkP2") return <Redirect to="/" />
+    const { auth } = this.props;
+    if (auth.uid || auth.uid !== "yfgkkO3RS2RqHYUN1iX9d6fVYkP2") return <Redirect to="/" />
 
     return (
       <div className="container">
