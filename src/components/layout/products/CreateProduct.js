@@ -22,7 +22,6 @@ class CreateProduct extends Component {
   };
 
   render() {
-
     return (
       <div className="container">
         <h1>Add New Product</h1>
