@@ -1,6 +1,6 @@
 export const createProduct = (product) => {
-  return (dispatch, getState, { getFirebase, getFIrestore }) => {
-    const firestore = getFIrestore();
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
     firestore
       .collection("products")
       .add({

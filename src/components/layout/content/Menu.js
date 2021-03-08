@@ -13,7 +13,11 @@ class Menu extends Component {
       <div>
         <div className="container">
           <h1>Menu</h1>
-          <ProductList products={products} />
+          { products ? (
+            <ProductList products={products} />
+          ) : (
+            <h1>Loading...</h1>
+          ) }
         </div>
       </div>
     );

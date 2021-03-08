@@ -27,8 +27,40 @@ export const signOut = () => {
   };
 };
 
-export const admin = [
-  "yfgkkO3RS2RqHYUN1iX9d6fVYkP2",
-  "wxjcqIsNLJbcw21jTm9lPZlFNoI2F"
-];
+export const signUp = (newUser) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firebase = getFirebase();
+    const firestore = getFirestore();
+    
+    firebase.auth().createUserWithEmailAndPassword(
+      newUser.email, 
+      newUser.password
+    ).then((res) => {
+      return firestore.collection('users').doc(res.user.uid).set({
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        initials: `${newUser.firstName[0]}${newUser.lastName[0]}`
+      })
+    }).then(() => {
+      dispatch({ type: "SIGNUP_SUCCESS" })
+    }).catch(err => {
+      dispatch({ type: "SIGNUP_ERROR", err })
+    })
+  }
+}
 
+export const isAdmin = (id) => {
+  const admin = [
+    "yfgkkO3RS2RqHYUN1iX9d6fVYkP2"
+  ];
+  let exist = false;
+  if (id) {
+    admin.map(a => {
+      if (a === id) {
+        exist = true;
+      }
+      return exist;
+    })
+  }
+  return exist;
+}

@@ -3,76 +3,65 @@ import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { isAdmin } from "../store/actions/authActions";
 import SignIn from "../store/auth/SignIn";
 import SignUp from "../store/auth/SignUp";
 import Profile from "../store/profile/Profile";
 import CreateProduct from "../layout/products/CreateProduct";
 
 class ProtectedRoute extends Component {
-  state = {
-    auth: null,
-    fetched: false,
-  };
-
-  componentDidUpdate() {
-    this.fetchedProps();
-  }
-
-  fetchedProps = () => {
-    const { auth } = this.props;
-    if (auth && !this.state.fetched) {
-      return this.setState({ auth: auth.uid, fetched: true });
-    }
-  };
-
   render() {
-    const pathname = {
-      create: "/create",
-      signUp: "/signup",
-      signIn: "/signin",
-      profile: "/profile"
-    }
-    const adminComponents = (
-      <Route path={pathname.create} component={CreateProduct}></Route>
-    );
-    const userComponents = <Route path={pathname.profile} component={Profile}></Route>;
-    const guestComponents = (
-      <React.Fragment>
-        <Route path={pathname.signUp} component={SignUp}></Route>
-        <Route path={pathname.signIn} component={SignIn}></Route>
-      </React.Fragment>
-    );
-
-    console.log(this.props)
-    const url = this.props.location.pathname;  
-
-    if (this.props.auth.uid) {
-      if (this.props.auth.uid === "yfgkkO3RS2RqHYUN1iX9d6fVYkP2") {
-        // Admin
-        switch (url) {
-          case pathname.create:
-            return adminComponents;
-          default:
-            return <Redirect to="/" />
+    const { auth, location } = this.props;
+    const path = ["/signup", "/signin", "/profile", "/create"];
+    const currentPath = path
+      // eslint-disable-next-line array-callback-return
+      .filter(p => {
+        if (location.pathname === p) {
+          return p;
         }
-      } else {
-        // User
-        switch (url) {
-          case pathname.profile:
-            return userComponents;
+      }).join("");
+
+    // Admin
+    if (currentPath !== "") {
+      let pathComponent;
+      if (auth.uid && isAdmin(auth.uid)) {
+        switch (currentPath) {
+          case "/profile":
+            pathComponent = Profile;
+            break;
+          case "/create":
+            pathComponent = CreateProduct;
+            break;
           default:
-            return <Redirect to="/" />
+            return <Redirect to="/" />;
         }
-      }
-    } else {
+
+      // User
+      } else if (auth.uid) {
+        switch (currentPath) {
+          case "/profile":
+            pathComponent = Profile;
+            break;
+          default:
+            return <Redirect to="/" />;
+        }
+
       // Guest
-      switch (url) {
-        case pathname.signIn:
-        case pathname.signUp:
-          return guestComponents;
-        default:
-          return <Redirect to="/" />
+      } else {
+        switch (currentPath) {
+          case "/signup":
+            pathComponent = SignUp;
+            break;
+          case "/signin":
+            pathComponent = SignIn;
+            break;
+          default:
+            return <Redirect to="/" />;
+        }
       }
+      return <Route path={currentPath} component={pathComponent}></Route>;
+    } else {
+      return <Redirect to="/" />;
     }
   }
 }

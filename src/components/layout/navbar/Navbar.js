@@ -3,9 +3,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { isAdmin } from "../../store/actions/authActions";
 import Logo from "../../../assets/images/company-logo.png";
-import SignedIn from "../auth/SignedIn";
-import SignedOut from "../auth/SignedOut";
+import SignedInNavbar from "../auth/SignedIn/SignedInNavbar";
+import SignedOutNavbar from "../auth/SignedOut/SignedOutNavbar";
+import SignedInSidebar from "../auth/SignedIn/SignedInSidebar";
+import SignedOutSidebar from "../auth/SignedOut/SignedOutSidebar";
 
 class Navbar extends Component {
   state = {
@@ -34,7 +37,8 @@ class Navbar extends Component {
         <i className="fas fa-shopping-bag"></i>
       </Link>
     );
-    const links = auth.uid ? <SignedIn /> : <SignedOut />;
+    const navbarLinks = auth.uid ? <SignedInNavbar /> : <SignedOutNavbar />;
+    const sidebarLinks = auth.uid ? <SignedInSidebar /> : <SignedOutSidebar />;
 
     return (
       <React.Fragment>
@@ -67,6 +71,13 @@ class Navbar extends Component {
                           About
                         </Link>
                       </li>
+                      { isAdmin(auth.uid) ? (
+                        <li className="nav-item">
+                        <Link className="nav-link" to="/create">
+                          Create
+                        </Link>
+                      </li>
+                      ) : null }
                       <li className="nav-item nav-search d-flex align-items-center">
                         <span
                           className="nav-link"
@@ -110,7 +121,7 @@ class Navbar extends Component {
                     <li className="nav-item nav-cart">
                       { cart }
                     </li>
-                    { auth.isLoaded && links ? links : null }
+                    { auth.isLoaded && navbarLinks ? navbarLinks : null }
                   </ul>
                 </div>
               </div>
@@ -130,7 +141,7 @@ class Navbar extends Component {
             &times;
           </span>
           <div className="container">
-            <Link to="/signin">Sign In</Link>
+            { auth.isLoaded && sidebarLinks ? sidebarLinks : null }
           </div>
         </div>
       </React.Fragment>

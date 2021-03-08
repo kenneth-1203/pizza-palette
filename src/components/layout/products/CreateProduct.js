@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 import { createProduct } from "../../store/actions/productActions";
-import { Redirect } from "react-router-dom";
 
 class CreateProduct extends Component {
   state = {
@@ -23,8 +22,6 @@ class CreateProduct extends Component {
   };
 
   render() {
-    const { auth } = this.props;
-    if (auth.uid !== "yfgkkO3RS2RqHYUN1iX9d6fVYkP2") return <Redirect to="/" />
 
     return (
       <div className="container">
@@ -32,7 +29,7 @@ class CreateProduct extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
-              Product Name
+              Name
             </label>
             <input
               type="name"
@@ -60,6 +57,17 @@ class CreateProduct extends Component {
               type="text"
               className="form-control"
               id="price"
+              onChange={this.handleChange}
+            ></input>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="image" className="form-label">
+              Image
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              id="image"
               onChange={this.handleChange}
             ></input>
           </div>

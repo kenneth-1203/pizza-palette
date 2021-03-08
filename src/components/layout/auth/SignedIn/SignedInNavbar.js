@@ -2,9 +2,9 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { signOut } from "../../store/actions/authActions";
+import { signOut } from "../../../store/actions/authActions";
 
-const SignedIn = (props) => {
+const SignedInNavbar = (props) => {
   return (
     <React.Fragment>
       <li className="nav-item">
@@ -25,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(SignedIn);
+export default connect(null, mapDispatchToProps)(SignedInNavbar);
