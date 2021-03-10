@@ -24,9 +24,9 @@ class Navbar extends Component {
   toggleSearch = () => {
     this.setState({ expandSearch: true });
   };
-
+  
   render() {
-    const { auth } = this.props; 
+    const { auth, profile } = this.props; 
     const cart = this.state.cart ? (
       <Link className="p-2 nav-link active" to="/cart">
         <i className="fas fa-shopping-bag"></i>
@@ -37,8 +37,8 @@ class Navbar extends Component {
         <i className="fas fa-shopping-bag"></i>
       </Link>
     );
-    const navbarLinks = auth.uid ? <SignedInNavbar /> : <SignedOutNavbar />;
-    const sidebarLinks = auth.uid ? <SignedInSidebar /> : <SignedOutSidebar />;
+    const navbarLinks = auth.uid ? <SignedInNavbar profile={profile} /> : <SignedOutNavbar />;
+    const sidebarLinks = auth.uid ? <SignedInSidebar profile={profile} /> : <SignedOutSidebar />;
 
     return (
       <React.Fragment>
@@ -140,9 +140,7 @@ class Navbar extends Component {
           >
             &times;
           </span>
-          <div className="container">
             { auth.isLoaded && sidebarLinks ? sidebarLinks : null }
-          </div>
         </div>
       </React.Fragment>
     );
@@ -152,7 +150,8 @@ class Navbar extends Component {
 const mapStateToProps = (state) => {
   console.log(state);
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
   };
 };
 

@@ -7,10 +7,11 @@ class CreateProduct extends Component {
   state = {
     name: "",
     description: "",
-    price: 0,
+    price: "",
   };
 
   handleChange = (e) => {
+    console.log(this.state);
     this.setState({
       [e.target.id]: e.target.value,
     });
@@ -19,6 +20,7 @@ class CreateProduct extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.createProduct(this.state);
+    this.props.history.push("/");
   };
 
   render() {
