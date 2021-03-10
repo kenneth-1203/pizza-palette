@@ -1,19 +1,19 @@
 export const createProduct = (product) => {
-  return (dispatch, getState, { getFirebase, getFIrestore }) => {
-    const firestore = getFIrestore();
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
     firestore
       .collection("products")
       .add({
         ...product,
-        name: "Pasta",
-        description: "Delicious pasta!",
-        price: 16.99,
+        name: product.name,
+        description: product.description, 
+        price: product.price,
       })
       .then(() => {
-        dispatch({ type: "CREATE_PROJECT", product });
+        dispatch({ type: "CREATE_PRODUCT", product });
       })
       .catch((err) => {
-        dispatch({ type: "CREATE_PROJECT_ERROR", err });
+        dispatch({ type: "CREATE_PRODUCT_ERROR", err });
       });
   };
 };

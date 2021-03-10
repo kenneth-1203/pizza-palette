@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 
-import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
 
-import ProductList from '../products/ProductList';
+import ProductList from "../products/ProductList";
 
 class Menu extends Component {
   render() {
@@ -12,7 +13,11 @@ class Menu extends Component {
       <div>
         <div className="container">
           <h1>Menu</h1>
-          <ProductList products={products} />
+          { products ? (
+            <ProductList products={products} />
+          ) : (
+            <h1>Loading...</h1>
+          ) }
         </div>
       </div>
     );
@@ -21,8 +26,11 @@ class Menu extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.product.products
-  }
-}
+    products: state.firestore.ordered.products,
+  };
+};
 
-export default connect(mapStateToProps)(Menu);
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "products" }])
+)(Menu);

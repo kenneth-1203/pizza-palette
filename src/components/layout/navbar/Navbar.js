@@ -3,25 +3,19 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { isAdmin } from "../../store/actions/authActions";
 import Logo from "../../../assets/images/company-logo.png";
-import SignedIn from "../auth/SignedIn";
-import SignedOut from "../auth/SignedOut";
+import SignedInNavbar from "../auth/SignedIn/SignedInNavbar";
+import SignedOutNavbar from "../auth/SignedOut/SignedOutNavbar";
+import SignedInSidebar from "../auth/SignedIn/SignedInSidebar";
+import SignedOutSidebar from "../auth/SignedOut/SignedOutSidebar";
 
 class Navbar extends Component {
   state = {
-    products: this.props.products,
+    cart: 0,
     sideNav: false,
     expandSearch: false,
   };
-
-  componentDidMount(e) {
-    document.querySelectorAll("a[href^='.']").forEach((node) => {
-      node.addEventListener("click", (e) => {
-        e.preventDefault();
-      });
-    });
-    console.log(this.state);
-  }
 
   toggleSidenav = () => {
     this.setState({ sideNav: !this.state.sideNav });
@@ -30,8 +24,22 @@ class Navbar extends Component {
   toggleSearch = () => {
     this.setState({ expandSearch: true });
   };
-
+  
   render() {
+    const { auth, profile } = this.props; 
+    const cart = this.state.cart ? (
+      <Link className="p-2 nav-link active" to="/cart">
+        <i className="fas fa-shopping-bag"></i>
+        <span className="badge">{this.state.cart}</span>
+      </Link>
+    ) : (
+      <Link className="p-2 nav-link" to="/cart">
+        <i className="fas fa-shopping-bag"></i>
+      </Link>
+    );
+    const navbarLinks = auth.uid ? <SignedInNavbar profile={profile} /> : <SignedOutNavbar />;
+    const sidebarLinks = auth.uid ? <SignedInSidebar profile={profile} /> : <SignedOutSidebar />;
+
     return (
       <React.Fragment>
         <div className="content">
@@ -63,6 +71,13 @@ class Navbar extends Component {
                           About
                         </Link>
                       </li>
+                      { isAdmin(auth.uid) ? (
+                        <li className="nav-item">
+                        <Link className="nav-link" to="/create">
+                          Create
+                        </Link>
+                      </li>
+                      ) : null }
                       <li className="nav-item nav-search d-flex align-items-center">
                         <span
                           className="nav-link"
@@ -104,19 +119,9 @@ class Navbar extends Component {
                 <div className="d-flex mx-auto">
                   <ul className="navbar-nav">
                     <li className="nav-item nav-cart">
-                      {this.state.products.length > 0 ? (
-                        <Link className="p-2 nav-link active" to="/cart">
-                          <i className="fas fa-shopping-bag"></i>
-                          <span className="badge">{this.state.products.length}</span>
-                        </Link>
-                      ) : (
-                        <Link className="p-2 nav-link" to="/cart">
-                          <i className="fas fa-shopping-bag"></i>
-                        </Link>
-                      )}
+                      { cart }
                     </li>
-                    <SignedIn />
-                    <SignedOut />
+                    { auth.isLoaded && navbarLinks ? navbarLinks : null }
                   </ul>
                 </div>
               </div>
@@ -135,9 +140,7 @@ class Navbar extends Component {
           >
             &times;
           </span>
-          <div className="container">
-            <a href=".">Sign In</a>
-          </div>
+            { auth.isLoaded && sidebarLinks ? sidebarLinks : null }
         </div>
       </React.Fragment>
     );
@@ -145,8 +148,10 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    products: state.product.products,
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
   };
 };
 

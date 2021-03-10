@@ -1,15 +1,17 @@
 import React, { Component } from "react";
+
 import { connect } from "react-redux";
-import { createProduct } from '../../store/actions/productActions';
+import { createProduct } from "../../store/actions/productActions";
 
 class CreateProduct extends Component {
   state = {
     name: "",
     description: "",
-    price: 0,
+    price: "",
   };
 
   handleChange = (e) => {
+    console.log(this.state);
     this.setState({
       [e.target.id]: e.target.value,
     });
@@ -18,6 +20,7 @@ class CreateProduct extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.createProduct(this.state);
+    this.props.history.push("/");
   };
 
   render() {
@@ -27,7 +30,7 @@ class CreateProduct extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
-              Product Name
+              Name
             </label>
             <input
               type="name"
@@ -58,6 +61,17 @@ class CreateProduct extends Component {
               onChange={this.handleChange}
             ></input>
           </div>
+          <div className="mb-3">
+            <label htmlFor="image" className="form-label">
+              Image
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              id="image"
+              onChange={this.handleChange}
+            ></input>
+          </div>
           <button type="submit" className="btn btn-primary">
             Create
           </button>
@@ -67,10 +81,16 @@ class CreateProduct extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        createProduct: (product) => dispatch(createProduct(product))
-    }
-}
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+  };
+};
 
-export default connect(null, mapDispatchToProps)(CreateProduct);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createProduct: (product) => dispatch(createProduct(product)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateProduct);
