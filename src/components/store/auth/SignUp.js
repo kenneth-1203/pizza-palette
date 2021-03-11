@@ -83,11 +83,11 @@ class SignUp extends Component {
                   onChange={this.handleChange}
                 ></input>
               </div>
-              <p>
-                {authError ? <small style={{ color: "red" }}>{authError}</small> : null}
-              </p>
+              <small className="error-message">
+                { authError ? authError : null }
+              </small>
               <button type="submit" className="btn btn-primary">
-                Submit
+                Sign Up
               </button>
             </form>
           </div>

@@ -28,8 +28,8 @@ class SignIn extends Component {
     return (
       <div className="container">
         <div className="row">
-        <div className="col-sm-1"></div>
-          <div className="col-sm-6">
+        <div className="col-1"></div>
+          <div className="col-lg-6 col-md-7 col-sm-8">
             <h1 className="pb-3">Sign In</h1>
             <form onSubmit={this.handleSubmit}>
               <div className="mb-3">
@@ -49,15 +49,11 @@ class SignIn extends Component {
                   onChange={this.handleChange}
                 ></input>
               </div>
-              <div>
-                { authError ? (
-                  <small style={{ color: "red" }}>
-                    { authError }
-                  </small>
-                ) : null }
-              </div>
+              <small className="error-message">
+                { authError ? authError : null }
+              </small>
               <button type="submit" className="btn btn-primary">
-                Submit
+                Sign In
               </button>
             </form>
           </div>
