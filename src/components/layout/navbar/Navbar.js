@@ -48,7 +48,7 @@ class Navbar extends Component {
               <div className="col-xl-3 col-md-2 col-4">
                 <div className="d-flex justify-content-center">
                   <Link className="navbar-brand" to="/">
-                    <img src={Logo} width="80px" alt="" />
+                    <img src={Logo} width="150px" alt="" />
                   </Link>
                 </div>
               </div>

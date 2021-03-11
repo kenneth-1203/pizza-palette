@@ -28,59 +28,70 @@ class SignUp extends Component {
 
     return (
       <div className="container">
-        <h1>Sign Up</h1>
-        <form onSubmit={this.handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="firstName" className="form-label">
-              First Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="firstName"
-              onChange={this.handleChange}
-            ></input>
+        <div className="row">
+          <div className="col-sm-1"></div>
+          <div className="col-sm-6">
+            <h1 className="pb-3">Sign Up</h1>
+            <form onSubmit={this.handleSubmit}>
+              <div className="row">
+                <div className="col-sm-6">
+                  <div className="mb-3">
+                    <label htmlFor="firstName" className="form-label">
+                      First Name
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="firstName"
+                      onChange={this.handleChange}
+                    ></input>
+                  </div>
+                </div>
+                <div className="col-sm-6">
+                  <div className="mb-3">
+                    <label htmlFor="lastName" className="form-label">
+                      Last Name
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="lastName"
+                      onChange={this.handleChange}
+                    ></input>
+                  </div>
+                </div>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
+                  Email address
+                </label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  onChange={this.handleChange}
+                ></input>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  onChange={this.handleChange}
+                ></input>
+              </div>
+              <p>
+                {authError ? <small style={{ color: "red" }}>{authError}</small> : null}
+              </p>
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </form>
           </div>
-          <div className="mb-3">
-            <label htmlFor="lastName" className="form-label">
-              Last Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="lastName"
-              onChange={this.handleChange}
-            ></input>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="email" className="form-label">
-              Email address
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              onChange={this.handleChange}
-            ></input>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              onChange={this.handleChange}
-            ></input>
-          </div>
-          <p>
-            {authError ? <small style={{ color: "red" }}>{authError}</small> : null}
-          </p>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
+        </div>
       </div>
     );
   }

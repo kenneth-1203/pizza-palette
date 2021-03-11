@@ -4,20 +4,23 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-html,
-body {
-  // overflow-x: hidden;
+html {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
+}
 
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(
     0deg,
-    $light-grey 0%,
-    $dark-grey 100%
-  );
+    rgba($light-grey, $alpha: .7) 0%,
+    rgba($dark-grey, $alpha: 1) 100%
+  ), url("../../images/background.jpg");
 }
 
 input {

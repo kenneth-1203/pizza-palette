@@ -27,36 +27,41 @@ class SignIn extends Component {
 
     return (
       <div className="container">
-        <h1>Sign In</h1>
-        <form onSubmit={this.handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="email" className="form-label">
-              Email address
-            </label>
-            <input type="email" className="form-control" id="email" onChange={this.handleChange}></input>
+        <div className="row">
+        <div className="col-sm-1"></div>
+          <div className="col-sm-6">
+            <h1 className="pb-3">Sign In</h1>
+            <form onSubmit={this.handleSubmit}>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
+                  Email address
+                </label>
+                <input type="email" className="form-control" id="email" onChange={this.handleChange}></input>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  onChange={this.handleChange}
+                ></input>
+              </div>
+              <div>
+                { authError ? (
+                  <small style={{ color: "red" }}>
+                    { authError }
+                  </small>
+                ) : null }
+              </div>
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </form>
           </div>
-          <div className="mb-3">
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              onChange={this.handleChange}
-            ></input>
-          </div>
-          <div>
-            { authError ? (
-              <small style={{ color: "red" }}>
-                { authError }
-              </small>
-            ) : null }
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
+        </div>
       </div>
     );
   }
