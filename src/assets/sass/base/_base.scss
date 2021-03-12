@@ -18,6 +18,7 @@ body {
     rgba($light-grey, $alpha: .7) 0%,
     rgba($dark-grey, $alpha: 1) 100%
   ), url("../../images/background.jpg");
+  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -27,13 +28,6 @@ input {
   background: none;
   border: none;
   outline: none;
-}
-
-input:-webkit-autofill,
-textarea:-webkit-autofill,
-select:-webkit-autofill {
-  transition: none;
-  box-shadow: 0 0 0 1000px #1b1b1b inset !important;
 }
 
 a {
@@ -46,5 +40,5 @@ label,
 button,
 input,
 i {
-  font-size: calc(.7rem + .5vw) !important;
+  font-size: calc(.6rem + .5vw) !important;
 }

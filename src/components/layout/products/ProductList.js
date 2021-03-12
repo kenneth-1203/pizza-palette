@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import ProductSummary from "./ProductSummary";
+import ProductCard from "./ProductCard";
 
 const ProductList = ({ products }) => {
   return (
@@ -10,7 +10,7 @@ const ProductList = ({ products }) => {
         products.map((product) => {
           return (
             <Link to={`/product/${product.id}`} key={product.id} >
-              <ProductSummary product={product} />
+              <ProductCard product={product} />
             </Link>
           );
         })}

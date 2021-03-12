@@ -60,23 +60,23 @@ class Navbar extends Component {
               <div className="d-flex justify-content-between">
                 <div className="col-md-10">
                   <ul className="navbar-nav justify-content-center">
-                    <li className="nav-item">
+                    <li className="nav-item my-auto">
                       <Link className="nav-link active" to="/">
                         Home
                       </Link>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item my-auto">
                       <Link className="nav-link" to="/menu">
                         Menu
                       </Link>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item my-auto">
                       <Link className="nav-link" to="/about">
                         About
                       </Link>
                     </li>
                     { isAdmin(auth.uid) ? (
-                      <li className="nav-item">
+                      <li className="nav-item my-auto">
                       <Link className="nav-link" to="/create">
                         Create
                       </Link>

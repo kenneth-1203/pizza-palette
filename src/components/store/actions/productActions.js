@@ -8,6 +8,7 @@ export const createProduct = (product) => {
         name: product.name,
         description: product.description, 
         price: product.price,
+        image: product.image
       })
       .then(() => {
         dispatch({ type: "CREATE_PRODUCT", product });
