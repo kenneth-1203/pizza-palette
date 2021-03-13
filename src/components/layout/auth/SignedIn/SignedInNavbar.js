@@ -12,7 +12,7 @@ const SignedInNavbar = (props) => {
       </li>
       <li className="nav-item d-flex flex-column justify-content-center">
         <Link to="/profile" className="nav-profile-btn text-center">
-        <div className="pt-2">
+        <div className="nav-profile-initials pt-2">
           {props.profile.initials}
         </div>
         </Link>

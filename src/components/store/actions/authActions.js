@@ -51,7 +51,7 @@ export const signUp = (newUser) => {
 
 export const isAdmin = (id) => {
   const admin = [
-    "yfgkkO3RS2RqHYUN1iX9d6fVYkP2"
+    "dlWrUEXD4uffpc9wzYmL0y2hNFg2"
   ];
   let exist = false;
   if (id) {

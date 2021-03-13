@@ -10,6 +10,7 @@ class CreateProduct extends Component {
     description: "",
     price: "",
     image: "",
+    isLoading: false
   };
 
   handleInputChange = (e) => {
@@ -29,7 +30,7 @@ class CreateProduct extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { image } = this.state;
+    const { name, description, price, image } = this.state;
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on(
       "state_changed",
@@ -45,14 +46,25 @@ class CreateProduct extends Component {
           .then((url) => {
             console.log(url);
             this.setState({ image: url });
-            this.props.createProduct(this.state);
-            this.props.history.push("/");
+            this.props.createProduct({
+              name, description, price, image
+            });
+            this.props.history.push("/menu");
           });
       }
     );
   };
 
+  renderSpinner = () => {
+    const { name, description, price, image } = this.state;
+    if (name !== "" && description !== "" && price !== "" && image !== "") {
+      this.setState({ isLoading: true });
+    }
+  }
+
   render() {
+    const spinner = <div className="mx-3 spinner-border" role="status"></div>;
+
     return (
       <div className="container">
         <div className="row">
@@ -69,6 +81,7 @@ class CreateProduct extends Component {
                   className="form-control"
                   id="name"
                   onChange={this.handleInputChange}
+                  required
                 ></input>
               </div>
               <div className="mb-3">
@@ -80,6 +93,7 @@ class CreateProduct extends Component {
                   className="form-control"
                   id="description"
                   onChange={this.handleInputChange}
+                  required
                 ></input>
               </div>
               <div className="mb-3">
@@ -91,6 +105,7 @@ class CreateProduct extends Component {
                   className="form-control"
                   id="price"
                   onChange={this.handleInputChange}
+                  required
                 ></input>
               </div>
               <div className="mb-3">
@@ -102,11 +117,13 @@ class CreateProduct extends Component {
                   className="form-control"
                   id="image"
                   onChange={this.handleFileChange}
+                  required
                 ></input>
               </div>
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary" onClick={this.renderSpinner}>
                 Create
               </button>
+              { this.state.isLoading ? spinner : null }
             </form>
           </div>
         </div>

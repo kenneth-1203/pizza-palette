@@ -1,5 +1,21 @@
 .card {
+  background: $dark-grey;
+  border: none;
+  border-radius: 20px;
+
+  &-img {
+    &-top {
+      width: 15rem;
+      height: 12rem;
+      object-fit: cover;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+  }
+
   &-body {
     background: $dark-grey;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
 }

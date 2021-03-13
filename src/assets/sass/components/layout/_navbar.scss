@@ -55,6 +55,10 @@
       background-color: $pale-red;
       border-radius: 100%;
     }
+
+    &-initials {
+      text-transform: uppercase;
+    }
   }
 
   &-sidenav {

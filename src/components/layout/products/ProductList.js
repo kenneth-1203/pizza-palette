@@ -5,16 +5,12 @@ import ProductCard from "./ProductCard";
 
 const ProductList = ({ products }) => {
   return (
-    <div className="container">
+    <React.Fragment>
       {products &&
-        products.map((product) => {
-          return (
-            <Link to={`/product/${product.id}`} key={product.id} >
-              <ProductCard product={product} />
-            </Link>
-          );
+        products.map(product => {
+          return <ProductCard product={product} />;
         })}
-    </div>
+    </React.Fragment>
   );
 };
 

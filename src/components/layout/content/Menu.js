@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import Skeleton from '@yisheng90/react-loading';
+
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
@@ -12,12 +14,9 @@ class Menu extends Component {
     return (
       <div>
         <div className="container">
-          <h1>Menu</h1>
-          { products ? (
-            <ProductList products={products} />
-          ) : (
-            <h1>Loading...</h1>
-          ) }
+          <div className="d-flex flex-wrap justify-content-evenly">
+            {products ? <ProductList products={products} /> : <Skeleton />}
+          </div>
         </div>
       </div>
     );

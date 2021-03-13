@@ -28,11 +28,25 @@
     padding-right: 1.2em;
     padding-top: .6em;
     padding-bottom: .6em;
+    
+    &:active:focus {
+      color: $lighter-grey;
+      background: $dark-red;
+      box-shadow: none;
+    }
+    
+    &:active,
+    &:focus {
+      border-color: none;
+      box-shadow: none;
+      background: $light-grey;
+    }
 
-    &:hover,
-    &:focus,
-    &:active {
+    &:hover {
       background: $primary-red;
+      outline: none;
+      border: none;
+      box-shadow: none;
     }
   }
 }
@@ -44,5 +58,12 @@
     height: 30px;
     width: 100%;
     color: $primary-red;
+  }
+}
+
+.spinner {
+  &-border {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
