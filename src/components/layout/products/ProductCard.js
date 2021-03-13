@@ -7,9 +7,15 @@ import spinner from "../../../assets/animated/spinner.svg";
 class ProductCard extends Component {
   state = {
     isLoading: true,
+    favorites: []
   };
 
   handleLoad = () => this.setState({ isLoading: false });
+
+  addToFavorites = (id) => {
+    // Check if product is already added to favorites
+    // Else add to favorites
+  }
 
   render() {
     const { product } = this.props;
@@ -28,7 +34,7 @@ class ProductCard extends Component {
           <h5 className="card-title">{product.name}</h5>
           <div className="d-flex justify-content-between">
             <button className="btn btn-primary">Add to Cart</button>
-            <button className="btn btn-primary">
+            <button className="btn btn-primary" onClick={this.addToFavorites(product.id)}>
               <i class="far fa-heart"></i>
             </button>
           </div>
