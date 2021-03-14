@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 
 import { Carousel } from "react-bootstrap";
-import Coupon1 from "../../../assets/images/first30-coupon.png";
-import Coupon2 from "../../../assets/images/its2021-coupon.png";
-import Coupon3 from "../../../assets/images/freedel50-coupon.png";
+
+import Coupon1 from "../../../../assets/images/first30-coupon.png";
+import Coupon2 from "../../../../assets/images/its2021-coupon.png";
+import Coupon3 from "../../../../assets/images/freedel50-coupon.png";
 
 export default class Coupons extends Component {
   render() {

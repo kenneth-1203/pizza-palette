@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { isAdmin } from "../store/actions/authActions";
 import SignIn from "../store/auth/SignIn";
 import SignUp from "../store/auth/SignUp";
-import Profile from "../store/profile/Profile";
+import Profile from "../layout/content/profile/Profile";
 import CreateProduct from "../layout/products/CreateProduct";
 
 class ProtectedRoute extends Component {

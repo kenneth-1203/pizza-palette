@@ -3,10 +3,10 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import ProductDetails from "../../components/layout/products/ProductDetails";
-import Home from "../../components/layout/content/Home";
-import About from "../../components/layout/content/About";
-import Menu from "../../components/layout/content/Menu";
-import Cart from "../../components/store/cart/Cart";
+import Home from "../layout/content/home/Home";
+import About from "../layout/content/about/About";
+import Menu from "../layout/content/menu/Menu";
+import Cart from "../layout/content/cart/Cart";
 import ProtectedRoute from "../router/ProtectedRoute";
 
 const Router = () => {

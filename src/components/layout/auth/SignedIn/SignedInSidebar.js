@@ -5,16 +5,17 @@ import { connect } from "react-redux";
 import { signOut } from "../../../store/actions/authActions";
 
 const SignedInSidebar = (props) => {
+  const signOut = () => {
+    props.toggleSidenav();
+    props.signOut();
+  };
+
   return (
     <React.Fragment>
-      <Link to="/profile" className="p-2 nav-link text-center">
+      <Link to="/profile" onClick={props.toggleSidenav} className="p-2 nav-link text-center">
         <h5>Profile</h5>
       </Link>
-      <Link
-        to="/"
-        onClick={() => props.signOut()}
-        className="p-2 nav-link text-center"
-      >
+      <Link to="/" onClick={signOut} className="p-2 nav-link text-center">
         <h5>Sign Out</h5>
       </Link>
     </React.Fragment>

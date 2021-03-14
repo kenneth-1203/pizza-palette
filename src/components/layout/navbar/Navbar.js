@@ -43,7 +43,7 @@ class Navbar extends Component {
       </Link>
     );
     const navbarLinks = auth.uid ? <SignedInNavbar profile={profile} /> : <SignedOutNavbar />;
-    const sidebarLinks = auth.uid ? <SignedInSidebar profile={profile} /> : <SignedOutSidebar />;
+    const sidebarLinks = auth.uid ? <SignedInSidebar profile={profile} toggleSidenav={this.toggleSidenav} /> : <SignedOutSidebar toggleSidenav={this.toggleSidenav} />;
 
     return (
       <React.Fragment>

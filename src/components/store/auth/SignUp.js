@@ -37,7 +37,7 @@ class SignUp extends Component {
                 <div className="col-sm-6">
                   <div className="mb-3">
                     <label htmlFor="firstName" className="form-label">
-                      First Name
+                      First name
                     </label>
                     <input
                       type="text"
@@ -50,7 +50,7 @@ class SignUp extends Component {
                 <div className="col-sm-6">
                   <div className="mb-3">
                     <label htmlFor="lastName" className="form-label">
-                      Last Name
+                      Last name
                     </label>
                     <input
                       type="text"
@@ -87,7 +87,7 @@ class SignUp extends Component {
                 { authError ? authError : null }
               </small>
               <button type="submit" className="btn btn-primary">
-                Sign Up
+                Create account
               </button>
             </form>
           </div>

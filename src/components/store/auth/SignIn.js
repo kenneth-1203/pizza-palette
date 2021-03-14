@@ -24,6 +24,7 @@ class SignIn extends Component {
 
   render() {
     const { authError } = this.props; 
+    console.log(this.props);
 
     return (
       <div className="container">
@@ -53,7 +54,7 @@ class SignIn extends Component {
                 { authError ? authError : null }
               </small>
               <button type="submit" className="btn btn-primary">
-                Sign In
+                Sign in
               </button>
             </form>
           </div>

@@ -8,14 +8,15 @@
   color: white;
   background: none;
   border: none;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid rgba(white, $alpha: .5);
   border-radius: 0;
 
   &:focus {
     color: white;
     background: none;
     box-shadow: none;
-    border-color: $primary-red;
+    border-color: white;
+    box-shadow: 0 1px 0 0 white;
   }
 }
 
