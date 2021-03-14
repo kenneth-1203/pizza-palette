@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Skeleton from '@yisheng90/react-loading';
+import Skeleton from "@yisheng90/react-loading";
 
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -15,7 +15,22 @@ class Menu extends Component {
       <div>
         <div className="container">
           <div className="d-flex flex-wrap justify-content-evenly">
-            {products ? <ProductList products={products} /> : <Skeleton />}
+            {products ? (
+              <ProductList products={products} />
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-evenly",
+                  width: "80%",
+                  height: "10rem",
+                  marginLeft: "20px",
+                }}
+              >
+                <Skeleton color="transparent" rows={10} />
+              </div>
+            )}
           </div>
         </div>
       </div>
