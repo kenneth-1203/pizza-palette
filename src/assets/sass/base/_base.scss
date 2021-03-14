@@ -14,7 +14,8 @@ body {
 }
 
 body {
-  background-image: linear-gradient(
+  background: $dark-grey;
+  background-image: -webkit-linear-gradient(
     0deg,
     rgba($light-grey, $alpha: .7) 0%,
     rgba($dark-grey, $alpha: 1) 100%
@@ -43,3 +44,9 @@ input,
 i {
   font-size: calc(.6rem + .5vw) !important;
 }
+
+h1 { font-size: calc(1.5rem + .5vw) !important; }
+h2 { font-size: calc(1.2rem + .5vw) !important; }
+h3 { font-size: calc(1rem + .5vw) !important; }
+h4 { font-size: calc(.9rem + .5vw) !important; }
+h5 { font-size: calc(.8rem + .5vw) !important; }

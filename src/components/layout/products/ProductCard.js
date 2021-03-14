@@ -33,7 +33,7 @@ class ProductCard extends Component {
         <div className="card-body">
           <h5 className="card-title">{product.name}</h5>
           <div className="d-flex justify-content-between">
-            <button className="btn btn-primary">Add to Cart</button>
+            <button className="btn btn-warning">Add to Cart</button>
             <button className="btn btn-primary" onClick={this.addToFavorites(product.id)}>
               <i class="far fa-heart"></i>
             </button>

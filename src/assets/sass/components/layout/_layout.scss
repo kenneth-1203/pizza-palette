@@ -20,7 +20,10 @@
 }
 
 .btn {
-  &-primary {
+  &-primary,
+  &-success,
+  &-warning {
+    color: white;
     background: $light-grey;
     border: none;
     border-radius: 20px;
@@ -37,17 +40,29 @@
     
     &:active,
     &:focus {
+      color: white;
       border-color: none;
       box-shadow: none;
       background: $light-grey;
     }
 
     &:hover {
+      color: white;
       background: $primary-red;
       outline: none;
       border: none;
       box-shadow: none;
     }
+  }
+
+  &-success {
+    &:active:focus { background: $dark-green; }
+    &:hover { background: $primary-green; }
+  }
+
+  &-warning {
+    &:active:focus { background: $dark-blue; }
+    &:hover { background: $primary-blue; }
   }
 }
 
