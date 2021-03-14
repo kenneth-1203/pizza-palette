@@ -9,7 +9,7 @@ import Coupon3 from "../../../../assets/images/freedel50-coupon.png";
 export default class Coupons extends Component {
   render() {
     return (
-      <Carousel style={{ width: "100vh" }}>
+      <Carousel style={{ width: "50rem" }}>
         <Carousel.Item>
           <img
             className="d-block w-75 mx-auto"
