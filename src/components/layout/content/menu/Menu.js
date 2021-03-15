@@ -11,6 +11,7 @@ import ProductList from "../../products/ProductList";
 class Menu extends Component {
   render() {
     const { products } = this.props;
+    console.log(this.props);
     return (
       <div>
         <div className="container">

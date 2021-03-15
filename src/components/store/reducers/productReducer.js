@@ -1,3 +1,5 @@
+import * as actionTypes from "../actions/actionTypes";
+
 const initState = {
   products: [
     {
@@ -23,10 +25,10 @@ const initState = {
 
 const productReducer = (state = initState, action) => {
   switch (action.type) {
-    case "CREATE_PRODUCT":
+    case actionTypes.CREATE_PRODUCT:
       console.log("Product added to menu.", action.product);
       return state;
-    case "CREATE_PRODUCT_ERROR":
+    case actionTypes.CREATE_PRODUCT_ERROR:
       console.log("Create product error!", action.err);
       return state;
     default: 

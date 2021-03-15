@@ -15,8 +15,17 @@ class Navbar extends Component {
     cart: 0,
     sideNav: false,
     expandSearch: false,
-    search: ""
+    search: "",
+    isLoaded: false
   };
+
+  componentDidMount() {
+    this.setCartCount();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.cart !== this.props.cart) this.setCartCount();
+  }
 
   toggleSidenav = () => {
     this.setState({ sideNav: !this.state.sideNav });
@@ -29,21 +38,30 @@ class Navbar extends Component {
   handleChange = (e) => {
     this.setState({ search: e.target.value });
   };
-  
+
+  setCartCount = () => {
+    let { cart } = this.props;
+    let count = 0;
+    cart.forEach((item) => {
+      console.log(item.quantity)
+      count += item.quantity;
+    });
+    this.setState({ cart: count });
+  };
+
   render() {
-    const { auth, profile } = this.props; 
-    const cart = this.state.cart ? (
-      <Link className="p-2 nav-link active" to="/cart">
-        <i className="fas fa-shopping-bag"></i>
-        <span className="badge">{this.state.cart}</span>
-      </Link>
+    const { auth, profile } = this.props;
+
+    const navbarLinks = auth.uid ? (
+      <SignedInNavbar profile={profile} />
     ) : (
-      <Link className="p-2 nav-link" to="/cart">
-        <i className="fas fa-shopping-bag"></i>
-      </Link>
+      <SignedOutNavbar />
     );
-    const navbarLinks = auth.uid ? <SignedInNavbar profile={profile} /> : <SignedOutNavbar />;
-    const sidebarLinks = auth.uid ? <SignedInSidebar profile={profile} toggleSidenav={this.toggleSidenav} /> : <SignedOutSidebar toggleSidenav={this.toggleSidenav} />;
+    const sidebarLinks = auth.uid ? (
+      <SignedInSidebar profile={profile} toggleSidenav={this.toggleSidenav} />
+    ) : (
+      <SignedOutSidebar toggleSidenav={this.toggleSidenav} />
+    );
 
     return (
       <React.Fragment>
@@ -75,13 +93,13 @@ class Navbar extends Component {
                         About
                       </Link>
                     </li>
-                    { isAdmin(auth.uid) ? (
+                    {isAdmin(auth.uid) ? (
                       <li className="nav-item my-auto">
-                      <Link className="nav-link" to="/create">
-                        Create
-                      </Link>
-                    </li>
-                    ) : null }
+                        <Link className="nav-link" to="/create">
+                          Create
+                        </Link>
+                      </li>
+                    ) : null}
                     <li className="nav-item nav-search d-flex align-items-center">
                       <span
                         className="nav-link"
@@ -124,9 +142,18 @@ class Navbar extends Component {
               <div className="d-flex mx-auto">
                 <ul className="navbar-nav">
                   <li className="nav-item nav-cart">
-                    { cart }
+                    {this.state.cart ? (
+                      <Link className="p-2 nav-link active" to="/cart">
+                        <i className="fas fa-shopping-bag"></i>
+                        <span className="badge">{this.state.cart}</span>
+                      </Link>
+                    ) : (
+                      <Link className="p-2 nav-link" to="/cart">
+                        <i className="fas fa-shopping-bag"></i>
+                      </Link>
+                    )}
                   </li>
-                  { auth.isLoaded && navbarLinks ? navbarLinks : null }
+                  {auth.isLoaded && navbarLinks ? navbarLinks : null}
                 </ul>
               </div>
             </div>
@@ -144,7 +171,7 @@ class Navbar extends Component {
           >
             &times;
           </span>
-            { auth.isLoaded && sidebarLinks ? sidebarLinks : null }
+          {auth.isLoaded && sidebarLinks ? sidebarLinks : null}
         </div>
       </React.Fragment>
     );
@@ -152,10 +179,10 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     auth: state.firebase.auth,
-    profile: state.firebase.profile
+    profile: state.firebase.profile,
+    cart: state.shop.cart,
   };
 };
 

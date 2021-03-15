@@ -1,3 +1,5 @@
+import * as actionTypes from "./actionTypes";
+
 export const signIn = (credentials) => {
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
@@ -6,10 +8,10 @@ export const signIn = (credentials) => {
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(() => {
-        dispatch({ type: "LOGIN_SUCCESS" });
+        dispatch({ type: actionTypes.LOGIN_SUCCESS });
       })
       .catch((err) => {
-        dispatch({ type: "LOGIN_ERROR", err });
+        dispatch({ type: actionTypes.LOGIN_ERROR, err });
       });
   };
 };
@@ -22,7 +24,7 @@ export const signOut = () => {
       .auth()
       .signOut()
       .then(() => {
-        dispatch({ type: "SIGNOUT_SUCCESS" });
+        dispatch({ type: actionTypes.SIGNOUT_SUCCESS });
       });
   };
 };
@@ -42,9 +44,9 @@ export const signUp = (newUser) => {
         initials: `${newUser.firstName[0]}${newUser.lastName[0]}`
       })
     }).then(() => {
-      dispatch({ type: "SIGNUP_SUCCESS" })
+      dispatch({ type: actionTypes.SIGNUP_SUCCESS })
     }).catch(err => {
-      dispatch({ type: "SIGNUP_ERROR", err })
+      dispatch({ type: actionTypes.SIGNUP_ERROR, err })
     })
   }
 }
