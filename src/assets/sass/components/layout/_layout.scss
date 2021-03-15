@@ -75,8 +75,8 @@
     &:hover { background: $orange; }
 
     &.active {
-      &:active:focus { background: $light-grey; box-shadow: none; }
-      &:hover { background: $lighter-grey; }
+      &:active:focus { background: $lighter-grey; }
+      &:focus { box-shadow: none; }
     }
   }
 

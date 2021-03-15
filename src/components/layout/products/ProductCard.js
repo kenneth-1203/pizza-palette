@@ -37,7 +37,7 @@ class ProductCard extends Component {
               >
                 <i className="fas fa-shopping-bag"></i>
               </button>
-              <button className="mx-2 btn btn-primary">
+              <button className="mx-2 btn btn-primary btn-like">
                 <i className="far fa-heart"></i>
               </button>
             </div>

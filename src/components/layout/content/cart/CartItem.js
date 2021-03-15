@@ -28,10 +28,10 @@ const CartItem = ({ product, removeFromCart, adjustQuantity }) => {
         onChange={handleChange}
       />
       <button
-        className="btn btn-primary"
+        className="btn btn-primary btn-delete"
         onClick={() => removeFromCart(product.id)}
       >
-        Delete
+        <i class="fas fa-trash"></i>
       </button>
     </div>
   );
