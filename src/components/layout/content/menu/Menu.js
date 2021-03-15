@@ -23,12 +23,11 @@ class Menu extends Component {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-evenly",
-                  width: "80%",
-                  height: "10rem",
-                  marginLeft: "20px",
+                  width: "90%",
+                  height: "30vw",
                 }}
               >
-                <Skeleton color="transparent" rows={10} />
+                <Skeleton color="rgba(255,255,255,.3)" rows={10} translucent />
               </div>
             )}
           </div>

@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { signOut } from "../../../store/actions/authActions";
 
-const SignedInNavbar = (props) => {
+const SignedInNavbar = ({ signOut, profile }) => {
   return (
     <React.Fragment>
       <li className="nav-item">
-        <Link to="/" onClick={() => props.signOut()} className="p-2 nav-link text-center">Sign Out</Link>
+        <Link to="/" onClick={signOut} className="p-2 nav-link text-center">Sign Out</Link>
       </li>
       <li className="nav-item d-flex flex-column justify-content-center">
         <Link to="/profile" className="nav-profile-btn text-center">
         <div className="nav-profile-initials pt-2">
-          {props.profile.initials}
+          {profile.initials}
         </div>
         </Link>
       </li>

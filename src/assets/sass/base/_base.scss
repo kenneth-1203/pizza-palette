@@ -16,9 +16,9 @@ body {
 body {
   background: $dark-grey;
   background-image: -webkit-linear-gradient(
-    0deg,
+    90deg,
     rgba($light-grey, $alpha: .7) 0%,
-    rgba($dark-grey, $alpha: 1) 100%
+    rgba($dark-grey, $alpha: 1) 95%
   ), url("../../images/background.jpg");
   background-attachment: fixed;
   background-position: center;

@@ -14,6 +14,9 @@ class ProductCard extends Component {
 
   addToFavorites = (id) => {
     // Check if product is already added to favorites
+
+    // If already added, remove from favorites
+
     // Else add to favorites
   }
 
