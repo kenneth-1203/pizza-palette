@@ -14,11 +14,11 @@ body {
 }
 
 body {
-  background: $dark-grey;
+  background: $darker-grey;
   background-image: -webkit-linear-gradient(
     90deg,
-    rgba($light-grey, $alpha: .7) 0%,
-    rgba($dark-grey, $alpha: 1) 95%
+    rgba($grey, $alpha: .7) 0%,
+    rgba($darker-grey, $alpha: 1) 95%
   ), url("../../images/background.jpg");
   background-attachment: fixed;
   background-position: center;
@@ -49,6 +49,6 @@ h1 { font-size: calc(1.5rem + .5vw) !important; }
 h2 { font-size: calc(1.2rem + .5vw) !important; }
 h3 { font-size: calc(1rem + .5vw) !important; }
 h4 { font-size: calc(.9rem + .5vw) !important; }
-h5 { font-size: calc(.8rem + .5vw) !important; }
+h5 { font-size: calc(.6rem + .5vw) !important; }
 
 h1 { text-shadow: 0 5px 12px rgba(black, $alpha: .6); }

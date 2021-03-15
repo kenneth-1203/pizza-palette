@@ -47,7 +47,10 @@ class CreateProduct extends Component {
             console.log(url);
             this.setState({ image: url });
             this.props.createProduct({
-              name, description, price, image
+              name,
+              description,
+              price, 
+              image: url
             });
             this.props.history.push("/menu");
           });

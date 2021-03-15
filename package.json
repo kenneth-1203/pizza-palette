@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.2.2",
     "@yisheng90/react-loading": "^1.4.4",
     "bootstrap": "^4.6.0",
+    "browser-image-compression": "^1.0.14",
     "firebase": "^8.2.10",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.1",

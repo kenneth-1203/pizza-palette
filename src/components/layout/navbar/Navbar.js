@@ -16,7 +16,7 @@ class Navbar extends Component {
     sideNav: false,
     expandSearch: false,
     search: "",
-    isLoaded: false
+    isLoaded: false,
   };
 
   componentDidMount() {
@@ -43,7 +43,7 @@ class Navbar extends Component {
     let { cart } = this.props;
     let count = 0;
     cart.forEach((item) => {
-      console.log(item.quantity)
+      console.log(item.quantity);
       count += item.quantity;
     });
     this.setState({ cart: count });
@@ -66,15 +66,15 @@ class Navbar extends Component {
     return (
       <React.Fragment>
         <div className="container">
-          <nav className="navbar navbar-expand-xl">
-            <div className="col-xl-3 col-md-2 col-4">
+          <nav className="navbar navbar-expand-lg">
+            <div className="col-lg-3 col-md-2 col-4">
               <div className="d-flex justify-content-center">
                 <Link className="navbar-brand" to="/">
                   <img src={Logo} width="150px" alt="" />
                 </Link>
               </div>
             </div>
-            <div className="col-xl-6 col-md-10 col-12 py-3 mx-auto">
+            <div className="col-lg-6 col-md-10 col-12 py-3 mx-auto">
               <div className="d-flex justify-content-between">
                 <div className="col-md-10">
                   <ul className="navbar-nav justify-content-center">
@@ -100,13 +100,8 @@ class Navbar extends Component {
                         </Link>
                       </li>
                     ) : null}
-                    <li className="nav-item nav-search d-flex align-items-center">
-                      <span
-                        className="nav-link"
-                        id="searchInput"
-                        href="."
-                        onClick={this.toggleSearch}
-                      >
+                    <li className="btn btn-light nav-search d-flex align-items-center" onClick={this.toggleSearch}>
+                      <span id="searchInput">
                         <i className="fas fa-search"></i>
                       </span>
                       <input
@@ -136,23 +131,19 @@ class Navbar extends Component {
               </div>
             </div>
             <div
-              className="col-xl-3 collapse navbar-collapse"
+              className="col-lg-3 collapse navbar-collapse"
               style={{ width: "25%" }}
             >
               <div className="d-flex mx-auto">
                 <ul className="navbar-nav">
-                  <li className="nav-item nav-cart">
-                    {this.state.cart ? (
-                      <Link className="p-2 nav-link active" to="/cart">
-                        <i className="fas fa-shopping-bag"></i>
-                        <span className="badge">{this.state.cart}</span>
-                      </Link>
-                    ) : (
-                      <Link className="p-2 nav-link" to="/cart">
-                        <i className="fas fa-shopping-bag"></i>
-                      </Link>
-                    )}
-                  </li>
+                  <Link to="/cart">
+                    <li className="nav-item nav-cart">
+                      <button className={`btn btn-secondary${this.state.cart ? " active" : ""}`}>
+                          <i className="fas fa-shopping-bag"></i>
+                      </button>
+                      <span className="badge">{this.state.cart ? this.state.cart : null}</span>
+                    </li>
+                  </Link>
                   {auth.isLoaded && navbarLinks ? navbarLinks : null}
                 </ul>
               </div>

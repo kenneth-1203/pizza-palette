@@ -12,16 +12,13 @@
   }
 
   &-search {
-    background: $light-grey;
-    margin-left: 1em;
-    margin-right: 1em;
-    border-radius: 20px;
-
     &-input {
       width: 0;
-      padding: 0;
+      display: none;
+      padding-left: .5rem;
       
       &.active {
+        display: block;
         animation-name: expandSearch;
         animation-duration: 0.2s;
         animation-fill-mode: forwards;
@@ -30,7 +27,6 @@
   }
 
   &-cart {
-    background: $light-grey;
     border-radius: 10px;
     position: relative;
 
@@ -69,7 +65,7 @@
     top: 0;
     right: 0;
     overflow-x: hidden;
-    transition: .3s;
+    transition: .2s;
     background-color: $dark-grey;
   }
 }
@@ -83,7 +79,20 @@
     flex-direction: row;
   }
   &-toggler {
-    background: $light-grey;
+    transition: .2s;
+    background: $grey;
+    box-shadow: $button-shadow;
+
+    &:focus, 
+    &:active:focus {
+      background: $dark-grey;
+      box-shadow: none;
+      outline: none;
+    }
+
+    &:hover {
+      background: $light-grey;
+    }
   }
 }
 
@@ -91,5 +100,6 @@
   border-radius: 20px;
   background: $orange;
   position: absolute;
+  right: -10px;
   top: -10px;
 }

@@ -23,28 +23,31 @@
 .btn {
   &-primary,
   &-success,
-  &-warning {
+  &-warning,
+  &-secondary,
+  &-light {
     color: white;
-    background: $light-grey;
+    background: $grey;
     border: none;
     border-radius: 20px;
     padding-left: 1.2em;
     padding-right: 1.2em;
     padding-top: .6em;
     padding-bottom: .6em;
+    box-shadow: $button-shadow;
     
     &:active:focus {
       color: $lighter-grey;
       background: $dark-red;
-      box-shadow: none;
+      box-shadow: $button-shadow;
     }
     
     &:active,
     &:focus {
       color: white;
       border-color: none;
-      box-shadow: none;
-      background: $light-grey;
+      box-shadow: $button-shadow;
+      background: $grey;
     }
 
     &:hover {
@@ -52,7 +55,7 @@
       background: $primary-red;
       outline: none;
       border: none;
-      box-shadow: none;
+      box-shadow: $button-shadow
     }
   }
 
@@ -64,6 +67,22 @@
   &-warning {
     &:active:focus { background: $dark-blue; }
     &:hover { background: $primary-blue; }
+  }
+
+  &-secondary {
+    border-radius: 10px;
+    &:active:focus { background: $dark-orange; }
+    &:hover { background: $orange; }
+
+    &.active {
+      &:active:focus { background: $light-grey; box-shadow: none; }
+      &:hover { background: $lighter-grey; }
+    }
+  }
+
+  &-light {
+    &:active { background: $grey !important; }
+    &:hover { background: $light-grey; }
   }
 }
 

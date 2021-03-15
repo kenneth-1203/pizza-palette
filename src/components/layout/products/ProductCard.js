@@ -29,11 +29,19 @@ class ProductCard extends Component {
         </Link>
         <div className="card-body">
           <h5 className="card-title">{product.name}</h5>
-          <div className="d-flex justify-content-between">
-            <button className="btn btn-warning" onClick={() => addToCart(product.id, products)}>Add to Cart</button>
-            <button className="btn btn-primary">
-              <i className="far fa-heart"></i>
-            </button>
+          <div className="d-flex align-items-end justify-content-between">
+            <div>
+              <button
+                className="btn btn-secondary"
+                onClick={() => addToCart(product.id, products)}
+              >
+                <i className="fas fa-shopping-bag"></i>
+              </button>
+              <button className="mx-2 btn btn-primary">
+                <i className="far fa-heart"></i>
+              </button>
+            </div>
+            <div>RM {product.price}</div>
           </div>
         </div>
       </div>
