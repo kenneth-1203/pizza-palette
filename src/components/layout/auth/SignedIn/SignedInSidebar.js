@@ -4,19 +4,37 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { signOut } from "../../../store/actions/authActions";
 
-const SignedInSidebar = (props) => {
-  const signOut = () => {
-    props.toggleSidenav();
-    props.signOut();
+const SignedInSidebar = ({ signOut, toggleSidenav, profile }) => {
+  const handleSignOut = () => {
+    toggleSidenav();
+    signOut();
   };
 
   return (
     <React.Fragment>
-      <Link to="/profile" onClick={props.toggleSidenav} className="p-2 nav-link text-center">
-        <h5>Profile</h5>
+      <Link
+        to="/profile"
+        className="d-flex justify-content-center mx-auto nav-profile-btn text-center"
+        onClick={toggleSidenav}
+        style={{ width: "5rem", height: "5rem" }}
+      >
+        <div className="nav-profile-initials d-flex align-items-center" style={{ fontSize: "2rem" }}>{profile.initials}</div>
       </Link>
-      <Link to="/" onClick={signOut} className="p-2 nav-link text-center">
-        <h5>Sign Out</h5>
+      <li className="m-3 btn btn-light nav-search d-flex align-items-center">
+        <span id="searchInput">
+          <i className="fas fa-search"></i>
+        </span>
+        <input
+          type="text"
+          className="nav-search-input active"
+          style={{ minWidth: "100%" }}
+        />
+      </li>
+      <Link to="/" onClick={handleSignOut} className="p-2 nav-link text-center">
+        <h4>Sign Out</h4>
+      </Link>
+      <Link to="/cart" className="p-2 nav-link text-center">
+        <h4>Cart</h4>
       </Link>
     </React.Fragment>
   );
