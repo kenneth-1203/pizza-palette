@@ -26,6 +26,10 @@
     border-radius: 20px;
   }
 
+  &-light {
+    border-radius: 10px;
+  }
+
   &-primary,
   &-success,
   &-warning,
@@ -42,7 +46,7 @@
     &:active:focus {
       color: $lighter-grey;
       background: $dark-red;
-      box-shadow: $button-shadow;
+      box-shadow: $button-shadow $shadow-color;
     }
     
     &:active,

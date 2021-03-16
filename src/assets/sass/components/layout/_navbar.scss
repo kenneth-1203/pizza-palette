@@ -93,7 +93,7 @@
   &-toggler {
     transition: .2s;
     background: $grey;
-    box-shadow: $button-shadow;
+    box-shadow: $button-shadow $shadow-color;
 
     &:focus, 
     &:active:focus {

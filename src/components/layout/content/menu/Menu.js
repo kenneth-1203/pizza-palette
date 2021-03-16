@@ -10,14 +10,14 @@ import ProductList from "../../products/ProductList";
 
 class Menu extends Component {
   render() {
-    const { products } = this.props;
-    console.log(this.props);
+    const { products, auth, history } = this.props;
+    
     return (
       <div>
         <div className="container pt-2">
           <div className="d-flex flex-wrap justify-content-evenly">
             {products ? (
-              <ProductList products={products} />
+              <ProductList products={products} auth={auth} history={history} />
             ) : (
               <Skeleton
                 className="m-3 skeleton"
@@ -37,6 +37,7 @@ class Menu extends Component {
 const mapStateToProps = (state) => {
   return {
     products: state.firestore.ordered.products,
+    auth: state.firebase.auth
   };
 };
 

@@ -15,7 +15,7 @@ class ProductCard extends Component {
   handleLoad = () => this.setState({ isLoading: false });
 
   render() {
-    const { product, products, addToCart } = this.props;
+    const { product, products, addToCart, auth, history } = this.props;
 
     return (
       <div className="m-3 card">
@@ -35,7 +35,7 @@ class ProductCard extends Component {
             <div>
               <button
                 className="btn btn-light cart-hover"
-                onClick={() => addToCart(product.id, products)}
+                onClick={() => auth.uid ? addToCart(product.id, products) : history.push("/signin")}
               >
                 <i className="fas fa-shopping-bag"></i>
               </button>
