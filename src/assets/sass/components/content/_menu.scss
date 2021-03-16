@@ -3,7 +3,8 @@
   border: none;
   border-radius: 20px;
   width: 15rem;
-  box-shadow: 0 5px 15px 8px rgba(0,0,0,.3);
+  box-shadow: $card-shadow $shadow-color;
+  transition: .2s;
 
   &-img {
     &-top {
@@ -19,5 +20,21 @@
     background: $dark-grey;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+  }
+
+  &:hover {
+    box-shadow: $card-shadow rgba($light-grey, $alpha: .5);
+  }
+}
+
+.cart {
+  &-hover {
+    &:hover {
+      background: $orange;
+    }
+
+    &:active {
+      background: $dark-orange !important;
+    }
   }
 }

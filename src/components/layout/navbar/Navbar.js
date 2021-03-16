@@ -138,7 +138,7 @@ class Navbar extends Component {
                 <ul className="navbar-nav">
                   <Link to="/cart">
                     <li className="nav-item nav-cart">
-                      <button className={`btn btn-secondary${this.state.cart ? " active" : ""}`}>
+                      <button className={`btn btn-light${this.state.cart ? " active" : ""}`}>
                           <i className="fas fa-shopping-bag"></i>
                       </button>
                       <span className="badge">{this.state.cart ? this.state.cart : null}</span>

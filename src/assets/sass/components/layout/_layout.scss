@@ -22,18 +22,22 @@
 .btn {
   &-primary,
   &-success,
+  &-warning {
+    border-radius: 20px;
+  }
+
+  &-primary,
+  &-success,
   &-warning,
-  &-secondary,
   &-light {
     color: white;
     background: $grey;
     border: none;
-    border-radius: 20px;
     padding-left: 1.2em;
     padding-right: 1.2em;
     padding-top: .6em;
     padding-bottom: .6em;
-    box-shadow: $button-shadow;
+    box-shadow: $button-shadow $shadow-color;
     
     &:active:focus {
       color: $lighter-grey;
@@ -45,7 +49,7 @@
     &:focus {
       color: white;
       border-color: none;
-      box-shadow: $button-shadow;
+      box-shadow: $button-shadow $shadow-color;
       background: $grey;
     }
 
@@ -54,7 +58,7 @@
       background: $primary-red;
       outline: none;
       border: none;
-      box-shadow: $button-shadow
+      box-shadow: $button-shadow $shadow-color;
     }
   }
 
@@ -68,20 +72,17 @@
     &:hover { background: $primary-blue; }
   }
 
-  &-secondary {
-    border-radius: 10px;
-    &:active:focus { background: $dark-orange; }
-    &:hover { background: $orange; }
+  &-light {
+    padding-top: .5rem !important;
+    padding-bottom: .5rem !important;
+
+    &:active { background: $grey !important; }
+    &:hover { background: $light-grey; }
 
     &.active {
       &:active:focus { background: $lighter-grey; }
       &:focus { box-shadow: none; }
     }
-  }
-
-  &-light {
-    &:active { background: $grey !important; }
-    &:hover { background: $light-grey; }
   }
 }
 

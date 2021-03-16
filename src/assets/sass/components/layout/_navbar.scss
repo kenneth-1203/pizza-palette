@@ -24,6 +24,8 @@
   }
 
   &-search {
+    border-radius: 20px;
+
     &-input {
       width: 0;
       display: none;
@@ -39,12 +41,10 @@
   }
 
   &-cart {
-    border-radius: 10px;
     position: relative;
 
     & .active {
       background: white;
-      border-radius: 10px;
 
       & i {
         color: $dark-grey;

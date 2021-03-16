@@ -28,11 +28,13 @@ class ProductCard extends Component {
           />
         </Link>
         <div className="card-body">
+        <Link to={`/product/${product.id}`} key={product.id}>
           <h5 className="card-title">{product.name}</h5>
+        </Link>
           <div className="d-flex align-items-end justify-content-between">
             <div>
               <button
-                className="btn btn-secondary"
+                className="btn btn-light cart-hover"
                 onClick={() => addToCart(product.id, products)}
               >
                 <i className="fas fa-shopping-bag"></i>
