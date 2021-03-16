@@ -41,14 +41,15 @@ a,
 label,
 button,
 input,
-i {
-  font-size: calc(.6rem + .5vw) !important;
+i,
+p {
+  font-size: calc(.6rem + .4vw) !important;
 }
 
-h1 { font-size: calc(1.5rem + .5vw) !important; }
-h2 { font-size: calc(1.2rem + .5vw) !important; }
-h3 { font-size: calc(1rem + .5vw) !important; }
-h4 { font-size: calc(.9rem + .5vw) !important; }
-h5 { font-size: calc(.6rem + .5vw) !important; }
+h1 { font-size: calc(1.8rem + .4vw) !important; }
+h2 { font-size: calc(1.5rem + .4vw) !important; }
+h3 { font-size: calc(1.2rem + .4vw) !important; }
+h4 { font-size: calc(1rem + .4vw) !important; }
+h5 { font-size: calc(.8rem + .4vw) !important; }
 
 h1 { text-shadow: 0 5px 12px rgba(black, $alpha: .6); }

@@ -14,22 +14,18 @@ class Menu extends Component {
     console.log(this.props);
     return (
       <div>
-        <div className="container">
+        <div className="container pt-2">
           <div className="d-flex flex-wrap justify-content-evenly">
             {products ? (
               <ProductList products={products} />
             ) : (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-evenly",
-                  width: "90%",
-                  height: "30vw",
-                }}
-              >
-                <Skeleton color="rgba(255,255,255,.3)" rows={10} translucent />
-              </div>
+              <Skeleton
+                className="m-3 skeleton"
+                style={{ height: "298px", width: "15rem", borderRadius: "20px" }}
+                color="rgba(255,255,255,.3)"
+                rows={4}
+                translucent
+              />
             )}
           </div>
         </div>

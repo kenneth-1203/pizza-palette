@@ -1,0 +1,34 @@
+// Small devices
+@mixin sm {
+    @media (min-width: 640px) {
+        display: inline-block !important;
+    }
+ }
+ 
+ // Medium devices
+ @mixin md {
+    @media (min-width: 768px) {
+        display: flex !important;
+    }
+}
+
+// Large devices
+@mixin lg {
+    @media (min-width: 1024px) {
+        display: flex !important;
+    }
+}
+
+// Extra large devices
+@mixin xl {
+    @media (min-width: 1200px) {
+        display: flex !important;
+    }
+ }
+
+.skeleton {
+    @include sm;
+    @include md;
+    @include lg;
+    @include xl;
+}

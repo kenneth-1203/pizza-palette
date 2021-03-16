@@ -18,7 +18,7 @@ class ProductCard extends Component {
     const { product, products, addToCart } = this.props;
 
     return (
-      <div className="my-3 card">
+      <div className="m-3 card">
         <Link to={`/product/${product.id}`} key={product.id}>
           <img
             onLoad={this.handleLoad}
@@ -41,7 +41,7 @@ class ProductCard extends Component {
                 <i className="far fa-heart"></i>
               </button>
             </div>
-            <div>RM {product.price}</div>
+            <p>RM {product.price}</p>
           </div>
         </div>
       </div>
