@@ -15,7 +15,11 @@
 
     &:hover {
       cursor: pointer;
-      color: $primary-red;
+      color: $lighter-grey;
+    }
+
+    &:active {
+      color: $grey;
     }
   }
 

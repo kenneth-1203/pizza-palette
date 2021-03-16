@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const SignedOutSidebar = ({ toggleSidenav }) => {
   return (
     <React.Fragment>
-      <li className="m-3 btn btn-light nav-search d-flex align-items-center">
+      <li className="m-3 py-1 btn btn-light nav-search d-flex align-items-center">
         <span id="searchInput">
           <i className="fas fa-search"></i>
         </span>
@@ -13,20 +13,20 @@ const SignedOutSidebar = ({ toggleSidenav }) => {
       </li>
       <Link
         to="/signin"
-        className="p-2 nav-link text-center"
+        className="text-center"
         onClick={toggleSidenav}
       >
-        <h4>Sign In</h4>
+        <h5 className="nav-link">Sign In</h5>
       </Link>
       <Link
         to="/signup"
-        className="p-2 nav-link text-center"
+        className="text-center"
         onClick={toggleSidenav}
       >
-        <h4>Sign Up</h4>
+        <h5 className="nav-link">Sign Up</h5>
       </Link>
-      <Link to="/cart" className="p-2 nav-link text-center">
-        <h4>Cart</h4>
+      <Link to="/cart" className="text-center">
+        <h5 className="nav-link">Cart</h5>
       </Link>
     </React.Fragment>
   );
