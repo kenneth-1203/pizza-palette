@@ -22,6 +22,15 @@
     border-bottom-right-radius: 20px;
   }
 
+  &-details {
+    & .card-img-top {
+      border-radius: 20px;
+    }
+    &:hover {
+      box-shadow: $card-shadow $shadow-color !important;
+    }
+  }
+
   &:hover {
     box-shadow: $card-shadow rgba($light-grey, $alpha: .5);
   }

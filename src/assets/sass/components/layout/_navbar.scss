@@ -79,17 +79,27 @@
     overflow-x: hidden;
     transition: .2s;
     background-color: $dark-grey;
+
+    &.active {
+      width: 200px;
+    }
   }
 }
 
 .navbar {
+  &-logo {
+    width: calc(9em + 3vw);
+  }
+
   &-brand {
     filter: drop-shadow(0 0 .3rem rgba(0, 0, 0, .5));
     font-family: "Potta One", cursive;
   }
+
   &-nav {
     flex-direction: row;
   }
+
   &-toggler {
     transition: .2s;
     background: $grey;

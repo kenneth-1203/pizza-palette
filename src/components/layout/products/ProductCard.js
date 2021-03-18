@@ -16,9 +16,9 @@ class ProductCard extends Component {
 
   render() {
     const { product, products, addToCart, auth, history } = this.props;
-
+    
     return (
-      <div className="m-3 card">
+      <div className="mx-2 my-3 card">
         <Link to={`/product/${product.id}`} key={product.id}>
           <img
             onLoad={this.handleLoad}

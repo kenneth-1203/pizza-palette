@@ -19,19 +19,13 @@ export const removeFromCart = (productID) => {
   };
 };
 
-export const adjustQuantity = (productID, value) => {
+export const adjustQuantity = (productID, value, adjustType) => {
   return {
     type: actionTypes.ADJUST_QUANTITY,
     payload: {
       id: productID,
-      quanitity: value,
+      quantity: value,
+      adjustType: adjustType
     },
   };
 };
-
-// export const loadCurrentItem = (item) => {
-//   return {
-//     type: actionTypes.LOAD_CURRENT_ITEM,
-//     payload: item,
-//   };
-// };

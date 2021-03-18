@@ -1,7 +1,36 @@
 .btn {
   &-delete {
     &:hover > i {
-      animation: deleteAnim 0.3s ease-in;
+      animation: deleteAnim .3s ease-in;
+    }
+  }
+}
+
+.cart {
+  &-item {
+    max-width: 10rem;
+    width: 10rem;
+
+    &-img {
+      height: 10rem;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    &-description {
+      display: block;
+      overflow: auto;
+      height: 5.5rem;
+    }
+
+    &-qty {
+      background: $grey;
+      border-radius: 20px;
+      width: 3rem;
+      height: inherit;
+      margin-left: .5rem;
+      margin-right: .5rem;
+      padding: .5rem;
     }
   }
 }

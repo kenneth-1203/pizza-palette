@@ -22,7 +22,6 @@ const initState = {
     },
   ],
   cart: [], // {id, name, description, price, image, quantity}
-  currentItem: null,
 };
 
 const shopReducer = (state = initState, action) => {
@@ -54,14 +53,14 @@ const shopReducer = (state = initState, action) => {
         ...state,
         cart: state.cart.map((product) =>
           product.id === action.payload.id
-            ? { ...product, quantity: +action.payload.quantity }
+            ? {
+                ...product,
+                quantity: action.payload.adjType
+                  ? action.payload.quantity++
+                  : action.payload.quantity--,
+              }
             : product
         ),
-      };
-    case actionTypes.LOAD_CURRENT_ITEM:
-      return {
-        ...state,
-        currentItem: action.payload,
       };
     default:
       return state;

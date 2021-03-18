@@ -20,7 +20,7 @@ class Menu extends Component {
               <ProductList products={products} auth={auth} history={history} />
             ) : (
               <Skeleton
-                className="m-3 skeleton"
+                className="mx-2 my-3 skeleton"
                 style={{ height: "298px", width: "15rem", borderRadius: "20px" }}
                 color="rgba(255,255,255,.3)"
                 rows={4}

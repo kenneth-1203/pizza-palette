@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { connect } from "react-redux";
 
+import Skeleton from "@yisheng90/react-loading";
 import CartItem from "./CartItem";
 
 const Cart = ({ cart }) => {
@@ -13,25 +14,20 @@ const Cart = ({ cart }) => {
     let price = 0;
 
     cart.forEach((item) => {
-      item += item.quantity;
+      items += item.quantity;
       price += item.quantity * item.price;
     });
-    
+
     setTotalPrice(price);
     setTotalItems(items);
   }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
 
-  console.log(cart)
-
   return (
-    <div>
-      <div className="container">
-        <h1>Cart</h1>
-        {cart &&
-          cart.map((product) => {
-            return <CartItem key={product.id} product={product} />;
-          })}
-      </div>
+    <div className="container">
+      {cart.length ?
+        cart.map((product) => {
+          return <CartItem key={product.id} productData={product} />;
+        }) : <h5>Cart is empty.</h5> }
     </div>
   );
 };

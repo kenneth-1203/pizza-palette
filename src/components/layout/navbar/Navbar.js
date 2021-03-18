@@ -43,7 +43,6 @@ class Navbar extends Component {
     let { cart } = this.props;
     let count = 0;
     cart.forEach((item) => {
-      console.log(item.quantity);
       count += item.quantity;
     });
     this.setState({ cart: count });
@@ -68,14 +67,14 @@ class Navbar extends Component {
         <div className="container">
           <nav className="navbar navbar-expand-lg">
             <div className="col-lg-3 col-md-2 col-4">
-              <div className="d-flex justify-content-center">
+              <div className="d-flex justify-content-start">
                 <Link className="navbar-brand" to="/">
-                  <img src={Logo} width="150px" alt="" />
+                  <img className="navbar-logo" src={Logo} alt="" />
                 </Link>
               </div>
             </div>
             <div className="col-lg-6 col-md-10 col-12 py-3 mx-auto">
-              <div className="d-flex justify-content-evenly">
+              <div className="d-flex justify-content-between">
                 <div className="col-md-10">
                   <ul className="navbar-nav justify-content-center">
                     <li className="nav-item my-auto">
@@ -100,7 +99,10 @@ class Navbar extends Component {
                         </Link>
                       </li>
                     ) : null}
-                    <li className="btn btn-light nav-search d-flex align-items-center" onClick={this.toggleSearch}>
+                    <li
+                      className="btn btn-light nav-search d-flex align-items-center"
+                      onClick={this.toggleSearch}
+                    >
                       <span id="searchInput">
                         <i className="fas fa-search"></i>
                       </span>
@@ -138,10 +140,16 @@ class Navbar extends Component {
                 <ul className="navbar-nav">
                   <Link to="/cart">
                     <li className="nav-item nav-cart">
-                      <button className={`btn btn-light${this.state.cart ? " active" : ""}`}>
-                          <i className="fas fa-shopping-bag"></i>
+                      <button
+                        className={`btn btn-light${
+                          this.state.cart ? " active" : ""
+                        }`}
+                      >
+                        <i className="fas fa-shopping-bag"></i>
                       </button>
-                      <span className="badge">{this.state.cart ? this.state.cart : null}</span>
+                      <span className="badge">
+                        {this.state.cart ? this.state.cart : null}
+                      </span>
                     </li>
                   </Link>
                   {auth.isLoaded && navbarLinks ? navbarLinks : null}
@@ -152,8 +160,7 @@ class Navbar extends Component {
         </div>
         <div
           id="sidenav"
-          className="nav-sidenav"
-          style={this.state.sideNav ? { width: "200px" } : { width: "0" }}
+          className={`nav-sidenav${this.state.sideNav ? " active" : ""}`}
         >
           <span
             className="p-2"

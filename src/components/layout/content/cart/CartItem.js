@@ -6,33 +6,59 @@ import {
   removeFromCart,
 } from "../../../store/actions/shopActions";
 
-const CartItem = ({ product, removeFromCart, adjustQuantity }) => {
-  const [input, setInput] = useState(product.quantity);
+const CartItem = ({ productData, removeFromCart, adjustQuantity }) => {
+  const [input, setInput] = useState(productData.quantity);
 
   const handleChange = (e) => {
-    setInput(parseInt(e.target.value));
-    adjustQuantity(product.id, parseInt(e.target.value));
+    if (e.target.value > 0) {
+      const adjType = e.target.value > input ? true : false;
+      setInput(parseInt(e.target.value));
+      adjustQuantity(productData.id, parseInt(e.target.value), adjType);
+    } else {
+      removeFromCart(productData.id);
+    }
   };
 
   return (
-    <div className="container">
-      <p>{product.name}</p>
-      <p>{product.description}</p>
-      <p>{product.price}</p>
-      <label htmlFor="quantity">Qty</label>
-      <input
-        min="1"
-        type="number"
-        id="quantity"
-        value={input}
-        onChange={handleChange}
-      />
-      <button
-        className="btn btn-primary btn-delete"
-        onClick={() => removeFromCart(product.id)}
-      >
-        <i class="fas fa-trash"></i>
-      </button>
+    <div className="d-flex">
+      <div className="col-sm-12 mb-3">
+        <div className="row">
+          <div className="col-xl-2 col-lg-3 col-5">
+            <div className="mx-auto card cart-item">
+              <img
+                src={productData.image}
+                alt=""
+                className="cart-item-img"
+                style={{ borderRadius: "20px" }}
+              />
+            </div>
+          </div>
+          <div className="col-xl-6 col-7">
+            <h5>{productData.name}</h5>
+            <p className="cart-item-description">{productData.description}</p>
+            <div className="d-flex justify-content-between align-items-center">
+              <p className="m-0">RM {productData.price}</p>
+              <div className="">
+                <label htmlFor="quantity">Qty</label>
+                <input
+                  className="cart-item-qty"
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  value={input}
+                  onChange={handleChange}
+                />
+                <button
+                  className="btn btn-primary btn-delete"
+                  onClick={() => removeFromCart(productData.id)}
+                >
+                  <i className="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
