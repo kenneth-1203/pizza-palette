@@ -1,26 +1,19 @@
 .btn {
   &-delete {
     &:hover > i {
-      animation: deleteAnim .3s ease-in;
+      animation: deleteAnim 0.3s ease-in;
     }
   }
 }
 
 .cart {
   &-item {
-    max-width: 10rem;
-    width: 10rem;
-
-    &-img {
-      height: 10rem;
-      object-fit: cover;
-      border-radius: 20px;
-    }
+    margin-bottom: calc(1em + 2vw);
 
     &-description {
       display: block;
       overflow: auto;
-      height: 5.5rem;
+      height: calc(1.5em + 4vw);
     }
 
     &-qty {
@@ -31,6 +24,18 @@
       margin-left: .5rem;
       margin-right: .5rem;
       padding: .5rem;
+      box-shadow: $button-shadow $shadow-color;
+    }
+  }
+
+  &-img {
+    max-width: calc(5em + 5vw);
+    width: calc(5em + 5vw);
+
+    &-top {
+      height: calc(5em + 5vw);
+      object-fit: cover;
+      border-radius: 20px;
     }
   }
 }

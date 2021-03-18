@@ -21,19 +21,19 @@ const CartItem = ({ productData, removeFromCart, adjustQuantity }) => {
 
   return (
     <div className="d-flex">
-      <div className="col-sm-12 mb-3">
+      <div className="col-sm-8 cart-item">
         <div className="row">
-          <div className="col-xl-2 col-lg-3 col-5">
-            <div className="mx-auto card cart-item">
+          <div className="col-4 col-md-3 col-lg-3 col-xl-2">
+            <div className="float-end card cart-img">
               <img
                 src={productData.image}
                 alt=""
-                className="cart-item-img"
+                className="cart-img-top"
                 style={{ borderRadius: "20px" }}
               />
             </div>
           </div>
-          <div className="col-xl-6 col-7">
+          <div className="col-8 col-md-9 col-xl-10">
             <h5>{productData.name}</h5>
             <p className="cart-item-description">{productData.description}</p>
             <div className="d-flex justify-content-between align-items-center">
