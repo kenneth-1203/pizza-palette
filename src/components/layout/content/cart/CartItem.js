@@ -10,13 +10,9 @@ const CartItem = ({ productData, removeFromCart, adjustQuantity }) => {
   const [input, setInput] = useState(productData.quantity);
 
   const handleChange = (e) => {
-    if (e.target.value > 0) {
-      const adjType = e.target.value > input ? true : false;
-      setInput(parseInt(e.target.value));
-      adjustQuantity(productData.id, parseInt(e.target.value), adjType);
-    } else {
-      removeFromCart(productData.id);
-    }
+    const adjType = e.target.value > input ? true : false;
+    setInput(parseInt(e.target.value));
+    adjustQuantity(productData.id, parseInt(e.target.value), adjType);
   };
 
   return (
