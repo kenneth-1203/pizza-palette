@@ -1,17 +1,34 @@
 /* General Colors */
 
-$hover: #ffffff75;
+$primary-red: #e51b23;
+$primary-blue: #1c7be1;
+$primary-green: #16bd3f;
 
-/* Black & White Palette */
-
-$light-grey: #323232;
-$dark-grey: #0f0f0f;
 
 /* Colors Palette */
 
-$orange: #d87e23;
-$dark-pink: #eb4034;
+$orange: #f98921;
+$dark-orange: #ac6018;
+$pale-red: #eb4034;
+$dark-red: #a01418;
+$dark-blue: #1a5da3;
+$dark-green: #109130;
+
+/* Black & White Palette */
+
+$lighter-grey: #c0c0c0;
+$light-grey: #484848;
+$grey: #323232;
+$dark-grey: #1d1d1d;
+$darker-grey: #0f0f0f;
 
 /* Images */
 
 $background: url("../../images/background.jpg");
+
+/* Box Shadow */
+
+$button-shadow: 0 2px 8px 2px;
+$card-shadow: 0 5px 15px 8px;
+
+$shadow-color: rgba(0,0,0,.3);

@@ -1,0 +1,41 @@
+.btn {
+  &-delete {
+    &:hover > i {
+      animation: deleteAnim 0.3s ease-in;
+    }
+  }
+}
+
+.cart {
+  &-item {
+    margin-bottom: calc(1em + 2vw);
+
+    &-description {
+      display: block;
+      overflow: auto;
+      height: calc(1.5em + 4vw);
+    }
+
+    &-qty {
+      background: $grey;
+      border-radius: 20px;
+      width: 3rem;
+      height: inherit;
+      margin-left: .5rem;
+      margin-right: .5rem;
+      padding: .5rem;
+      box-shadow: $button-shadow $shadow-color;
+    }
+  }
+
+  &-img {
+    max-width: calc(5em + 5vw);
+    width: calc(5em + 5vw);
+
+    &-top {
+      height: calc(5em + 5vw);
+      object-fit: cover;
+      border-radius: 20px;
+    }
+  }
+}

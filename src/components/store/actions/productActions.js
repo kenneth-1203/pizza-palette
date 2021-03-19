@@ -1,3 +1,5 @@
+import * as actionTypes from "./actionTypes"; 
+
 export const createProduct = (product) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
@@ -8,12 +10,13 @@ export const createProduct = (product) => {
         name: product.name,
         description: product.description, 
         price: product.price,
+        image: product.image
       })
       .then(() => {
-        dispatch({ type: "CREATE_PRODUCT", product });
+        dispatch({ type: actionTypes.CREATE_PRODUCT, product });
       })
       .catch((err) => {
-        dispatch({ type: "CREATE_PRODUCT_ERROR", err });
+        dispatch({ type: actionTypes.CREATE_PRODUCT_ERROR, err });
       });
   };
 };

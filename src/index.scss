@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: local("Montserrat"), url("./assets/fonts/Montserrat/Montserrat-SemiBold.ttf");
+}
+
 @import './assets/sass/abstracts/variables';
 @import './assets/sass/abstracts/mixins';
 
@@ -10,3 +15,4 @@
 @import './assets/sass/components/content/home';
 @import './assets/sass/components/content/menu';
 @import './assets/sass/components/content/about';
+@import './assets/sass/components/content/cart';

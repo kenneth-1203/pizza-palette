@@ -3,7 +3,21 @@
     width: 0;
   }
   to {
-    width: 11vw;
-    padding-right: 1em;
+    width: calc(5em + 5vw);
+  }
+}
+
+@keyframes deleteAnim {
+  0% {
+    transform: none;
+  }
+  33% {
+    transform: rotate(20deg)
+  } 
+  66% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: none;
   }
 }

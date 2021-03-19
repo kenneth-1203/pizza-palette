@@ -5,7 +5,11 @@ import App from "./App";
 
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
-import { reduxFirestore, getFirestore, createFirestoreInstance } from "redux-firestore";
+import {
+  reduxFirestore,
+  getFirestore,
+  createFirestoreInstance,
+} from "redux-firestore";
 import { getFirebase, ReactReduxFirebaseProvider } from "react-redux-firebase";
 import firebase from "firebase/app";
 import thunk from "redux-thunk";
@@ -24,8 +28,8 @@ const store = createStore(
 const rrfConfig = {
   userProfile: "users",
   useFirestoreForProfile: true,
-  attachAuthIsReady: true
-}
+  attachAuthIsReady: true,
+};
 
 const rrfProps = {
   firebase,
@@ -35,12 +39,10 @@ const rrfProps = {
 };
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <ReactReduxFirebaseProvider {...rrfProps}>
-        <App />
-      </ReactReduxFirebaseProvider>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <ReactReduxFirebaseProvider {...rrfProps}>
+      <App />
+    </ReactReduxFirebaseProvider>
+  </Provider>,
   document.getElementById("root")
 );

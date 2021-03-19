@@ -1,20 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-import ProductSummary from "./ProductSummary";
+import ProductCard from "./ProductCard";
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, auth, history }) => {
   return (
-    <div className="container">
+    <React.Fragment>
       {products &&
         products.map((product) => {
           return (
-            <Link to={`/product/${product.id}`} key={product.id} >
-              <ProductSummary product={product} />
-            </Link>
+            <ProductCard
+              key={product.id}
+              product={product}
+              products={products}
+              auth={auth}
+              history={history}
+            />
           );
         })}
-    </div>
+    </React.Fragment>
   );
 };
 

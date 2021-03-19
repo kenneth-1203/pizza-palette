@@ -1,9 +1,12 @@
-.nav {
-  &-sidebar {
-    position: absolute;
-    left: 100%;
+.btn {
+  &-light {
+    padding: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
-  
+}
+
+.nav {
   &-link {
     font-family: "Montserrat", serif;
     font-weight: 400;
@@ -12,36 +15,36 @@
 
     &:hover {
       cursor: pointer;
-      color: $hover;
+      color: $lighter-grey;
+    }
+
+    &:active {
+      color: $grey;
     }
   }
 
   &-search {
-    background: $light-grey;
-    margin-left: 1em;
-    margin-right: 1em;
     border-radius: 20px;
 
     &-input {
       width: 0;
-      padding: 0;
+      display: none;
+      padding-left: .5rem;
       
       &.active {
+        display: block;
         animation-name: expandSearch;
-        animation-duration: 0.2s;
+        animation-duration: .2s;
         animation-fill-mode: forwards;
       }
     }
   }
 
   &-cart {
-    background: $light-grey;
-    border-radius: 10px;
     position: relative;
 
     & .active {
       background: white;
-      border-radius: 10px;
 
       & i {
         color: $dark-grey;
@@ -50,7 +53,6 @@
   }
 
   &-profile {
-    color: $light-grey;
     background: white;
     border-radius: 100%;
 
@@ -58,8 +60,13 @@
       width: 40px;
       height: 40px;
       display: inline-block;
-      background-color: $dark-pink;
+      background-color: $pale-red;
       border-radius: 100%;
+    }
+
+    &-initials {
+      text-transform: uppercase;
+      font-weight: 400;
     }
   }
 
@@ -67,24 +74,48 @@
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 5;
     top: 0;
     right: 0;
     overflow-x: hidden;
-    transition: .3s;
+    transition: .2s;
     background-color: $dark-grey;
+
+    &.active {
+      width: 200px;
+    }
   }
 }
 
 .navbar {
+  &-logo {
+    width: calc(9em + 3vw);
+  }
+
   &-brand {
+    filter: drop-shadow(0 0 .3rem rgba(0, 0, 0, .5));
     font-family: "Potta One", cursive;
   }
+
   &-nav {
     flex-direction: row;
   }
+
   &-toggler {
-    background: $light-grey;
+    transition: .2s;
+    background: $grey;
+    box-shadow: $button-shadow $shadow-color;
+
+    &:focus, 
+    &:active:focus {
+      background: $dark-grey;
+      box-shadow: none;
+      outline: none;
+    }
+
+    &:hover {
+      background: $light-grey;
+    }
   }
 }
 
@@ -92,5 +123,6 @@
   border-radius: 20px;
   background: $orange;
   position: absolute;
+  right: -10px;
   top: -10px;
 }

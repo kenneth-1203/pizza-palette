@@ -4,19 +4,51 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { signOut } from "../../../store/actions/authActions";
 
-const SignedInSidebar = (props) => {
+const SignedInSidebar = ({ signOut, toggleSidenav, profile }) => {
+  const handleSignOut = () => {
+    toggleSidenav();
+    signOut();
+  };
+
   return (
     <React.Fragment>
-      <Link to="/profile" className="p-2 nav-link text-center">Profile</Link>
-      <Link to="/" onClick={() => props.signOut()} className="p-2 nav-link text-center">Sign Out</Link>
+      <Link
+        to="/profile"
+        className="d-flex justify-content-center mx-auto nav-profile-btn text-center"
+        onClick={toggleSidenav}
+        style={{ width: "5rem", height: "5rem" }}
+      >
+        <div
+          className="nav-profile-initials d-flex align-items-center"
+          style={{ fontSize: "2rem" }}
+        >
+          {profile.initials}
+        </div>
+      </Link>
+      <li className="m-3 py-1 btn btn-light nav-search d-flex align-items-center">
+        <span id="searchInput">
+          <i className="fas fa-search"></i>
+        </span>
+        <input
+          type="text"
+          className="nav-search-input active"
+          style={{ minWidth: "100%" }}
+        />
+      </li>
+      <Link to="/" onClick={handleSignOut} className="text-center">
+        <h5 className="nav-link">Sign Out</h5>
+      </Link>
+      <Link to="/cart" className="text-center">
+        <h5 className="nav-link">Cart</h5>
+      </Link>
     </React.Fragment>
   );
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signOut: () => dispatch(signOut())
-  }
-}
+    signOut: () => dispatch(signOut()),
+  };
+};
 
 export default connect(null, mapDispatchToProps)(SignedInSidebar);
