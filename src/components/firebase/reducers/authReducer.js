@@ -33,6 +33,19 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: null
       }
+    case actionTypes.DELETE_USER_ERROR:
+      return {
+        ...state,
+        authError: action.err.message
+      }
+    case actionTypes.DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        authError: null
+      }
+      case "TESTING":
+        console.log("fired");
+        return state;
     default:
       return state;
   }

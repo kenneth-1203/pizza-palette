@@ -56,6 +56,37 @@ export const signUp = (newUser) => {
   };
 };
 
+export const deleteUser = () => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firebase = getFirebase();
+    const firestore = getFirestore();
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        user
+          .delete()
+          .then(() => {
+            firestore
+              .collection("users")
+              .doc(user.uid)
+              .delete()
+              .then(() => {
+                dispatch({ type: actionTypes.DELETE_USER_SUCCESS });
+              })
+              .catch((err) => {
+                dispatch({ type: actionTypes.DELETE_USER_ERROR, err });
+              });
+          })
+          .catch((err) => {
+            dispatch({ type: actionTypes.DELETE_USER_ERROR, err });
+          });
+      } else {
+        return false;
+      }
+    });
+  };
+};
+
 export const clearError = () => {
   return (dispatch) => {
     dispatch({ type: actionTypes.CLEAR_ERROR });

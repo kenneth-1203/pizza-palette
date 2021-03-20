@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {
   adjustQuantity,
   removeFromCart,
-} from "../../../store/actions/shopActions";
+} from "../../../firebase/actions/shopActions";
 
 const CartItem = ({ productData, removeFromCart, adjustQuantity }) => {
   const [input, setInput] = useState(productData.quantity);

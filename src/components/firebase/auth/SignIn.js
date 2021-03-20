@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { connect } from 'react-redux';
 
-import { signIn } from '../../store/actions/authActions';
+import { signIn } from '../../firebase/actions/authActions';
 
 class SignIn extends Component {
   

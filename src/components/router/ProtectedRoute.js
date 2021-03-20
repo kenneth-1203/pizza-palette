@@ -3,10 +3,10 @@ import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { isAdmin } from "../store/actions/authActions";
-import SignIn from "../store/auth/SignIn";
-import SignUp from "../store/auth/SignUp";
-import Profile from "../layout/content/profile/Profile";
+import { isAdmin } from "../firebase/actions/authActions";
+import SignIn from "../firebase/auth/SignIn";
+import SignUp from "../firebase/auth/SignUp";
+import Profile from "../firebase/auth/Profile";
 import CreateProduct from "../layout/products/CreateProduct";
 
 class ProtectedRoute extends Component {
@@ -15,11 +15,12 @@ class ProtectedRoute extends Component {
     const path = ["/signup", "/signin", "/profile", "/create"];
     const currentPath = path
       // eslint-disable-next-line array-callback-return
-      .filter(p => {
+      .filter((p) => {
         if (location.pathname === p) {
           return p;
         }
-      }).join("");
+      })
+      .join("");
 
     // Admin
     if (currentPath !== "") {
@@ -36,7 +37,7 @@ class ProtectedRoute extends Component {
             return <Redirect to="/" />;
         }
 
-      // User
+        // User
       } else if (auth.uid) {
         switch (currentPath) {
           case "/profile":
@@ -46,7 +47,7 @@ class ProtectedRoute extends Component {
             return <Redirect to="/" />;
         }
 
-      // Guest
+        // Guest
       } else {
         switch (currentPath) {
           case "/signup":
