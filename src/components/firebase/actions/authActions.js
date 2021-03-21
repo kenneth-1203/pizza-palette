@@ -56,19 +56,25 @@ export const signUp = (newUser) => {
   };
 };
 
-export const deleteUser = () => {
+export const deleteUser = (password) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
     const firestore = getFirestore();
+    const userId = getState().firebase.auth.uid;
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        const cred = firebase.auth.EmailAuthProvider.credential(
+          user.email,
+          password
+        );
         user
-          .delete()
+          .reauthenticateWithCredential(cred)
           .then(() => {
+            user.delete();
             firestore
               .collection("users")
-              .doc(user.uid)
+              .doc(userId)
               .delete()
               .then(() => {
                 dispatch({ type: actionTypes.DELETE_USER_SUCCESS });
@@ -80,8 +86,6 @@ export const deleteUser = () => {
           .catch((err) => {
             dispatch({ type: actionTypes.DELETE_USER_ERROR, err });
           });
-      } else {
-        return false;
       }
     });
   };
