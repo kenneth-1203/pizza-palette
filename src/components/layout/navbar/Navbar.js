@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { isAdmin } from "../../store/actions/authActions";
+import { isAdmin } from "../../firebase/actions/authActions";
 import Logo from "../../../assets/images/company-logo.png";
 import SignedInNavbar from "../auth/SignedIn/SignedInNavbar";
 import SignedOutNavbar from "../auth/SignedOut/SignedOutNavbar";
@@ -141,7 +141,7 @@ class Navbar extends Component {
                   <Link to="/cart">
                     <li className="nav-item nav-cart">
                       <button
-                        className={`btn btn-light${
+                        className={`btn btn-light cart${
                           this.state.cart ? " active" : ""
                         }`}
                       >

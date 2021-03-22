@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { addToCart } from "../../store/actions/shopActions";
+import { addToCart } from "../../firebase/actions/shopActions";
 
 import spinner from "../../../assets/animated/spinner.svg";
 
@@ -39,7 +39,7 @@ class ProductCard extends Component {
               >
                 <i className="fas fa-shopping-bag"></i>
               </button>
-              <button className="mx-2 btn btn-primary btn-like">
+              <button className="mx-2 btn btn-danger btn-like">
                 <i className="far fa-heart"></i>
               </button>
             </div>

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import { createProduct } from "../../store/actions/productActions";
-import { storage } from "../../config/fbConfig";
+import { createProduct } from "../../firebase/actions/productActions";
+import { storage } from "../../firebase/config/fbConfig";
 
 class CreateProduct extends Component {
   state = {

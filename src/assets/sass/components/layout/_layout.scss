@@ -17,35 +17,39 @@
     border-color: white;
     box-shadow: 0 1px 0 0 white;
   }
+
+  &:disabled {
+    background: inherit;
+    color: rgba(white, $alpha: .5);
+  }
 }
 
 .btn {
-  &-primary,
-  &-success,
-  &-warning {
-    border-radius: 20px;
-  }
-
-  &-light {
+  &.cart {
     border-radius: 10px;
+
+    &-hover {
+      border-radius: 10px;
+    }
   }
 
   &-primary,
   &-success,
-  &-warning,
+  &-danger,
   &-light {
     color: white;
+    border-radius: 20px;
     background: $grey;
     border: none;
-    padding-left: 1.2em;
-    padding-right: 1.2em;
+    padding-left: 1em;
+    padding-right: 1em;
     padding-top: .6em;
     padding-bottom: .6em;
     box-shadow: $button-shadow $shadow-color;
     
     &:active:focus {
       color: $lighter-grey;
-      background: $dark-red;
+      background: $dark-blue;
       box-shadow: $button-shadow $shadow-color;
     }
     
@@ -59,7 +63,7 @@
 
     &:hover {
       color: white;
-      background: $primary-red;
+      background: $primary-blue;
       outline: none;
       border: none;
       box-shadow: $button-shadow $shadow-color;
@@ -71,9 +75,9 @@
     &:hover { background: $primary-green; }
   }
 
-  &-warning {
-    &:active:focus { background: $dark-blue; }
-    &:hover { background: $primary-blue; }
+  &-danger {
+    &:active:focus { background: $dark-red; }
+    &:hover { background: $primary-red; }
   }
 
   &-light {
@@ -94,8 +98,12 @@
   &-message {
     display: inline-block;
     justify-content: center;
-    height: 30px;
     width: 100%;
+    color: $primary-red;
+  }
+
+  &-icon {
+    font-size: 1em;
     color: $primary-red;
   }
 }
@@ -105,4 +113,18 @@
     width: 1.5rem;
     height: 1.5rem;
   }
+}
+
+.modal {
+  &-content {
+    background: $dark-grey;
+  }
+
+  &-header, &-footer {
+    border: none;
+  }
+}
+
+.close {
+  display: none;
 }

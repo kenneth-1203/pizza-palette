@@ -30,7 +30,7 @@ class SignUp extends Component {
       <div className="container">
         <div className="row">
           <div className="col-sm-1"></div>
-          <div className="col-sm-6">
+          <div className="col-12 col-lg-9 col-md-8 px-4">
             <h1 className="pb-3">Sign Up</h1>
             <form onSubmit={this.handleSubmit}>
               <div className="row">

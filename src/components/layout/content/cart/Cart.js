@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import { connect } from "react-redux";
 
-import Skeleton from "@yisheng90/react-loading";
 import CartItem from "./CartItem";
 
 const Cart = ({ cart }) => {

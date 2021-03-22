@@ -39,12 +39,15 @@ a {
 
 a,
 label,
-button,
 input,
 i,
 p {
-  font-size: calc(.6rem + .4vw) !important;
+  font-size: calc(.6rem + .4vw);
   font-weight: 300;
+}
+
+button {
+  font-size: calc(.6rem + .4vw) !important;
 }
 
 h1 { font-size: calc(1.8rem + .4vw) !important; }

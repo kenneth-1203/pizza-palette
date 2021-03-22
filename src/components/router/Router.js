@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Switch, Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { clearError } from "../store/actions/authActions";
+import { clearError } from "../firebase/actions/authActions";
 
 import ProductDetails from "../../components/layout/products/ProductDetails";
 import Home from "../layout/content/home/Home";
