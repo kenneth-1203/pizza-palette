@@ -14,8 +14,12 @@ export default class Home extends Component {
           <div className="d-flex justify-content-center">
             <div className="row">
               <div className="col-sm-12">
-                <Link to="/menu" className="btn btn-primary">Take Away</Link>
-                <Link to="/menu" className="btn btn-primary">Delivery</Link>
+                <Link to="/menu">
+                  <button className="btn btn-primary">Take Away</button>
+                </Link>
+                <Link to="/menu">
+                  <button className="btn btn-primary">Delivery</button>
+                </Link>
               </div>
             </div>
           </div>

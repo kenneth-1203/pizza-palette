@@ -70,7 +70,7 @@ class Profile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-1"></div>
-            <div className="col-sm-6">
+            <div className="col-12 col-lg-9 col-md-8 px-4">
               <h1>Profile</h1>
               <form onSubmit={this.handleSubmit}>
                 <div className="row">
@@ -142,11 +142,17 @@ class Profile extends Component {
           </div>
           <Modal show={this.state.modal} onHide={this.handleCloseModal}>
             <Modal.Header closeButton>
-              <Modal.Title><i class="fas fa-exclamation-triangle error-icon"></i> Delete account</Modal.Title>
+              <Modal.Title>
+                <i class="fas fa-exclamation-triangle error-icon"></i> Delete
+                account
+              </Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <label>
-                Please confirm this action by entering your account password.{" "}
+                Are you sure you want to permanently delete your account?
+                Changes cannot be reversed. <br></br>
+                <br></br>
+                Please confirm this action by entering your account password.
               </label>
             </Modal.Body>
             <input
