@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   adjustQuantity,
@@ -20,19 +21,21 @@ const CartItem = ({ productData, removeFromCart, adjustQuantity, uid }) => {
         <div className="row">
           <div className="col-4 col-md-3 col-lg-3 col-xl-2">
             <div className="float-end card cart-img">
-              <img
-                src={productData.image}
-                alt=""
-                className="cart-img-top"
-                style={{ borderRadius: "20px" }}
-              />
+              <Link to={`product/${productData.id}`} key={productData.id}>
+                <img
+                  src={productData.image}
+                  alt=""
+                  className="cart-img-top"
+                  style={{ borderRadius: "20px" }}
+                />
+              </Link>
             </div>
           </div>
           <div className="col-8 col-md-9 col-xl-10">
             <h5>{productData.name}</h5>
             <p className="cart-item-description">{productData.description}</p>
             <div className="d-flex justify-content-between align-items-center">
-              <p className="m-0">RM {productData.price}</p>
+              <h5 className="m-0">RM {productData.price}</h5>
               <div className="">
                 <label htmlFor="quantity">Qty</label>
                 <input
