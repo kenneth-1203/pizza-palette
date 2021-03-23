@@ -25,42 +25,68 @@ const initState = {
 };
 
 const shopReducer = (state = initState, action) => {
+  let cart;
   switch (action.type) {
     case actionTypes.ADD_TO_CART:
+      cart = JSON.parse(window.sessionStorage.getItem(action.payload.uid))
+        ? JSON.parse(window.sessionStorage.getItem(action.payload.uid))
+        : [];
       const product = action.products.find(
         (product) => product.id === action.payload.id
       );
-      const inCart = state.cart.find((product) =>
-        product.id === action.payload.id ? true : false
+      const inCart = cart
+        ? cart.find((product) =>
+            product.id === action.payload.id ? true : false
+          )
+        : false;
+      const item = inCart
+        ? cart.map((product) =>
+            product.id === action.payload.id
+              ? { ...product, quantity: product.quantity + 1 }
+              : product
+          )
+        : [...cart, { ...product, quantity: 1 }];
+      window.sessionStorage.setItem(action.payload.uid, JSON.stringify(item));
+      return {
+        ...state,
+        cart: item,
+      };
+    case actionTypes.REMOVE_FROM_CART:
+      cart = JSON.parse(window.sessionStorage.getItem(action.payload.uid))
+        ? JSON.parse(window.sessionStorage.getItem(action.payload.uid))
+        : [];
+      let newCart = cart.filter(
+        (product) => product.id !== action.payload.id
+      );
+      window.sessionStorage.setItem(
+        action.payload.uid,
+        JSON.stringify(newCart)
       );
       return {
         ...state,
-        cart: inCart
-          ? state.cart.map((product) =>
-              product.id === action.payload.id
-                ? { ...product, quantity: product.quantity + 1 }
-                : product
-            )
-          : [...state.cart, { ...product, quantity: 1 }],
-      };
-    case actionTypes.REMOVE_FROM_CART:
-      return {
-        ...state,
-        cart: state.cart.filter((product) => product.id !== action.payload.id),
+        cart: newCart,
       };
     case actionTypes.ADJUST_QUANTITY:
+      cart = JSON.parse(window.sessionStorage.getItem(action.payload.uid))
+      ? JSON.parse(window.sessionStorage.getItem(action.payload.uid))
+      : [];  
+      let adjustedCart = cart.map((product) =>
+        product.id === action.payload.id
+          ? {
+              ...product,
+              quantity: action.payload.adjType
+                ? action.payload.quantity++
+                : action.payload.quantity--,
+            }
+          : product
+      );
+      window.sessionStorage.setItem(
+        action.payload.uid,
+        JSON.stringify(adjustedCart)
+      );
       return {
         ...state,
-        cart: state.cart.map((product) =>
-          product.id === action.payload.id
-            ? {
-                ...product,
-                quantity: action.payload.adjType
-                  ? action.payload.quantity++
-                  : action.payload.quantity--,
-              }
-            : product
-        ),
+        cart: adjustedCart,
       };
     default:
       return state;

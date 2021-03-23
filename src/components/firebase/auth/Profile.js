@@ -64,7 +64,6 @@ class Profile extends Component {
 
   render() {
     const { authError } = this.props;
-    console.log(authError);
     return (
       <div>
         <div className="container">

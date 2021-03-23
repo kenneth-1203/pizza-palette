@@ -12,7 +12,7 @@ import SignedOutSidebar from "../auth/SignedOut/SignedOutSidebar";
 
 class Navbar extends Component {
   state = {
-    cart: 0,
+    count: 0,
     sideNav: false,
     expandSearch: false,
     search: "",
@@ -24,7 +24,11 @@ class Navbar extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.cart !== this.props.cart) this.setCartCount();
+    if (
+      prevProps.auth.uid !== this.props.auth.uid ||
+      prevProps.cart !== this.props.cart
+    )
+    this.setCartCount();
   }
 
   toggleSidenav = () => {
@@ -40,12 +44,15 @@ class Navbar extends Component {
   };
 
   setCartCount = () => {
-    let { cart } = this.props;
+    let { auth } = this.props;
+    let cart = JSON.parse(window.sessionStorage.getItem(auth.uid))
+      ? JSON.parse(window.sessionStorage.getItem(auth.uid))
+      : [];
     let count = 0;
     cart.forEach((item) => {
       count += item.quantity;
     });
-    this.setState({ cart: count });
+    this.setState({ count });
   };
 
   render() {
@@ -142,13 +149,13 @@ class Navbar extends Component {
                     <li className="nav-item nav-cart">
                       <button
                         className={`btn btn-light cart${
-                          this.state.cart ? " active" : ""
+                          this.state.count ? " active" : ""
                         }`}
                       >
                         <i className="fas fa-shopping-bag"></i>
                       </button>
                       <span className="badge">
-                        {this.state.cart ? this.state.cart : null}
+                        {this.state.count ? this.state.count : null}
                       </span>
                     </li>
                   </Link>

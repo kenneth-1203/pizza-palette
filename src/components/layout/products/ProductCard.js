@@ -35,7 +35,7 @@ class ProductCard extends Component {
             <div>
               <button
                 className="btn btn-light cart-hover"
-                onClick={() => auth.uid ? addToCart(product.id, products) : history.push("/signin")}
+                onClick={() => auth.uid ? addToCart(product.id, products, auth.uid) : history.push("/signin")}
               >
                 <i className="fas fa-shopping-bag"></i>
               </button>
@@ -53,7 +53,7 @@ class ProductCard extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addToCart: (id, products) => dispatch(addToCart(id, products)),
+    addToCart: (productID, products, userID) => dispatch(addToCart(productID, products, userID)),
   };
 };
 

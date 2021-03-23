@@ -77,6 +77,7 @@ export const deleteUser = (password) => {
               .doc(userId)
               .delete()
               .then(() => {
+                window.sessionStorage.removeItem(userId);
                 dispatch({ type: actionTypes.DELETE_USER_SUCCESS });
               })
               .catch((err) => {

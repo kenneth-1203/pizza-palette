@@ -6,18 +6,17 @@ import {
   removeFromCart,
 } from "../../../firebase/actions/shopActions";
 
-const CartItem = ({ productData, removeFromCart, adjustQuantity }) => {
+const CartItem = ({ productData, removeFromCart, adjustQuantity, uid }) => {
   const [input, setInput] = useState(productData.quantity);
 
   const handleChange = (e) => {
     const adjType = e.target.value > input ? true : false;
     setInput(parseInt(e.target.value));
-    adjustQuantity(productData.id, parseInt(e.target.value), adjType);
+    adjustQuantity(productData.id, parseInt(e.target.value), adjType, uid);
   };
-
   return (
     <div className="d-flex">
-      <div className="col-sm-8 cart-item">
+      <div className="mx-auto col-12 cart-item">
         <div className="row">
           <div className="col-4 col-md-3 col-lg-3 col-xl-2">
             <div className="float-end card cart-img">
@@ -41,12 +40,13 @@ const CartItem = ({ productData, removeFromCart, adjustQuantity }) => {
                   type="number"
                   id="quantity"
                   name="quantity"
+                  min="1"
                   value={input}
                   onChange={handleChange}
                 />
                 <button
-                  className="btn btn-primary btn-delete"
-                  onClick={() => removeFromCart(productData.id)}
+                  className="btn btn-danger btn-delete"
+                  onClick={() => removeFromCart(productData.id, uid)}
                 >
                   <i className="fas fa-trash"></i>
                 </button>
@@ -61,8 +61,8 @@ const CartItem = ({ productData, removeFromCart, adjustQuantity }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeFromCart: (id) => dispatch(removeFromCart(id)),
-    adjustQuantity: (id, value) => dispatch(adjustQuantity(id, value)),
+    removeFromCart: (id, userID) => dispatch(removeFromCart(id, userID)),
+    adjustQuantity: (id, value, adjType, userID) => dispatch(adjustQuantity(id, value, adjType, userID)),
   };
 };
 
