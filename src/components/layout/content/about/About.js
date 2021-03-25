@@ -27,9 +27,7 @@ export default class About extends Component {
             className={`d-flex${this.state.isMobile ? "" : " floated-iframe"}`}
           >
             <iframe
-              className={`iframe${
-                this.state.isMobile ? " adjust-size" : ""
-              }`}
+              className={`iframe${this.state.isMobile ? " adjust-size" : ""}`}
               src="https://www.youtube-nocookie.com/embed/30DWX-FDd-Q"
               title="YouTube video player"
               frameBorder="0"
@@ -60,52 +58,100 @@ export default class About extends Component {
                 to stores around the world by us and our franchisees.
               </p>
             </div>
-            <hr/>
+            <hr />
             <h2>About Us</h2>
             <div className="justify-text">
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Temporibus dolorem quas corrupti. Dignissimos quod dicta esse,
-                quas nobis eius, placeat neque iusto quos nihil velit
-                laudantium, aut repellat quia ipsum? Nesciunt laborum sapiente
-                assumenda facere expedita. Sit nostrum rerum explicabo laborum
-                perspiciatis reiciendis pariatur alias unde architecto, qui
-                nobis vitae obcaecati in eum provident totam. Nesciunt odit
-                fugit soluta natus! Nobis qui optio nesciunt, laboriosam soluta
-                at sint, omnis iusto repellendus aliquam mollitia deserunt
-                adipisci, laborum vitae id ratione amet beatae aut libero
-                asperiores minus! Cumque harum placeat officiis similique.
+                Pizza is an amazingly popular food and Pizza Palette's is one of
+                the leading pizzerias in Malaysia providing exceptional delivery
+                service. As of 2019, Pizza Palette Malaysia has more than 40
+                pizza places that are strategically located and we are
+                continually increasing our store numbers in order to serve more
+                to serve all pizza lovers nationwide.
               </p>
-              <hr/>
+              <hr />
               <img className="adjust-menu" src={MenuPage2} alt="" />
               <img className="adjust-menu" src={MenuPage1} alt="" />
-              <p className="justify-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
-                dicta mollitia soluta, cum delectus fuga error corporis cumque,
-                enim non voluptate officia est assumenda consectetur? Aliquam
-                deleniti recusandae similique debitis. Libero eligendi, mollitia
-                aut tenetur aliquid inventore culpa, nulla dolore distinctio
-                doloremque vel, assumenda voluptatem? Voluptatibus nihil dolorum
-                aliquid illum! Fuga beatae eum dolore fugiat inventore natus
-                amet repellendus laborum. Nam, quasi. Alias a ducimus vero
-                quibusdam deleniti, quidem itaque omnis expedita consectetur,
-                eum accusantium debitis ratione libero impedit pariatur sapiente
-                minima nostrum facere doloribus odit. Fuga distinctio voluptatem
-                expedita? Praesentium quia exercitationem voluptates, itaque
-                consequatur accusamus enim saepe vero impedit repellat neque
-                tempore nobis quisquam vitae fuga facere delectus nemo est iure
-                cum, quos maxime voluptatem soluta doloribus? Tempore. Officia
-                nostrum omnis, veniam labore necessitatibus dignissimos numquam
-                unde magnam tempora maxime vero inventore accusantium ipsa sint
-                impedit temporibus sequi, et in earum repudiandae, placeat nulla
-                cum tempore illum. Distinctio. Odit quidem ratione similique vel
-                magni laudantium laborum dolor rem sequi veniam. Vel minus
-                assumenda sit, facere error culpa tempore aut optio doloremque
-                officia blanditiis eaque id omnis aliquid sequi? Ad non animi
-                reprehenderit esse! Aperiam, voluptas doloribus delectus a
-                quisquam eveniet temporibus rem quasi earum nostrum vel corrupti
-                ad eius. Velit officia amet iusto rem accusantium praesentium
-                sapiente voluptatem.
+              <h2>What We Offer</h2>
+              <p>
+                Pizza Palette offers Supreme Pizza, Breakfast Pizza, Sausage
+                Pepperoni, Tomata Pizza, Ultimate Cheese, Classic Cheese,
+                Variety Pizza, Veggie Mania, Meat Paradise, The Original and
+                Aroma Pizza.
+              </p>
+              <p>
+                Pizza Palette started with just one store called just "Palette"
+                bought by Kenneth for $500 in 1960. James traded his half of the
+                business to Tom in 1965, and as sole owner Tom renamed the
+                business Pizza Palette Inc. In 1978 the 200th Pizza Palette
+                store opened, and things really began to cook.
+              </p>
+              <p>
+                By 1983 there were 1,000 Pizza Palette stores, and in the same
+                year Pizza Palette opened its first international store in
+                Winnipeg, Canada, followed by its first store on the
+                Australasian continent in Queensland, Australia in the same
+                year. By 1989 Pizza Palette had 5,000 stores in operation,
+                making it the fastest-growing pizza company in the world, with
+                stores in the UK, Japan, and South America.
+              </p>
+              <p>
+                Delivering more than 1 million pizzas a day worldwide, Pizza
+                Palette is the world’s leading and fastest growing pizza
+                delivery company committed to upholding the industry in product
+                quality and operational excellence. Globally, Pizza Palette Inc.
+                operates a total network of more than 14,800 owned and
+                franchised stores throughout the U.S. and in over 85 markets.
+                Pizza Palette internationally ranks in the top five companies in
+                online transactions.
+              </p>
+              <p>
+                As at Q2 2017, Pizza Palette Malaysia is the largest Pizza
+                Palette market in Southeast Asia and fifth largest in Asia
+                Pacific. Established in 1997, Pizza Palette Malaysia is managed
+                by master franchise holder, Dommal Food Services Sdn Bhd. To
+                date, there are more than 240 Pizza Palette stores in the
+                country. At Pizza Palette, we take PRIDE in our commitment to
+                enrich the lives of our customers, employees, partners,
+                shareholders and communities. As one of the most lovable brands
+                in Malaysia, we will go the extra mile for your smile as well as
+                uphold our culture to ‘sell more pizza, have more fun’.
+                Embracing our company’s philosophy of smart hustle, Pizza
+                Palette is committed to provide customers with the ultimate
+                pizza delivery experience, with its product satisfaction
+                guarantee, 30 minute delivery guarantee and 15 minute take-away
+                guarantee.
+              </p>
+              <p>
+                Forging ahead as an e-commerce entity, Pizza Palette has led
+                many firsts in its digital platforms. Pizza Palette Malaysia has
+                leveraged on the digital world to the best of its advantage and
+                this began when it was certified as the first QSR company to
+                provide an online ordering platform by the Malaysian Book of
+                Records with the launch of its website in 2003. Pizza Palette
+                continue to strive and grow digitally and in its innovation to
+                provide better services and customer experience. Pizza Palette
+                Malaysia is the award winner of the 2009, 2010, 2011, 2012 and
+                2016 Gold Franny Award, a distinguished Achievement Award of the
+                International Franchise Association at the Pizza Palette
+                Worldwide Rally. In a show of confidence by Malaysian consumers,
+                Pizza Palette won Bronze in the "Restaurant & Fast Food"
+                category of the prestigious Putra Brand Awards 2014, silver in
+                2015, bronze in 2016, Silver in 2017 and bronze in 2018.
+              </p>
+              <p>
+                Pizza Palette Malaysia has grown by leaps and bounds since it
+                first began its operations in 1997. From a single store in USJ
+                with a headcount of 15 staffs, the pizza chain today has over
+                240 stores in Malaysia and over 30 stores in Singapore with a
+                headcount of over 4,000 staffs. Pizza Palette Malaysia has
+                experienced solid growth, particularly in the past few years
+                with the opening of its 50th store in January 2011, 100th store
+                in December 2012, 150th store in March 2016 and now the 200th
+                store in April 2017. Pizza Palette continues to strive towards
+                delivering quality service and products while embracing
+                technology driven platforms as we progress into the next phase
+                of growth in Malaysia.
               </p>
             </div>
           </div>
