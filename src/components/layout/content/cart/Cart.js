@@ -52,11 +52,12 @@ const Cart = ({ auth, cart }) => {
       {initCart && initCart.length ? (
         <div className="checkout-footer mx-auto">
           <div className="row checkout-details">
-            <div className="col-3">
+            <div className="col-2">
               <div className="d-flex flex-column">
                 <h5>Coupon Code:</h5>
                 <form onSubmit={handleSubmit} className="mb-2">
-                  <input type="text" className="form-control" />
+                  <input type="text" className="form-control mb-3" />
+                  <button className="btn checkout-btn">Apply</button>
                 </form>
                 {/* <small style={{ color: "#a01418" }}>Invalid coupon code!</small> */}
               </div>
@@ -85,7 +86,7 @@ const Cart = ({ auth, cart }) => {
             <div className="col-1 px-5">
               <span className="vert-line"></span>
             </div>
-            <div className="col-3 my-auto">
+            <div className="col-4 my-auto">
               <Link to="/menu" className="btn checkout-btn my-2">
                 Continue Shopping
               </Link>

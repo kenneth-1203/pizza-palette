@@ -1,21 +1,114 @@
 import React, { Component } from "react";
 
+import Logo from "../../../../assets/images/logo.png";
+import MenuPage1 from "../../../../assets/images/pp-menu-1.jpg";
+import MenuPage2 from "../../../../assets/images/pp-menu-2.jpg";
+
 export default class About extends Component {
+  state = {
+    isMobile: false,
+  };
+
+  componentDidMount() {
+    window.addEventListener(
+      "resize",
+      () => {
+        this.setState({ isMobile: window.innerWidth < 992 });
+      },
+      false
+    );
+  }
+
   render() {
     return (
-      <div>
-        <div className="container">
-          <h1>About</h1>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione veritatis nobis voluptatem voluptatum ut magni, dolorum, deleniti accusamus qui eveniet quisquam. Mollitia corporis cum odit aspernatur possimus minus, voluptas officia.
-          Cum nihil expedita distinctio, inventore natus voluptas eius possimus odit consectetur neque modi provident. Ut quisquam voluptatem, aut cupiditate ipsam iusto placeat aliquam quos exercitationem delectus libero a atque laborum?
-          Laborum molestiae tempora, architecto veritatis ullam ratione vero eveniet! Aspernatur cumque molestias facere eveniet temporibus. Dolorum id similique ipsum facere quam necessitatibus, molestiae nam cupiditate voluptatibus architecto consequuntur eius neque.
-          Ab placeat quisquam molestiae magni facilis iure, saepe porro autem necessitatibus sint error, neque maiores. Laboriosam totam corrupti autem cupiditate perferendis. Odit quidem minima dicta, labore hic possimus cumque veritatis.
-          Aperiam delectus exercitationem inventore at quis, eos debitis. Neque aspernatur earum, quia ducimus rerum quidem repellat molestiae optio autem culpa quis ipsum quaerat accusamus vero fugit molestias repudiandae aliquam officiis!
-          Impedit, illum sed sequi molestiae quia, quis ab cupiditate qui totam consectetur, quidem ut odio obcaecati repellat minima. Incidunt maxime vel aliquam repellat facilis sequi quaerat sunt sint placeat animi?
-          Voluptatem doloribus tempore unde ullam, odio quaerat. Sequi repudiandae optio itaque obcaecati. Aliquam earum consequuntur corrupti tempore voluptatibus odio, doloremque ea enim non quaerat assumenda possimus nam obcaecati minima sequi.
-          Doloribus, minima optio cum illo cupiditate aspernatur animi culpa nostrum. Sit, maiores assumenda? Maxime alias quae laboriosam repellat voluptatum doloribus quas quibusdam, ratione reiciendis eius molestias ut reprehenderit tempore dolores.
-          Architecto explicabo, non quae tempore ex cupiditate perspiciatis optio voluptatum at iure esse ducimus saepe aliquam ab alias earum dolorem cum fuga magni maiores eos repudiandae ut. Veritatis, pariatur maxime?
-          Impedit soluta ducimus ab officiis dignissimos eligendi culpa corporis cumque, possimus fugit odit ipsum laborum rerum eius sunt aspernatur ratione voluptatem ullam commodi voluptate dolorem atque animi. Doloremque, tempore id!</p>
+      <div className="container">
+        <div className="about">
+          <div
+            className={`d-flex${this.state.isMobile ? "" : " floated-iframe"}`}
+          >
+            <iframe
+              className={`iframe${
+                this.state.isMobile ? " adjust-size" : ""
+              }`}
+              src="https://www.youtube-nocookie.com/embed/30DWX-FDd-Q"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+          <div className="overview">
+            <h2 className="pb-1">Overview</h2>
+            <img className="py-1 floated-logo" src={Logo} alt="" />
+            <div className="justify-text">
+              <p>
+                is a medium sized enterprise and pizza restaurant with more than
+                2,000 stores in over 6 markets. Founded in 2010, our roots are
+                in convenient pizza delivery, while a significant amount of our
+                sales also come from carryout customers. Although we are a
+                highly-recognized global brand, we focus on serving the local
+                neighborhoods in which we live and do business through our large
+                network of franchise owners and Company-owned stores. On
+                average, we sell more than 500 thousand pizzas each day
+                throughout our global system.
+              </p>
+              <p>
+                Our business model is straightforward: we handcraft and serve
+                quality food at a competitive price, with easy ordering access
+                and efficient service which are aided by our technology
+                innovations. Our dough is generally made fresh and distributed
+                to stores around the world by us and our franchisees.
+              </p>
+            </div>
+            <hr/>
+            <h2>About Us</h2>
+            <div className="justify-text">
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Temporibus dolorem quas corrupti. Dignissimos quod dicta esse,
+                quas nobis eius, placeat neque iusto quos nihil velit
+                laudantium, aut repellat quia ipsum? Nesciunt laborum sapiente
+                assumenda facere expedita. Sit nostrum rerum explicabo laborum
+                perspiciatis reiciendis pariatur alias unde architecto, qui
+                nobis vitae obcaecati in eum provident totam. Nesciunt odit
+                fugit soluta natus! Nobis qui optio nesciunt, laboriosam soluta
+                at sint, omnis iusto repellendus aliquam mollitia deserunt
+                adipisci, laborum vitae id ratione amet beatae aut libero
+                asperiores minus! Cumque harum placeat officiis similique.
+              </p>
+              <hr/>
+              <img className="adjust-menu" src={MenuPage2} alt="" />
+              <img className="adjust-menu" src={MenuPage1} alt="" />
+              <p className="justify-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+                dicta mollitia soluta, cum delectus fuga error corporis cumque,
+                enim non voluptate officia est assumenda consectetur? Aliquam
+                deleniti recusandae similique debitis. Libero eligendi, mollitia
+                aut tenetur aliquid inventore culpa, nulla dolore distinctio
+                doloremque vel, assumenda voluptatem? Voluptatibus nihil dolorum
+                aliquid illum! Fuga beatae eum dolore fugiat inventore natus
+                amet repellendus laborum. Nam, quasi. Alias a ducimus vero
+                quibusdam deleniti, quidem itaque omnis expedita consectetur,
+                eum accusantium debitis ratione libero impedit pariatur sapiente
+                minima nostrum facere doloribus odit. Fuga distinctio voluptatem
+                expedita? Praesentium quia exercitationem voluptates, itaque
+                consequatur accusamus enim saepe vero impedit repellat neque
+                tempore nobis quisquam vitae fuga facere delectus nemo est iure
+                cum, quos maxime voluptatem soluta doloribus? Tempore. Officia
+                nostrum omnis, veniam labore necessitatibus dignissimos numquam
+                unde magnam tempora maxime vero inventore accusantium ipsa sint
+                impedit temporibus sequi, et in earum repudiandae, placeat nulla
+                cum tempore illum. Distinctio. Odit quidem ratione similique vel
+                magni laudantium laborum dolor rem sequi veniam. Vel minus
+                assumenda sit, facere error culpa tempore aut optio doloremque
+                officia blanditiis eaque id omnis aliquid sequi? Ad non animi
+                reprehenderit esse! Aperiam, voluptas doloribus delectus a
+                quisquam eveniet temporibus rem quasi earum nostrum vel corrupti
+                ad eius. Velit officia amet iusto rem accusantium praesentium
+                sapiente voluptatem.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     );

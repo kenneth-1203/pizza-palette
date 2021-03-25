@@ -1,0 +1,41 @@
+.overview {
+  background: $dark-shadow-color;
+  box-shadow: $footer-shadow $dark-shadow-color;
+  border-radius: 20px;
+  padding: 2em;
+}
+
+.iframe {
+  height: calc(5rem + 15vw);
+  margin: 2em;
+  width: 95%;
+}
+
+.justify-text {
+  text-align: justify;
+}
+
+.floated {
+  &-iframe {
+    float: left;
+    width: 40vw;
+  }
+
+  &-logo {
+    float: left;
+    padding-right: 1em;
+  }
+}
+
+.adjust {
+  &-size {
+    height: 35vw;
+    width: 80vw;
+  }
+
+  &-menu {
+    height: calc(15rem + 20vw);
+    padding: 1em;
+    float: right;
+  }
+}
