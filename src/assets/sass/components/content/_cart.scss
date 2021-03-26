@@ -49,3 +49,60 @@
     }
   }
 }
+
+.checkout {
+  &-footer {
+    z-index: 10;
+    background: $dark-pale-blue;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: $footer-shadow $dark-shadow-color;
+    position: absolute;
+    overflow: hidden;
+    transform: translate(-50%, 0);
+    height: 3em;
+    bottom: 0;
+    left: 50%;
+    width: 80vw;
+    transition: .2s;
+  }
+
+  &-value {
+    & h5 {
+      font-weight: 300;
+    }
+  }
+
+  &-btn {
+    color: white;
+    background: rgba($primary-blue, $alpha: .3);
+    border-radius: 5px;
+    border: 2px solid $primary-blue;
+
+    &:focus,
+    &:hover:active { box-shadow: none; }
+    &:hover:active { background: $dark-blue; }
+
+    &:hover {
+      color: inherit;
+      background: $primary-blue;
+    }
+  }
+
+  &-details {
+    padding: 1.5em;
+    padding-bottom: 0;
+
+    & h5 {
+      text-shadow: $text-shadow $shadow-color;
+    }
+  }
+}
+
+.vert-line {
+  display: inline-block;
+  width: 1px;
+  height: 140px;
+  background: rgba(255, 255, 255, .2);
+  box-shadow: 0 0 1px 1px rgba(255,255,255,.2);
+}

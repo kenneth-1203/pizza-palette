@@ -29,7 +29,7 @@ class Router extends Component {
         <Route path="/menu" component={Menu}></Route>
         <Route path="/cart" component={Cart}></Route>
         <Route path="/product/:id" component={ProductDetails}></Route>
-        <Route path="/checkout" component={CheckoutForm}></Route>
+        {/* <Route path="/checkout" component={CheckoutForm}></Route> */}
         <ProtectedRoute />
       </Switch>
     );

@@ -51,8 +51,58 @@ const Cart = ({ auth, cart }) => {
         )}
       </div>
       {initCart && initCart.length ? (
-        // Recreate checkout footer
-        null
+        <div
+          className="mx-auto checkout-footer"
+          onMouseOver={() => setMouseOver(true)}
+          onMouseOut={() => setMouseOver(false)}
+          style={mouseOver ? { height: "calc(10em + 5vw)" } : null}
+        >
+          <h3 className="p-2" style={ mouseOver ? { display: "none" } : null }>Checkout</h3>
+          <div className="row checkout-details">
+            <div className="col-2">
+              <div className="d-flex flex-column">
+                <h5>Coupon Code:</h5>
+                <form onSubmit={handleSubmit} className="mb-2">
+                  <input type="text" className="form-control mb-3" />
+                  <button className="btn checkout-btn">Apply</button>
+                </form>
+                {/* <small style={{ color: "#a01418" }}>Invalid coupon code!</small> */}
+              </div>
+            </div>
+            <div className="col-1 px-5">
+              <span className="vert-line"></span>
+            </div>
+            <div className="col-4">
+              <div className="d-flex justify-content-between">
+                <div>
+                  <h5>In Bag:</h5>
+                  <h5>Subtotal:</h5>
+                  <h5>Discount:</h5>
+                  <h5>Rounding:</h5>
+                  <h5>Total:</h5>
+                </div>
+                <div className="checkout-value">
+                  <h5>{totalItems}</h5>
+                  <h5>RM {subtotal}</h5>
+                  <h5>RM 0</h5>
+                  <h5>RM {(total - subtotal).toFixed(2)}</h5>
+                  <h5>RM {total}</h5>
+                </div>
+              </div>
+            </div>
+            <div className="col-1 px-5">
+              <span className="vert-line"></span>
+            </div>
+            <div className="col-4 my-auto">
+              <Link to="/menu" className="btn checkout-btn my-2">
+                Continue Shopping
+              </Link>
+              <Link to="/checkout" className="btn checkout-btn my-2">
+                Proceed to Checkout
+              </Link>
+            </div>
+          </div>
+        </div>
       ) : null}
     </React.Fragment>
   );
