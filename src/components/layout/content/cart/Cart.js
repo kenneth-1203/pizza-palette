@@ -90,9 +90,9 @@ const Cart = ({ auth, cart }) => {
               <Link to="/menu" className="btn checkout-btn my-2">
                 Continue Shopping
               </Link>
-              <button className="btn checkout-btn my-2">
+              <Link to="/checkout" className="btn checkout-btn my-2">
                 Proceed to Checkout
-              </button>
+              </Link>
             </div>
           </div>
         </div>

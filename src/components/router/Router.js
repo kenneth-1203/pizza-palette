@@ -10,6 +10,7 @@ import About from "../layout/content/about/About";
 import Menu from "../layout/content/menu/Menu";
 import Cart from "../layout/content/cart/Cart";
 import ProtectedRoute from "../router/ProtectedRoute";
+import CheckoutForm from "../checkout/CheckoutForm";
 
 class Router extends Component {
   componentWillMount() {
@@ -28,6 +29,7 @@ class Router extends Component {
         <Route path="/menu" component={Menu}></Route>
         <Route path="/cart" component={Cart}></Route>
         <Route path="/product/:id" component={ProductDetails}></Route>
+        <Route path="/checkout" component={CheckoutForm}></Route>
         <ProtectedRoute />
       </Switch>
     );

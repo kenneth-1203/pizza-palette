@@ -9,6 +9,8 @@ class SignUp extends Component {
     password: "",
     firstName: "",
     lastName: "",
+    contact: "",
+    address: "",
   };
 
   handleChange = (e) => {
@@ -61,14 +63,42 @@ class SignUp extends Component {
                   </div>
                 </div>
               </div>
+              <div className="row">
+                <div className="col-sm-6">
+                  <div className="mb-3">
+                    <label htmlFor="email" className="form-label">
+                      Email address
+                    </label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="email"
+                      onChange={this.handleChange}
+                    ></input>
+                  </div>
+                </div>
+                <div className="col-sm-6">
+                  <div className="mb-3">
+                    <label htmlFor="contact" className="form-label">
+                      Contact number
+                    </label>
+                    <input
+                      type="tel"
+                      className="form-control"
+                      id="contact"
+                      onChange={this.handleChange}
+                    ></input>
+                  </div>
+                </div>
+              </div>
               <div className="mb-3">
-                <label htmlFor="email" className="form-label">
-                  Email address
+                <label htmlFor="address" className="form-label">
+                  Address
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
-                  id="email"
+                  id="address"
                   onChange={this.handleChange}
                 ></input>
               </div>
@@ -84,7 +114,7 @@ class SignUp extends Component {
                 ></input>
               </div>
               <small className="error-message">
-                { authError ? authError : null }
+                {authError ? authError : null}
               </small>
               <button type="submit" className="btn btn-primary">
                 Create account

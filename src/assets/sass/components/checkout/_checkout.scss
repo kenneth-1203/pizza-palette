@@ -1,0 +1,35 @@
+.steps {
+  &-action {
+    margin-top: 24px;
+  }
+}
+
+.checkout {
+  &-form {
+    background: rgba($dark-pale-blue, $alpha: 0.9);
+    padding: 2em;
+    border-radius: 10px;
+  }
+}
+
+.ant-steps {
+  &-item {
+    font-size: large;
+
+    &-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &-content {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}
+
+.anticon {
+    &-check svg path {
+        color: $primary-green;
+    }
+}
