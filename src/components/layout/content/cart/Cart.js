@@ -10,6 +10,7 @@ const Cart = ({ auth, cart }) => {
   const [total, setTotal] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [initCart, setCart] = useState(null);
+  const [mouseOver, setMouseOver] = useState(false);
 
   useEffect(() => {
     let items = 0;
@@ -50,52 +51,8 @@ const Cart = ({ auth, cart }) => {
         )}
       </div>
       {initCart && initCart.length ? (
-        <div className="checkout-footer mx-auto">
-          <div className="row checkout-details">
-            <div className="col-2">
-              <div className="d-flex flex-column">
-                <h5>Coupon Code:</h5>
-                <form onSubmit={handleSubmit} className="mb-2">
-                  <input type="text" className="form-control mb-3" />
-                  <button className="btn checkout-btn">Apply</button>
-                </form>
-                {/* <small style={{ color: "#a01418" }}>Invalid coupon code!</small> */}
-              </div>
-            </div>
-            <div className="col-1 px-5">
-              <span className="vert-line"></span>
-            </div>
-            <div className="col-4">
-              <div className="d-flex justify-content-between">
-                <div>
-                  <h5>In Bag:</h5>
-                  <h5>Subtotal:</h5>
-                  <h5>Discount:</h5>
-                  <h5>Rounding:</h5>
-                  <h5>Total:</h5>
-                </div>
-                <div className="checkout-value">
-                  <h5>{totalItems}</h5>
-                  <h5>RM {subtotal}</h5>
-                  <h5>RM 0</h5>
-                  <h5>RM {(total - subtotal).toFixed(2)}</h5>
-                  <h5>RM {total}</h5>
-                </div>
-              </div>
-            </div>
-            <div className="col-1 px-5">
-              <span className="vert-line"></span>
-            </div>
-            <div className="col-4 my-auto">
-              <Link to="/menu" className="btn checkout-btn my-2">
-                Continue Shopping
-              </Link>
-              <Link to="/checkout" className="btn checkout-btn my-2">
-                Proceed to Checkout
-              </Link>
-            </div>
-          </div>
-        </div>
+        // Recreate checkout footer
+        null
       ) : null}
     </React.Fragment>
   );
