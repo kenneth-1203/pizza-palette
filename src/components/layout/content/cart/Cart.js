@@ -10,6 +10,7 @@ const Cart = ({ auth, cart }) => {
   const [total, setTotal] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [initCart, setCart] = useState(null);
+  const [mouseOver, setMouseOver] = useState(false);
 
   useEffect(() => {
     let items = 0;
@@ -50,7 +51,13 @@ const Cart = ({ auth, cart }) => {
         )}
       </div>
       {initCart && initCart.length ? (
-        <div className="checkout-footer mx-auto">
+        <div
+          className="mx-auto checkout-footer"
+          onMouseOver={() => setMouseOver(true)}
+          onMouseOut={() => setMouseOver(false)}
+          style={mouseOver ? { height: "calc(10em + 5vw)" } : null}
+        >
+          <h3 className="p-2" style={ mouseOver ? { display: "none" } : null }>Checkout</h3>
           <div className="row checkout-details">
             <div className="col-2">
               <div className="d-flex flex-column">

@@ -70,22 +70,19 @@ export default class About extends Component {
                 to serve all pizza lovers nationwide.
               </p>
               <hr />
-              <img className="adjust-menu" src={MenuPage2} alt="" />
-              <img className="adjust-menu" src={MenuPage1} alt="" />
               <h2>What We Offer</h2>
-              <p>
-                Pizza Palette offers Supreme Pizza, Breakfast Pizza, Sausage
-                Pepperoni, Tomata Pizza, Ultimate Cheese, Classic Cheese,
-                Variety Pizza, Veggie Mania, Meat Paradise, The Original and
-                Aroma Pizza.
-              </p>
               <p>
                 Pizza Palette started with just one store called just "Palette"
                 bought by Kenneth for $500 in 1960. James traded his half of the
                 business to Tom in 1965, and as sole owner Tom renamed the
                 business Pizza Palette Inc. In 1978 the 200th Pizza Palette
-                store opened, and things really began to cook.
+                store opened, and things really began to cook. Pizza Palette
+                offers Supreme Pizza, Breakfast Pizza, Sausage Pepperoni, Tomata
+                Pizza, Ultimate Cheese, Classic Cheese, Variety Pizza, Veggie
+                Mania, Meat Paradise, The Original and Aroma Pizza.
               </p>
+              <img className="adjust-menu" src={MenuPage2} alt="" />
+              <img className="adjust-menu" src={MenuPage1} alt="" />
               <p>
                 By 1983 there were 1,000 Pizza Palette stores, and in the same
                 year Pizza Palette opened its first international store in

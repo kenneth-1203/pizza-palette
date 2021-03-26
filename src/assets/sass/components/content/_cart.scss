@@ -57,10 +57,14 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     box-shadow: $footer-shadow $dark-shadow-color;
-    position: sticky;
-    height: calc(7em + 5vw);
+    position: absolute;
+    overflow: hidden;
+    transform: translate(-50%, 0);
+    height: 3em;
     bottom: 0;
+    left: 50%;
     width: 80vw;
+    transition: .2s;
   }
 
   &-value {
