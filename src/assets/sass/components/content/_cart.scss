@@ -38,12 +38,12 @@
   }
 
   &-img {
-    max-width: calc(6em + 5vw);
-    width: calc(6em + 5vw);
+    max-width: calc(8em + 3vw);
+    width: calc(8em + 3vw);
 
     &-top {
       width: 100%;
-      height: calc(6em + 5vw);
+      height: calc(8em + 3vw);
       object-fit: cover;
       border-radius: 20px;
     }
@@ -52,7 +52,7 @@
 
 .checkout {
   &-footer {
-    z-index: 10;
+    z-index: 4;
     background: $dark-pale-blue;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;

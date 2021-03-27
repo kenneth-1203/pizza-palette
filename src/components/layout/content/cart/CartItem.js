@@ -20,16 +20,18 @@ const CartItem = ({ productData, removeFromCart, adjustQuantity, uid }) => {
       <div className="mx-auto col-12 cart-item">
         <div className="row">
           <div className="col-4 col-md-3 col-lg-3 col-xl-2">
-            <div className="float-end card cart-img">
-              <Link to={`product/${productData.id}`} key={productData.id}>
-                <img
-                  src={productData.image}
-                  alt=""
-                  className="cart-img-top"
-                  style={{ borderRadius: "20px" }}
-                />
-              </Link>
-            </div>
+            <Link
+              className="float-end card cart-img"
+              to={`product/${productData.id}`}
+              key={productData.id}
+            >
+              <img
+                src={productData.image}
+                alt=""
+                className="cart-img-top"
+                style={{ borderRadius: "20px" }}
+              />
+            </Link>
           </div>
           <div className="col-8 col-md-9 col-xl-10">
             <h5>{productData.name}</h5>
@@ -65,7 +67,8 @@ const CartItem = ({ productData, removeFromCart, adjustQuantity, uid }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     removeFromCart: (id, userID) => dispatch(removeFromCart(id, userID)),
-    adjustQuantity: (id, value, adjType, userID) => dispatch(adjustQuantity(id, value, adjType, userID)),
+    adjustQuantity: (id, value, adjType, userID) =>
+      dispatch(adjustQuantity(id, value, adjType, userID)),
   };
 };
 

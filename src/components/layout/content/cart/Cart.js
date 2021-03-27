@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { getTotal } from "../../../firebase/actions/shopActions";
 
 import CartItem from "./CartItem";
 
-const Cart = ({ auth, cart }) => {
+const Cart = ({ auth, cart, getTotal }) => {
   const [subtotal, setSubtotal] = useState(0);
   const [total, setTotal] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -97,7 +98,7 @@ const Cart = ({ auth, cart }) => {
               <Link to="/menu" className="btn checkout-btn my-2">
                 Continue Shopping
               </Link>
-              <Link to="/checkout" className="btn checkout-btn my-2">
+              <Link to="/checkout" className="btn checkout-btn my-2" onClick={() => getTotal(subtotal, total)}>
                 Proceed to Checkout
               </Link>
             </div>
@@ -108,6 +109,12 @@ const Cart = ({ auth, cart }) => {
   );
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getTotal: (subtotal, total) => dispatch(getTotal(subtotal, total))
+  }
+}
+
 const mapStateToProps = (state) => {
   return {
     cart: state.shop.cart,
@@ -115,4 +122,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Cart);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

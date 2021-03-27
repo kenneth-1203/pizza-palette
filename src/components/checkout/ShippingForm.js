@@ -2,7 +2,7 @@ import React from "react";
 
 const ShippingForm = ({ profile, auth }) => {
   return (
-    <form className="checkout-form">
+    <>
       <div className="row">
         <div className="col-sm-6">
           <div className="mb-3">
@@ -75,7 +75,7 @@ const ShippingForm = ({ profile, auth }) => {
           ></input>
         </div>
       </div>
-    </form>
+    </>
   );
 };
 

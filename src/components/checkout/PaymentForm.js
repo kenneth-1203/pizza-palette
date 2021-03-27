@@ -20,7 +20,7 @@ const ShippingForm = () => {
   };
 
   return (
-    <form className="checkout-form">
+    <>
       <div className="mb-3">
         <label htmlFor="cardholder" className="form-label">
           Name on card
@@ -77,11 +77,11 @@ const ShippingForm = () => {
           value=""
           id="flexCheckDefault"
         ></input>
-        <label className="form-check-label" for="flexCheckDefault">
+        <label className="form-check-label" htmlFor="flexCheckDefault">
           Save card information
         </label>
       </div>
-    </form>
+    </>
   );
 };
 

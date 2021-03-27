@@ -88,6 +88,14 @@ const shopReducer = (state = initState, action) => {
         ...state,
         cart: adjustedCart,
       };
+      case actionTypes.GET_TOTAL:
+        return {
+          ...state,
+          checkout: {
+            subtotal: action.payload.subtotal,
+            total: action.payload.total,
+          }
+        }
     default:
       return state;
   }

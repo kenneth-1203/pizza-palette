@@ -7,7 +7,7 @@ import ShippingForm from "./ShippingForm";
 import PaymentForm from "./PaymentForm";
 import SummaryForm from "./SummaryForm";
 
-const CheckoutForm = ({ profile, auth }) => {
+const CheckoutForm = ({ profile, auth, checkout }) => {
   const [current, setCurrent] = useState(0);
 
   const next = () => {
@@ -30,13 +30,13 @@ const CheckoutForm = ({ profile, auth }) => {
     },
     {
       title: "Summary",
-      content: <SummaryForm profile={profile} auth={auth} />,
+      content: <SummaryForm profile={profile} auth={auth} checkout={checkout} />,
     },
   ];
 
-  const handleSubmit = () => {
-
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="container">
@@ -48,39 +48,45 @@ const CheckoutForm = ({ profile, auth }) => {
             current={current}
           >
             {steps.map((item) => (
-              <Step className="steps-step" key={item.title} title={item.title} />
+              <Step
+                className="steps-step"
+                key={item.title}
+                title={item.title}
+              />
             ))}
           </Steps>
-          {steps[current].content}
-          <div className="steps-action">
-            {current < steps.length - 1 && (
-              <Button
-                className="btn btn-primary"
-                type="primary"
-                onClick={() => next()}
-              >
-                Next
-              </Button>
-            )}
-            {current === steps.length - 1 && (
-              <Button
-                className="btn btn-primary"
-                type="primary"
-                onClick={() => handleSubmit()}
-              >
-                Done
-              </Button>
-            )}
-            {current > 0 && (
-              <Button
-                className="btn btn-primary"
-                style={{ margin: "0 8px" }}
-                onClick={() => prev()}
-              >
-                Previous
-              </Button>
-            )}
-          </div>
+          <form className="checkout-form">
+            {steps[current].content}
+            <div className="steps-action">
+              {current < steps.length - 1 && (
+                <Button
+                  className="btn btn-primary"
+                  type="primary"
+                  onClick={() => next()}
+                >
+                  Next
+                </Button>
+              )}
+              {current === steps.length - 1 && (
+                <Button
+                  className="btn btn-primary"
+                  type="primary"
+                  onClick={handleSubmit}
+                >
+                  Done
+                </Button>
+              )}
+              {current > 0 && current < 2 && (
+                <Button
+                  className="btn btn-primary"
+                  style={{ margin: "0 8px" }}
+                  onClick={() => prev()}
+                >
+                  Previous
+                </Button>
+              )}
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -91,7 +97,8 @@ const mapStateToProps = (state) => {
   return {
     profile: state.firebase.profile,
     auth: state.firebase.auth,
-  }
-}
+    checkout: state.shop.checkout
+  };
+};
 
 export default connect(mapStateToProps)(CheckoutForm);
