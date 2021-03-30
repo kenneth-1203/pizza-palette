@@ -9,7 +9,7 @@
 .cart {
   &-body {
     width: 80vw;
-    height: 28rem;
+    height: calc(25rem + 5vw);
     overflow: auto;
   }
 
@@ -40,6 +40,8 @@
   &-img {
     max-width: calc(8em + 3vw);
     width: calc(8em + 3vw);
+    box-shadow: none;
+    margin-right: 1em;
 
     &-top {
       width: 100%;

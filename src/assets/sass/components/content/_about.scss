@@ -13,6 +13,10 @@
 
 .justify-text {
   text-align: justify;
+
+  & h2 {
+    text-align: initial;
+  }
 }
 
 .floated {

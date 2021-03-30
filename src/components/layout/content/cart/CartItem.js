@@ -18,45 +18,39 @@ const CartItem = ({ productData, removeFromCart, adjustQuantity, uid }) => {
   return (
     <div className="d-flex">
       <div className="mx-auto col-12 cart-item">
-        <div className="row">
-          <div className="col-4 col-md-3 col-lg-3 col-xl-2">
-            <Link
-              className="float-end card cart-img"
-              to={`product/${productData.id}`}
-              key={productData.id}
+        <Link
+          className="float-start card cart-img"
+          to={`product/${productData.id}`}
+          key={productData.id}
+        >
+          <img
+            src={productData.image}
+            alt=""
+            className="cart-img-top"
+            style={{ borderRadius: "20px" }}
+          />
+        </Link>
+        <h5>{productData.name}</h5>
+        <p className="cart-item-description">{productData.description}</p>
+        <div className="d-flex justify-content-between align-items-center">
+          <h5 className="m-0">RM {productData.price}</h5>
+          <div className="">
+            <label htmlFor="quantity">Qty</label>
+            <input
+              className="cart-item-qty"
+              type="number"
+              id="quantity"
+              name="quantity"
+              min="1"
+              value={input}
+              onChange={handleChange}
+            />
+            <button
+              className="btn btn-danger btn-delete"
+              onClick={() => removeFromCart(productData.id, uid)}
             >
-              <img
-                src={productData.image}
-                alt=""
-                className="cart-img-top"
-                style={{ borderRadius: "20px" }}
-              />
-            </Link>
-          </div>
-          <div className="col-8 col-md-9 col-xl-10">
-            <h5>{productData.name}</h5>
-            <p className="cart-item-description">{productData.description}</p>
-            <div className="d-flex justify-content-between align-items-center">
-              <h5 className="m-0">RM {productData.price}</h5>
-              <div className="">
-                <label htmlFor="quantity">Qty</label>
-                <input
-                  className="cart-item-qty"
-                  type="number"
-                  id="quantity"
-                  name="quantity"
-                  min="1"
-                  value={input}
-                  onChange={handleChange}
-                />
-                <button
-                  className="btn btn-danger btn-delete"
-                  onClick={() => removeFromCart(productData.id, uid)}
-                >
-                  <i className="fas fa-trash"></i>
-                </button>
-              </div>
-            </div>
+              <i className="fas fa-trash"></i>
+            </button>
           </div>
         </div>
       </div>

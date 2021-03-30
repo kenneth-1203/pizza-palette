@@ -6,7 +6,7 @@ import { signIn } from '../../firebase/actions/authActions';
 
 class SignIn extends Component {
   
-  state ={
+  state = {
     email: '',
     password: ''
   }
