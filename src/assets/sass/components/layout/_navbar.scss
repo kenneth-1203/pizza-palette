@@ -80,9 +80,10 @@
     overflow-x: hidden;
     transition: .2s;
     background-color: $dark-grey;
-
+    
     &.active {
       width: 200px;
+      box-shadow: $card-shadow $dark-shadow-color;
     }
   }
 }

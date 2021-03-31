@@ -38,7 +38,7 @@ const SignedInSidebar = ({ signOut, toggleSidenav, profile }) => {
       <Link to="/" onClick={handleSignOut} className="text-center">
         <h5 className="nav-link">Sign Out</h5>
       </Link>
-      <Link to="/cart" className="text-center">
+      <Link to="/cart" onClick={toggleSidenav} className="text-center">
         <h5 className="nav-link">Cart</h5>
       </Link>
     </React.Fragment>
