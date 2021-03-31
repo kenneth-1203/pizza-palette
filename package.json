@@ -1,6 +1,9 @@
 {
   "name": "pizza-palette",
   "version": "0.1.0",
+  "engines": {
+    "node": "12.x"
+  },
   "main": "server.js",
   "proxy": "http://localhost:3000",
   "private": false,
