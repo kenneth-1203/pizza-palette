@@ -1,7 +1,8 @@
 {
   "name": "pizza-palette",
   "version": "0.1.0",
-  "private": true,
+  "main": "server.js",
+  "private": false,
   "dependencies": {
     "@stripe/react-stripe-js": "^1.4.0",
     "@stripe/stripe-js": "^1.13.2",
