@@ -6,9 +6,28 @@
 
 .checkout {
   &-form {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     background: rgba($dark-pale-blue, $alpha: 0.9);
     padding: 2em;
     border-radius: 10px;
+  }
+
+  &-total {
+    background: $pale-green;
+    padding-left: .5em;
+    padding-right: .5em;
+    padding-top: .5em;
+    border-radius: 10px;
+  }
+
+  &-status {
+    font-weight: 400;
+    background: $primary-green;
+    border-radius: 10px;
+    height: 1.5em;
+    padding: .5em;
   }
 
   &-btn {

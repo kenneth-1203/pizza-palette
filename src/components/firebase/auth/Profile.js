@@ -178,7 +178,7 @@ class Profile extends Component {
           <Modal show={this.state.modal} onHide={this.handleCloseModal}>
             <Modal.Header closeButton>
               <Modal.Title>
-                <i class="fas fa-exclamation-triangle error-icon"></i> Delete
+                <i className="fas fa-exclamation-triangle error-icon"></i> Delete
                 account
               </Modal.Title>
             </Modal.Header>

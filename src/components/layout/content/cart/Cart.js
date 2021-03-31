@@ -6,7 +6,7 @@ import { getTotal } from "../../../firebase/actions/shopActions";
 
 import CartItem from "./CartItem";
 
-const Cart = ({ auth, cart, getTotal }) => {
+const Cart = ({ auth, getTotal }) => {
   const [subtotal, setSubtotal] = useState(0);
   const [total, setTotal] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -29,12 +29,7 @@ const Cart = ({ auth, cart, getTotal }) => {
     setSubtotal((Math.round(price * 100) / 100).toFixed(2));
     setTotal((Math.floor(price * 10) / 10).toFixed(2));
     setTotalItems(items);
-  }, [cart, auth, subtotal, totalItems, setSubtotal, setTotalItems]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e.target.value);
-  };
+  }, [auth, subtotal, totalItems, setSubtotal, setTotalItems]);
 
   return (
     <React.Fragment>
@@ -58,7 +53,7 @@ const Cart = ({ auth, cart, getTotal }) => {
           onMouseOut={() => setMouseOver(false)}
           style={mouseOver ? { height: "calc(17em - 2vw)" } : null}
         >
-          <h3 className="p-2">Summary</h3>
+          <h3 className="px-4 pt-3">Summary</h3>
           <div className="row checkout-details">
             <div className="col-12 col-md-8">
               <div className="d-flex justify-content-between">

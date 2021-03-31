@@ -55,9 +55,7 @@ const shopReducer = (state = initState, action) => {
       cart = JSON.parse(window.sessionStorage.getItem(action.payload.uid))
         ? JSON.parse(window.sessionStorage.getItem(action.payload.uid))
         : [];
-      let newCart = cart.filter(
-        (product) => product.id !== action.payload.id
-      );
+      let newCart = cart.filter((product) => product.id !== action.payload.id);
       window.sessionStorage.setItem(
         action.payload.uid,
         JSON.stringify(newCart)
@@ -68,8 +66,8 @@ const shopReducer = (state = initState, action) => {
       };
     case actionTypes.ADJUST_QUANTITY:
       cart = JSON.parse(window.sessionStorage.getItem(action.payload.uid))
-      ? JSON.parse(window.sessionStorage.getItem(action.payload.uid))
-      : [];  
+        ? JSON.parse(window.sessionStorage.getItem(action.payload.uid))
+        : [];
       let adjustedCart = cart.map((product) =>
         product.id === action.payload.id
           ? {
@@ -88,14 +86,20 @@ const shopReducer = (state = initState, action) => {
         ...state,
         cart: adjustedCart,
       };
-      case actionTypes.GET_TOTAL:
-        return {
-          ...state,
-          checkout: {
-            subtotal: action.payload.subtotal,
-            total: action.payload.total,
-          }
-        }
+    case actionTypes.GET_TOTAL:
+      return {
+        ...state,
+        checkout: {
+          subtotal: action.payload.subtotal,
+          total: action.payload.total,
+        },
+      };
+    case actionTypes.CLEAR_CART:
+      window.sessionStorage.removeItem(action.payload.uid);
+      return {
+        ...state,
+        cart: [],
+      };
     default:
       return state;
   }

@@ -42,3 +42,12 @@ export const getTotal = (subtotal, total) => {
     }
   }
 }
+
+export const clearCart = (userID) => {
+  return {
+    type: actionTypes.CLEAR_CART,
+    payload: {
+      uid: userID
+    }
+  }
+}
