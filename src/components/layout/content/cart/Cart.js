@@ -6,7 +6,7 @@ import { getTotal } from "../../../firebase/actions/shopActions";
 
 import CartItem from "./CartItem";
 
-const Cart = ({ auth, getTotal }) => {
+const Cart = ({ auth, getTotal, cart }) => {
   const [subtotal, setSubtotal] = useState(0);
   const [total, setTotal] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -24,12 +24,11 @@ const Cart = ({ auth, getTotal }) => {
       items += item.quantity;
       price += item.quantity * item.price;
     });
-
     setCart(initCart);
     setSubtotal((Math.round(price * 100) / 100).toFixed(2));
     setTotal((Math.floor(price * 10) / 10).toFixed(2));
     setTotalItems(items);
-  }, [auth, subtotal, totalItems, setSubtotal, setTotalItems]);
+  }, [cart, auth, subtotal, totalItems, setSubtotal, setTotalItems]);
 
   return (
     <React.Fragment>

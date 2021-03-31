@@ -1,10 +1,18 @@
+.menu-notification {
+  background: $primary-green;
+  
+  & .toast-header {
+    background: inherit;
+  }
+}
+
 .card {
   background: $dark-grey;
   border: none;
   border-radius: 20px;
   width: 15rem;
   box-shadow: $card-shadow $shadow-color;
-  transition: .2s;
+  transition: 0.2s;
 
   &-img {
     &-top {
@@ -32,7 +40,7 @@
   }
 
   &:hover {
-    box-shadow: $card-shadow rgba($light-grey, $alpha: .5);
+    box-shadow: $card-shadow rgba($light-grey, $alpha: 0.5);
   }
 }
 

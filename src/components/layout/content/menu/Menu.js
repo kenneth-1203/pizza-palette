@@ -6,12 +6,14 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 
+import MenuNotifications from "./MenuNotifications";
 import ProductList from "../../products/ProductList";
 
 const Menu = ({ products, auth, history }) => {
   return (
     <div>
       <div className="container pt-2">
+        <div className="d-flex justify-content-end"></div>
         <div className="d-flex flex-wrap justify-content-evenly">
           {products ? (
             <ProductList products={products} auth={auth} history={history} />
@@ -25,6 +27,20 @@ const Menu = ({ products, auth, history }) => {
             />
           )}
         </div>
+      </div>
+      <div
+        aria-live="polite"
+        aria-atomic="true"
+        style={{
+          position: "sticky",
+          bottom: "0",
+          right: "0",
+          padding: "3em",
+          float: "right",
+        }}
+      >
+        <MenuNotifications />
+        <div></div>
       </div>
     </div>
   );
