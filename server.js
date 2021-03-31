@@ -5,9 +5,9 @@ const stripe = require("stripe")(process.env.REACT_APP_SECRET_KEY);
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 app.use(cors());
 
 app.post("/payment", cors(), async (req, res) => {
