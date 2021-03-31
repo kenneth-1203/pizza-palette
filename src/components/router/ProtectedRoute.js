@@ -8,11 +8,12 @@ import SignIn from "../firebase/auth/SignIn";
 import SignUp from "../firebase/auth/SignUp";
 import Profile from "../firebase/auth/Profile";
 import CreateProduct from "../layout/products/CreateProduct";
+import CheckoutForm from "../checkout/CheckoutForm";
 
 class ProtectedRoute extends Component {
   render() {
     const { auth, location } = this.props;
-    const path = ["/signup", "/signin", "/profile", "/create"];
+    const path = ["/signup", "/signin", "/profile", "/create", "/checkout"];
     const currentPath = path
       // eslint-disable-next-line array-callback-return
       .filter((p) => {
@@ -42,6 +43,9 @@ class ProtectedRoute extends Component {
         switch (currentPath) {
           case "/profile":
             pathComponent = Profile;
+            break;
+          case "/checkout":
+            pathComponent = CheckoutForm;
             break;
           default:
             return <Redirect to="/" />;

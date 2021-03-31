@@ -1,14 +1,18 @@
 import React from "react";
-import { Helmet } from "react-helmet";
 
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import { Helmet } from "react-helmet";
 import { BrowserRouter } from "react-router-dom";
 
 import Navbar from "./components/layout/navbar/Navbar";
 import Router from "./components/router/Router";
 
-export default class App extends React.PureComponent {
-  render() {
-    return (
+const stripePromise = loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY);
+
+const App = () => {
+  return (
+    <Elements stripe={stripePromise}>
       <BrowserRouter>
         <div className="App">
           <Helmet>
@@ -18,6 +22,8 @@ export default class App extends React.PureComponent {
           <Router />
         </div>
       </BrowserRouter>
-    );
-  }
-}
+    </Elements>
+  );
+};
+
+export default App;

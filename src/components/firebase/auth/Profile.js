@@ -11,6 +11,8 @@ class Profile extends Component {
     lastName: "",
     email: "",
     password: "",
+    contact: "",
+    address: "",
     modal: false,
   };
 
@@ -19,6 +21,8 @@ class Profile extends Component {
     this.setState({
       firstName: profile.firstName,
       lastName: profile.lastName,
+      contact: profile.contact,
+      address: profile.address,
       email: auth.email,
     });
   }
@@ -29,6 +33,8 @@ class Profile extends Component {
       this.setState({
         firstName: profile.firstName,
         lastName: profile.lastName,
+        contact: profile.contact,
+        address: profile.address,
       });
     }
   }
@@ -102,16 +108,46 @@ class Profile extends Component {
                     </div>
                   </div>
                 </div>
+                <div className="row">
+                  <div className="col-sm-6">
+                    <div className="mb-3">
+                      <label htmlFor="email" className="form-label">
+                        Email address
+                      </label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        value={this.state.email}
+                        onChange={this.handleChange}
+                      ></input>
+                    </div>
+                  </div>
+                  <div className="col-sm-6">
+                    <div className="mb-3">
+                      <label htmlFor="contact" className="form-label">
+                        Contact number
+                      </label>
+                      <input
+                        type="tel"
+                        className="form-control"
+                        id="contact"
+                        value={this.state.contact}
+                        onChange={this.handleChange}
+                      ></input>
+                    </div>
+                  </div>
+                </div>
                 <div className="mb-3">
-                  <label htmlFor="email" className="form-label">
-                    Email address
+                  <label htmlFor="address" className="form-label">
+                    Address
                   </label>
                   <input
-                    type="email"
+                    type="text"
                     className="form-control"
-                    id="email"
-                    value={this.state.email}
-                    disabled
+                    id="address"
+                    value={this.state.address}
+                    onChange={this.handleChange}
                   ></input>
                 </div>
               </form>
@@ -142,7 +178,7 @@ class Profile extends Component {
           <Modal show={this.state.modal} onHide={this.handleCloseModal}>
             <Modal.Header closeButton>
               <Modal.Title>
-                <i class="fas fa-exclamation-triangle error-icon"></i> Delete
+                <i className="fas fa-exclamation-triangle error-icon"></i> Delete
                 account
               </Modal.Title>
             </Modal.Header>
