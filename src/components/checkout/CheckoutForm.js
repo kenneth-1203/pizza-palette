@@ -51,7 +51,7 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
             postal_code: e.target.zip.value,
             state: e.target.state.value,
           },
-          description: `Ordered at: ${orderDate}`,
+          description: `Email: ${auth.email}\nDate: ${orderDate}`,
           receipt_email: auth.email,
           name: e.target.cardholder.value,
           phone: profile.contact,
