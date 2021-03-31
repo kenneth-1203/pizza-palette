@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { clearCart } from "../firebase/actions/shopActions";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 
@@ -253,7 +254,9 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
           <form className="my-3 checkout-form">
             <div className="d-flex justify-content-between">
               <h3>Receipt</h3>
-              <label className="d-flex align-items-center checkout-status">PAID</label>
+              <label className="d-flex align-items-center checkout-status">
+                PAID
+              </label>
             </div>
             <hr />
             <p>
@@ -267,7 +270,7 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
             <p>
               <b>Contact number:</b>&nbsp; {profile.contact}
             </p>
-            <hr/>
+            <hr />
             <p>
               <b>Address:</b>&nbsp; {profile.address}
             </p>
@@ -290,9 +293,14 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
                 })
               : null}
             <br />
-            <p>
-              <b>Total:</b>&nbsp; RM {checkout.total}
-            </p>
+            <div className="d-flex justify-content-between">
+              <p className="float-start">
+                <b>Total:</b>&nbsp; RM {checkout.total}
+              </p>
+              <Link to="/">
+                <button className="float-end btn btn-primary">OK</button>
+              </Link>
+            </div>
           </form>
         </>
       )}
