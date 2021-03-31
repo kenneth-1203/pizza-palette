@@ -76,7 +76,7 @@ class Profile extends Component {
           <div className="row">
             <div className="col-sm-1"></div>
             <div className="col-12 col-lg-9 col-md-8 px-4">
-              <h1>Profile</h1>
+              <h1><i className="fas fa-user-circle fa-sm"></i>&nbsp; Profile</h1>
               <form onSubmit={this.handleSubmit}>
                 <div className="row">
                   <div className="col-sm-6">

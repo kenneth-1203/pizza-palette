@@ -8,6 +8,7 @@ import CartItem from "./CartItem";
 
 const Cart = ({ auth, getTotal, cart }) => {
   const [subtotal, setSubtotal] = useState(0);
+  const [delivery, setDelivery] = useState(0);
   const [total, setTotal] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [initCart, setCart] = useState(null);
@@ -16,6 +17,7 @@ const Cart = ({ auth, getTotal, cart }) => {
   useEffect(() => {
     let items = 0;
     let price = 0;
+    let deliveryFee = 5;
     let initCart = JSON.parse(window.sessionStorage.getItem(auth.uid))
       ? JSON.parse(window.sessionStorage.getItem(auth.uid))
       : [];
@@ -24,9 +26,11 @@ const Cart = ({ auth, getTotal, cart }) => {
       items += item.quantity;
       price += item.quantity * item.price;
     });
+
     setCart(initCart);
-    setSubtotal((Math.round(price * 100) / 100).toFixed(2));
-    setTotal((Math.floor(price * 10) / 10).toFixed(2));
+    setSubtotal(((price * 100) / 100).toFixed(2));
+    setDelivery(deliveryFee.toFixed(2));
+    setTotal((deliveryFee + (price * 100) / 100).toFixed(2));
     setTotalItems(items);
   }, [cart, auth, subtotal, totalItems, setSubtotal, setTotalItems]);
 
@@ -40,7 +44,10 @@ const Cart = ({ auth, getTotal, cart }) => {
             );
           })
         ) : auth.uid ? (
-          <h5>Cart is empty.</h5>
+          <div className="text-center">
+            <i className="far fa-frown-open fa-10x py-5" style={{ color: "rgba(255,255,255,.3)" }}></i>
+            <h3 style={{ color: "rgba(255,255,255,.3)" }}>Cart is empty.</h3>
+          </div>
         ) : (
           <h5>Sign in to start shopping now!</h5>
         )}
@@ -59,13 +66,13 @@ const Cart = ({ auth, getTotal, cart }) => {
                 <div>
                   <h5>In Bag:</h5>
                   <h5>Subtotal:</h5>
-                  <h5>Rounding:</h5>
+                  <h5>Delivery:</h5>
                   <h5>Total:</h5>
                 </div>
                 <div className="checkout-value">
                   <h5>{totalItems}</h5>
                   <h5>RM {subtotal}</h5>
-                  <h5>RM {(total - subtotal).toFixed(2)}</h5>
+                  <h5>RM {delivery}</h5>
                   <h5>RM {total}</h5>
                 </div>
               </div>
@@ -75,7 +82,11 @@ const Cart = ({ auth, getTotal, cart }) => {
                 <Link to="/menu" className="btn text-wrap checkout-btn my-2">
                   Add More
                 </Link>
-                <Link to="/checkout" className="btn text-wrap checkout-btn my-2" onClick={() => getTotal(subtotal, total)}>
+                <Link
+                  to="/checkout"
+                  className="btn text-wrap checkout-btn my-2"
+                  onClick={() => getTotal(subtotal, total, delivery)}
+                >
                   Checkout
                 </Link>
               </div>
@@ -89,9 +100,10 @@ const Cart = ({ auth, getTotal, cart }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTotal: (subtotal, total) => dispatch(getTotal(subtotal, total))
-  }
-}
+    getTotal: (subtotal, total, delivery) =>
+      dispatch(getTotal(subtotal, total, delivery)),
+  };
+};
 
 const mapStateToProps = (state) => {
   return {

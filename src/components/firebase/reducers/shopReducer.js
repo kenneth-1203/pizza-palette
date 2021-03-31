@@ -91,6 +91,7 @@ const shopReducer = (state = initState, action) => {
         ...state,
         checkout: {
           subtotal: action.payload.subtotal,
+          delivery: action.payload.delivery,
           total: action.payload.total,
         },
       };

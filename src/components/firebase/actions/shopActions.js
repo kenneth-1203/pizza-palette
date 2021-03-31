@@ -33,11 +33,12 @@ export const adjustQuantity = (productID, value, adjustType, userID) => {
   };
 };
 
-export const getTotal = (subtotal, total) => {
+export const getTotal = (subtotal, total, delivery) => {
   return {
     type: actionTypes.GET_TOTAL,
     payload: {
       subtotal: subtotal,
+      delivery: delivery,
       total: total
     }
   }
