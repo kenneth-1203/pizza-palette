@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { signOut } from "../../../firebase/actions/authActions";
 
-const SignedInSidebar = ({ signOut, toggleSidenav, profile }) => {
+const SignedInSidebar = ({ signOut, toggleSidenav, profile, count }) => {
   const handleSignOut = () => {
     toggleSidenav();
     signOut();
@@ -39,7 +39,12 @@ const SignedInSidebar = ({ signOut, toggleSidenav, profile }) => {
         <h5 className="nav-link">Sign Out</h5>
       </Link>
       <Link to="/cart" onClick={toggleSidenav} className="text-center">
-        <h5 className="nav-link">Cart</h5>
+        <h5 className="nav-link">
+          Cart
+          {count && count > 0 ? (
+            <div className="cart-count">{count}</div>
+          ) : null}
+        </h5>
       </Link>
     </React.Fragment>
   );

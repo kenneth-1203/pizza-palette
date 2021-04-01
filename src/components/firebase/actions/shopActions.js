@@ -52,3 +52,12 @@ export const clearCart = (userID) => {
     }
   }
 }
+
+export const setCount = (count) => {
+  return {
+    type: actionTypes.SET_COUNT,
+    payload: {
+      count: count
+    }
+  }
+}

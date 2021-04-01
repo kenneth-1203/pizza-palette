@@ -12,20 +12,19 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post("/payment", cors(), async (req, res) => {
-  let { amount, id, description, receipt_email } = req.body;
+  let { amount, id } = req.body;
   try {
     const payment = await stripe.paymentIntents.create({
       amount,
       currency: "myr",
-      description,
       payment_method: id,
-      receipt_email,
       confirm: true,
     });
     console.log("Payment", payment);
     res.json({
       message: "Payment successful!",
       success: true,
+      paymentData: payment
     });
   } catch (error) {
     console.log("Error", error);
@@ -34,7 +33,7 @@ app.post("/payment", cors(), async (req, res) => {
       success: false,
     });
   }
-});
+})
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname+ '/build/index.html'));

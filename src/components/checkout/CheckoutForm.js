@@ -5,10 +5,13 @@ import { clearCart } from "../firebase/actions/shopActions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import Logo from "../../assets/images/logo.png";
+
 import axios from "axios";
 
 const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
   const [success, setSuccess] = useState(false);
+  const [paymentData, setData] = useState(null);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -30,36 +33,39 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const billingDetails = {
+      address: {
+        city: e.target.city.value,
+        country: "MY",
+        line1: e.target.billAddress.value,
+        postal_code: e.target.zip.value,
+        state: e.target.state.value,
+      },
+      email: auth.email,
+      name: e.target.cardholder.value,
+      phone: profile.contact,
+    }
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
+      billing_details: billingDetails,
     });
 
     if (!error) {
       try {
-        const orderDate = new Date();
-        const amount = Math.ceil(checkout.total * 100);
+        const amount = Math.ceil(
+          (parseFloat(checkout.total) + parseFloat(checkout.delivery)) * 100
+        );
         const { id } = paymentMethod;
         const response = await axios.post("http://localhost:4000/payment", {
           amount,
           id,
-          address: {
-            city: e.target.city.value,
-            country: "Malaysia",
-            line1: e.target.billAddress.value,
-            postal_code: e.target.zip.value,
-            state: e.target.state.value,
-          },
-          description: `Email: ${auth.email}\nDate: ${orderDate}`,
-          receipt_email: auth.email,
-          name: e.target.cardholder.value,
-          phone: profile.contact,
-          customer: profile.firstName + " " + profile.lastName,
         });
 
         if (response.data.success) {
           console.log("Payment successful!");
+          setData(response.data.paymentData.charges.data[0]);
           clearCart(auth.uid);
           setSuccess(true);
         }
@@ -251,12 +257,20 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
               to you.
             </label>
           </div>
-          <form className="my-3 checkout-form">
+          <form className="my-3 checkout-form checkout-form-success">
             <div className="d-flex justify-content-between">
-              <h3>Receipt</h3>
-              <label className="d-flex align-items-center checkout-status">
-                PAID
-              </label>
+              <div className="d-flex float-start">
+                <h3>Receipt</h3>
+                <label className="d-flex mt-1 mx-2 align-items-center checkout-status">
+                  PAID
+                </label>
+              </div>
+              <img
+                className="float-end"
+                src={Logo}
+                style={{ height: "calc(1em + 2vw)" }}
+                alt=""
+              />
             </div>
             <hr />
             <p>
@@ -273,6 +287,10 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
             <hr />
             <p>
               <b>Address:</b>&nbsp; {profile.address}
+            </p>
+            <hr />
+            <p>
+              <b>Receipt URL:</b>&nbsp; <a className="checkout-receipt-url" href={paymentData.receipt_url}>{paymentData.created}</a>
             </p>
             <hr />
             {cart
@@ -295,7 +313,8 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
             <br />
             <div className="d-flex justify-content-between">
               <p className="float-start">
-                <b>Total:</b>&nbsp; RM {checkout.total}
+                <b>Total:</b>&nbsp; RM{" "}
+                {parseFloat(checkout.total) + parseFloat(checkout.delivery)}
               </p>
               <Link to="/">
                 <button className="float-end btn btn-primary">OK</button>

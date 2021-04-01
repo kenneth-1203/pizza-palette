@@ -12,13 +12,22 @@
     background: rgba($dark-pale-blue, $alpha: 0.9);
     padding: 2em;
     border-radius: 10px;
+
+    &-success {
+      background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='%23FFFFFF70' stroke-width='3' stroke-dasharray='20' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    }
+  }
+
+  &-receipt-url {
+    text-decoration: underline;
+    transition: .2s;
   }
 
   &-total {
     background: $pale-green;
-    padding-left: .5em;
-    padding-right: .5em;
-    padding-top: .5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.5em;
     border-radius: 10px;
   }
 
@@ -27,12 +36,12 @@
     background: $primary-green;
     border-radius: 10px;
     height: 1.5em;
-    padding: .5em;
+    padding: 0.5em;
   }
 
   &-btn {
     width: 120px;
-    margin: .5em;
+    margin: 0.5em;
   }
 }
 
@@ -53,7 +62,7 @@
 }
 
 .anticon {
-    &-check svg path {
-        color: $primary-green;
-    }
+  &-check svg path {
+    color: $primary-green;
+  }
 }

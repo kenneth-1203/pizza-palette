@@ -101,6 +101,11 @@ const shopReducer = (state = initState, action) => {
         ...state,
         cart: [],
       };
+    case actionTypes.SET_COUNT:
+      return {
+        ...state,
+        count: action.payload.count
+      }
     default:
       return state;
   }

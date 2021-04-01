@@ -2,8 +2,9 @@ import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-
 import { isAdmin } from "../../firebase/actions/authActions";
+import { setCount } from "../../firebase/actions/shopActions";
+
 import Logo from "../../../assets/images/company-logo.png";
 import SignedInNavbar from "../auth/SignedIn/SignedInNavbar";
 import SignedOutNavbar from "../auth/SignedOut/SignedOutNavbar";
@@ -44,7 +45,7 @@ class Navbar extends Component {
   };
 
   setCartCount = () => {
-    let { auth } = this.props;
+    let { auth, setCount } = this.props;
     let cart = JSON.parse(window.sessionStorage.getItem(auth.uid))
       ? JSON.parse(window.sessionStorage.getItem(auth.uid))
       : [];
@@ -53,6 +54,7 @@ class Navbar extends Component {
       count += item.quantity;
     });
     this.setState({ count });
+    setCount(count);
   };
 
   render() {
@@ -64,7 +66,7 @@ class Navbar extends Component {
       <SignedOutNavbar />
     );
     const sidebarLinks = auth.uid ? (
-      <SignedInSidebar profile={profile} toggleSidenav={this.toggleSidenav} />
+      <SignedInSidebar profile={profile} toggleSidenav={this.toggleSidenav} count={this.state.count} />
     ) : (
       <SignedOutSidebar toggleSidenav={this.toggleSidenav} />
     );
@@ -191,4 +193,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Navbar);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCount: (count) => dispatch(setCount(count))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

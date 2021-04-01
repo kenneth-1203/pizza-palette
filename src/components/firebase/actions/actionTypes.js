@@ -17,3 +17,4 @@ export const ADJUST_QUANTITY = "ADJUST_QUANTITY";
 export const LOAD_CURRENT_ITEM = "LOAD_CURRENT_ITEM";
 export const GET_TOTAL = "GET_TOTAL";
 export const CLEAR_CART = "CLEAR_CART";
+export const SET_COUNT = "SET_COUNT";
