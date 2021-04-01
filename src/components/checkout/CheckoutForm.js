@@ -44,7 +44,7 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
       email: auth.email,
       name: e.target.cardholder.value,
       phone: profile.contact,
-    }
+    };
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -54,9 +54,7 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
 
     if (!error) {
       try {
-        const amount = Math.ceil(
-          (parseFloat(checkout.total) + parseFloat(checkout.delivery)) * 100
-        );
+        const amount = Math.ceil(checkout.total * 100);
         const { id } = paymentMethod;
         const response = await axios.post("http://localhost:4000/payment", {
           amount,
@@ -290,7 +288,13 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
             </p>
             <hr />
             <p>
-              <b>Receipt URL:</b>&nbsp; <a className="checkout-receipt-url" href={paymentData.receipt_url}>{paymentData.created}</a>
+              <b>Receipt URL:</b>&nbsp;{" "}
+              <a
+                className="checkout-receipt-url"
+                href={paymentData.receipt_url}
+              >
+                {paymentData.created}
+              </a>
             </p>
             <hr />
             {cart
