@@ -1,0 +1,76 @@
+.comment {
+  &-box {
+    width: calc(15em + 5vw);
+    background: $dark-grey;
+    box-shadow: $card-shadow $shadow-color;
+    padding: 0.5em;
+    border-radius: 10px;
+  }
+
+  &-description {
+    font-size: smaller;
+    font-weight: 300;
+    font-style: italic;
+  }
+}
+
+.ant-rate {
+  list-style: none;
+  display: inline-block;
+  font-feature-settings: "tnum", "tnum";
+  margin: 0;
+  padding: 0;
+  color: #fadb14;
+  font-size: 20px;
+  line-height: unset;
+  outline: none;
+
+  &-star {
+    position: relative;
+    display: inline-block;
+
+    &-zero {
+      color: $light-grey;
+    }
+
+    &-first {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      opacity: 0;
+    }
+
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+}
+
+.infographic {
+  &-icon {
+    color: $primary-red;
+    font-size: calc(7em + 5vw);
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+  }
+}
+
+.accordion {
+  width: 100%;
+  padding: 1em;
+  
+  &-btn{
+    padding: 1em;
+    width: 100%;
+    color: inherit;
+    background: $dark-grey;
+    border: none;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}

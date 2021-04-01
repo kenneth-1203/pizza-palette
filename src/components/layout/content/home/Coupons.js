@@ -8,24 +8,34 @@ import Coupon3 from "../../../../assets/images/freedel50-coupon.png";
 
 const Coupons = () => {
   return (
-    <Carousel style={{ width: "50rem" }}>
-      <Carousel.Item>
-        <img className="d-block w-75 mx-auto" src={Coupon1} alt="First slide" />
-        <Carousel.Caption style={{ position: "relative" }} />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-75 mx-auto"
-          src={Coupon2}
-          alt="Second slide"
-        />
-        <Carousel.Caption style={{ position: "relative" }} />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="d-block w-75 mx-auto" src={Coupon3} alt="Third slide" />
-        <Carousel.Caption style={{ position: "relative" }} />
-      </Carousel.Item>
-    </Carousel>
+    <div className="d-flex justify-content-center">
+      <Carousel style={{ width: "50rem" }}>
+        <Carousel.Item>
+          <img
+            className="d-block w-75 mx-auto"
+            src={Coupon1}
+            alt="First slide"
+          />
+          <Carousel.Caption style={{ position: "relative" }} />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-75 mx-auto"
+            src={Coupon2}
+            alt="Second slide"
+          />
+          <Carousel.Caption style={{ position: "relative" }} />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-75 mx-auto"
+            src={Coupon3}
+            alt="Third slide"
+          />
+          <Carousel.Caption style={{ position: "relative" }} />
+        </Carousel.Item>
+      </Carousel>
+    </div>
   );
 };
 
