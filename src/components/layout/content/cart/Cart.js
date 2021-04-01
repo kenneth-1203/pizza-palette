@@ -49,7 +49,10 @@ const Cart = ({ auth, getTotal, cart }) => {
             <h3 style={{ color: "rgba(255,255,255,.3)" }}>Cart is empty.</h3>
           </div>
         ) : (
-          <h5>Sign in to start shopping now!</h5>
+          <div className="text-center">
+          <i className="fas fa-user-circle fa-10x py-5"  style={{ color: "rgba(255,255,255,.3)" }}></i>
+          <h3  style={{ color: "rgba(255,255,255,.3)" }}>Sign in to shopping now.</h3>
+          </div>
         )}
       </div>
       {initCart && initCart.length ? (
@@ -60,6 +63,7 @@ const Cart = ({ auth, getTotal, cart }) => {
           style={mouseOver ? { height: "calc(17em - 2vw)" } : null}
         >
           <h3 className="px-4 pt-3">Summary</h3>
+          <hr/>
           <div className="row checkout-details">
             <div className="col-12 col-md-8">
               <div className="d-flex justify-content-between">

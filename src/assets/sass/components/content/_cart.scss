@@ -73,7 +73,7 @@
     position: absolute;
     overflow: hidden;
     transform: translate(-50%, 0);
-    height: 4em;
+    height: calc(3em + 1vw);
     bottom: 0;
     left: 50%;
     width: 80vw;
