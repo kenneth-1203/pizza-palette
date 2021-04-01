@@ -318,7 +318,7 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
             <div className="d-flex justify-content-between">
               <p className="float-start">
                 <b>Total:</b>&nbsp; RM{" "}
-                {parseFloat(checkout.total) + parseFloat(checkout.delivery)}
+                {checkout.total}
               </p>
               <Link to="/">
                 <button className="float-end btn btn-primary">OK</button>
