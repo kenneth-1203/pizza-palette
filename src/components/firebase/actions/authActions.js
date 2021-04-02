@@ -47,6 +47,7 @@ export const signUp = (newUser) => {
             initials: `${newUser.firstName[0]}${newUser.lastName[0]}`,
             contact: newUser.contact,
             address: newUser.address,
+            favorites: []
           });
       })
       .then(() => {

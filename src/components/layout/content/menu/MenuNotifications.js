@@ -21,7 +21,6 @@ class MenuNotifications extends Component {
     if (prevProps.count !== this.props.count) this.cartToast(prevProps.count);
     if (
       prevProps.favorites &&
-      prevProps.favorites.length !== 0 &&
       prevProps.favorites.length !== this.props.favorites.length
     )
       this.favToast(prevProps.favorites.length);
@@ -37,7 +36,7 @@ class MenuNotifications extends Component {
   };
 
   favToast = (count) => {
-    if (count !== undefined && this.props.favorites.length - 2 === count - 1) {
+    if (count !== undefined && (this.props.favorites.length + 2) % (count + 2) === 1) {
       this.setState({ toast: true, message: "Added to favorites" });
       setTimeout(() => {
         this.setState({ toast: false });

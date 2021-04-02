@@ -154,7 +154,7 @@ class Profile extends Component {
                         id="email"
                         value={this.state.email}
                         onChange={this.handleChange}
-                        required
+                        disabled
                       ></input>
                     </div>
                   </div>
