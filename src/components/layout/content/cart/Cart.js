@@ -51,7 +51,7 @@ const Cart = ({ auth, getTotal, cart }) => {
         ) : (
           <div className="text-center">
           <i className="fas fa-user-circle fa-10x py-5"  style={{ color: "rgba(255,255,255,.3)" }}></i>
-          <h3  style={{ color: "rgba(255,255,255,.3)" }}>Sign in to shopping now.</h3>
+          <h3  style={{ color: "rgba(255,255,255,.3)" }}>Sign in to shop now.</h3>
           </div>
         )}
       </div>

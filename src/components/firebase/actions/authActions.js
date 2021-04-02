@@ -8,10 +8,10 @@ export const signIn = (credentials) => {
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(() => {
-        dispatch({ type: actionTypes.LOGIN_SUCCESS });
+        dispatch({ type: actionTypes.SIGNIN_SUCCESS });
       })
       .catch((err) => {
-        dispatch({ type: actionTypes.LOGIN_ERROR, err });
+        dispatch({ type: actionTypes.SIGNIN_ERROR, err });
       });
   };
 };
@@ -46,7 +46,7 @@ export const signUp = (newUser) => {
             lastName: newUser.lastName,
             initials: `${newUser.firstName[0]}${newUser.lastName[0]}`,
             contact: newUser.contact,
-            address: newUser.address
+            address: newUser.address,
           });
       })
       .then(() => {
@@ -55,6 +55,67 @@ export const signUp = (newUser) => {
       .catch((err) => {
         dispatch({ type: actionTypes.SIGNUP_ERROR, err });
       });
+  };
+};
+
+export const addToFav = (product) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firebase = getFirebase();
+    const firestore = getFirestore();
+    const userId = getState().firebase.auth.uid;
+
+    firestore
+      .collection("users")
+      .doc(userId)
+      .update({
+        favorites: firebase.firestore.FieldValue.arrayUnion(product.name),
+      })
+      .then(() => {
+        dispatch({ type: actionTypes.ADD_TO_FAVORITES_SUCCESS });
+      })
+      .catch((err) => {
+        dispatch({ type: actionTypes.ADD_TO_FAVORITES_ERROR, err });
+      });
+  };
+};
+
+export const updateProfile = (credentials, password) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firebase = getFirebase();
+    const firestore = getFirestore();
+    const userId = getState().firebase.auth.uid;
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        const cred = firebase.auth.EmailAuthProvider.credential(
+          user.email,
+          password
+        );
+        user
+          .reauthenticateWithCredential(cred)
+          .then(() => {
+            firestore
+              .collection("users")
+              .doc(userId)
+              .update({
+                firstName: credentials.firstName,
+                lastName: credentials.lastName,
+                initials: `${credentials.firstName[0]}${credentials.lastName[0]}`,
+                address: credentials.address,
+                contact: credentials.contact,
+              })
+              .then(() => {
+                dispatch({ type: actionTypes.UPDATE_PROFILE_SUCCESS });
+              })
+              .catch((err) => {
+                dispatch({ type: actionTypes.UPDATE_PROFILE_ERROR, err });
+              });
+          })
+          .catch((err) => {
+            dispatch({ type: actionTypes.UPDATE_PROFILE_ERROR, err });
+          });
+      }
+    });
   };
 };
 

@@ -8,10 +8,11 @@ import { firestoreConnect } from "react-redux-firebase";
 
 import MenuNotifications from "./MenuNotifications";
 import ProductList from "../../products/ProductList";
+import Footer from "../../footer/Footer";
 
 const Menu = ({ products, auth, history }) => {
   return (
-    <div>
+    <>
       <div className="container pt-2">
         <div className="d-flex justify-content-end"></div>
         <div className="d-flex flex-wrap justify-content-evenly">
@@ -40,9 +41,9 @@ const Menu = ({ products, auth, history }) => {
         }}
       >
         <MenuNotifications />
-        <div></div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

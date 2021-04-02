@@ -1,0 +1,19 @@
+.profile {
+  &-favorites {
+    background: rgba($grey, $alpha: .8);
+    border: 3px solid rgba($lighter-grey, $alpha: 0.5);
+    height: 15em;
+    overflow-y: auto;
+
+    &-item {
+      background: none;
+      border-bottom: 2px solid rgba($lighter-grey, $alpha: 0.5);
+      transition: 0.2s;
+      cursor: default;
+
+      &:hover {
+        background: rgba($light-grey, $alpha: 0.5);
+      }
+    }
+  }
+}

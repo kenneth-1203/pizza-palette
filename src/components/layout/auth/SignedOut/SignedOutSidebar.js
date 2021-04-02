@@ -9,23 +9,19 @@ const SignedOutSidebar = ({ toggleSidenav }) => {
         <span id="searchInput">
           <i className="fas fa-search"></i>
         </span>
-        <input type="text" className="nav-search-input active" style={{ minWidth: "100%" }} />
+        <input
+          type="text"
+          className="nav-search-input active"
+          style={{ minWidth: "100%" }}
+        />
       </li>
-      <Link
-        to="/signin"
-        className="text-center"
-        onClick={toggleSidenav}
-      >
+      <Link to="/signin" className="text-center" onClick={toggleSidenav}>
         <h5 className="nav-link">Sign In</h5>
       </Link>
-      <Link
-        to="/signup"
-        className="text-center"
-        onClick={toggleSidenav}
-      >
+      <Link to="/signup" className="text-center" onClick={toggleSidenav}>
         <h5 className="nav-link">Sign Up</h5>
       </Link>
-      <Link to="/cart" className="text-center">
+      <Link to="/cart" className="text-center" onClick={toggleSidenav}>
         <h5 className="nav-link">Cart</h5>
       </Link>
     </React.Fragment>

@@ -1,0 +1,7 @@
+.footer {
+  position: sticky;
+  height: calc(10em + 2vw);
+  background: $darker-grey;
+  margin-top: 2em;
+  box-shadow: $card-shadow $shadow-color;
+}

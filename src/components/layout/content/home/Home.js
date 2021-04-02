@@ -4,10 +4,11 @@ import Coupons from "./Coupons";
 import Announcements from "./Announcements";
 import Comments from "./Comments";
 import Infographic from "./Infographic";
+import Footer from "../../footer/Footer";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <div className="container">
         <Coupons />
         <Announcements />
@@ -16,7 +17,8 @@ const Home = () => {
         <hr className="my-5"/>
         <Comments />
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

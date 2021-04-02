@@ -6,22 +6,32 @@ import { compose } from "redux";
 
 import spinner from "../../../assets/animated/spinner.svg";
 
-const ProductDetails = (props) => {
+const ProductDetails = ({ product }) => {
   const [isLoading, handleLoad] = useState(true);
-  const { product } = props;
-  
+
   if (product) {
     return (
       <div className="container">
-      <img
-            onLoad={() => handleLoad(false)}
-            src={isLoading ? spinner : product.image}
-            className="card-img-top"
-            alt="productImage"
-          />
-        <p>{product.name}</p>
-        <p>{product.description}</p>
-        <p>{product.price}</p>
+        <div className="text-center">
+          <div className="col-6 mx-auto" style={{ width: "calc(5em + 25vw)" }}>
+            <img
+              onLoad={() => handleLoad(false)}
+              src={isLoading ? spinner : product.image}
+              className="card-img-top mb-3"
+              alt="productImage"
+              style={{
+                height: "calc(5em + 20vw)",
+                width: "calc(5em + 25vw)",
+                borderRadius: "20px",
+              }}
+            />
+            <h3>{product.name}</h3>
+            <p>{product.description}</p>
+            <h5>RM {product.price}</h5>
+            <div className="d-flex justify-content-center my-3">
+            </div>
+          </div>
+        </div>
       </div>
     );
   } else {
@@ -41,6 +51,7 @@ const mapStateToProps = (state, ownProps) => {
     product: product,
   };
 };
+
 
 export default compose(
   connect(mapStateToProps),

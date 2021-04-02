@@ -6,12 +6,12 @@ const initState = {
 
 const authReducer = (state = initState, action) => {
   switch (action.type) {
-    case actionTypes.LOGIN_ERROR:
+    case actionTypes.SIGNIN_ERROR:
       return {
         ...state,
         authError: "Incorrect email address or password!",
       };
-    case actionTypes.LOGIN_SUCCESS:
+    case actionTypes.SIGNIN_SUCCESS:
       return {
         ...state,
         authError: null,
@@ -21,28 +21,48 @@ const authReducer = (state = initState, action) => {
     case actionTypes.SIGNUP_SUCCESS:
       return {
         ...state,
-        authError: null
-      }
+        authError: null,
+      };
     case actionTypes.SIGNUP_ERROR:
       return {
         ...state,
-        authError: action.err.message
-      }
+        authError: action.err.message,
+      };
     case actionTypes.CLEAR_ERROR:
       return {
         ...state,
-        authError: null
-      }
+        authError: null,
+      };
+    case actionTypes.UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        authError: false,
+      };
+    case actionTypes.UPDATE_PROFILE_ERROR:
+      return {
+        ...state,
+        authError: action.err.message,
+      };
     case actionTypes.DELETE_USER_ERROR:
       return {
         ...state,
-        authError: action.err.message
-      }
+        authError: action.err.message,
+      };
     case actionTypes.DELETE_USER_SUCCESS:
       return {
         ...state,
-        authError: null
-      }
+        authError: null,
+      };
+    case actionTypes.ADD_TO_FAVORITES_SUCCESS:
+      return {
+        ...state,
+        authError: null,
+      };
+    case actionTypes.ADD_TO_FAVORITES_ERROR:
+      return {
+        ...state,
+        authError: action.err.message,
+      };
     default:
       return state;
   }

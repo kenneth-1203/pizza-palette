@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import { deleteUser } from "../actions/authActions";
+import { deleteUser, updateProfile, clearError } from "../actions/authActions";
 
 import Modal from "react-bootstrap/Modal";
+import ListGroup from "react-bootstrap/ListGroup";
 
 class Profile extends Component {
   state = {
@@ -13,7 +14,9 @@ class Profile extends Component {
     password: "",
     contact: "",
     address: "",
-    modal: false,
+    deleteModal: false,
+    updateModal: false,
+    inputChanged: false,
   };
 
   componentDidMount() {
@@ -28,7 +31,7 @@ class Profile extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { profile } = this.props;
+    const { profile, authError, clearError } = this.props;
     if (prevProps.profile !== profile) {
       this.setState({
         firstName: profile.firstName,
@@ -37,30 +40,53 @@ class Profile extends Component {
         address: profile.address,
       });
     }
+
+    if (prevProps.authError !== authError || authError === false) {
+      if (authError) {
+        this.setState({ updateModal: true })
+      } else {
+        clearError();
+        this.setState({ updateModal: false, inputChanged: false });
+      }
+    }
   }
 
   handleChange = (e) => {
-    this.setState({ [e.target.id]: e.target.value });
+    this.setState({ [e.target.id]: e.target.value, inputChanged: true });
   };
 
-  handleSubmit = (e) => {
+  handleUpdate = () => {
+    const { updateProfile } = this.props;
+    updateProfile(
+      {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        address: this.state.address,
+        contact: this.state.contact,
+      },
+      this.state.password
+    );
+  };
+
+  openDeleteModal = () => {
+    this.setState({ deleteModal: true });
+  };
+
+  closeDeleteModal = () => {
+    const { clearError } = this.props;
+    this.setState({ deleteModal: false, password: "" });
+    clearError();
+  };
+
+  openUpdateModal = (e) => {
     e.preventDefault();
+    this.setState({ updateModal: true });
   };
 
-  handleSaveBtn = () => {
-    this.props.history.push("/");
-  };
-
-  handleCancelBtn = () => {
-    this.props.history.push("/");
-  };
-
-  handleOpenModal = () => {
-    this.setState({ modal: true });
-  };
-
-  handleCloseModal = () => {
-    this.setState({ modal: false });
+  closeUpdateModal = () => {
+    const { clearError } = this.props;
+    this.setState({ updateModal: false, password: "" });
+    clearError();
   };
 
   handleDeleteBtn = () => {
@@ -68,16 +94,22 @@ class Profile extends Component {
     deleteUser(this.state.password);
   };
 
+  handleCancelBtn = () => {
+    this.props.history.push("/");
+  };
+
   render() {
-    const { authError } = this.props;
+    const { authError, profile } = this.props;
     return (
       <div>
         <div className="container">
           <div className="row">
             <div className="col-sm-1"></div>
             <div className="col-12 col-lg-9 col-md-8 px-4">
-              <h1><i className="fas fa-user-circle fa-sm"></i>&nbsp; Profile</h1>
-              <form onSubmit={this.handleSubmit}>
+              <h1>
+                <i className="fas fa-user-circle fa-sm"></i>&nbsp; Profile
+              </h1>
+              <form onSubmit={this.openUpdateModal}>
                 <div className="row">
                   <div className="col-sm-6">
                     <div className="mb-3">
@@ -90,6 +122,7 @@ class Profile extends Component {
                         id="firstName"
                         value={this.state.firstName}
                         onChange={this.handleChange}
+                        required
                       ></input>
                     </div>
                   </div>
@@ -104,6 +137,7 @@ class Profile extends Component {
                         id="lastName"
                         value={this.state.lastName}
                         onChange={this.handleChange}
+                        required
                       ></input>
                     </div>
                   </div>
@@ -120,6 +154,7 @@ class Profile extends Component {
                         id="email"
                         value={this.state.email}
                         onChange={this.handleChange}
+                        required
                       ></input>
                     </div>
                   </div>
@@ -134,6 +169,7 @@ class Profile extends Component {
                         id="contact"
                         value={this.state.contact}
                         onChange={this.handleChange}
+                        required
                       ></input>
                     </div>
                   </div>
@@ -148,14 +184,10 @@ class Profile extends Component {
                     id="address"
                     value={this.state.address}
                     onChange={this.handleChange}
+                    required
                   ></input>
                 </div>
-              </form>
-              <div className="col-12">
-                <button
-                  className="btn btn-primary"
-                  onClick={this.handleSaveBtn}
-                >
+                <button className="btn btn-primary" type="submit" disabled={!this.state.inputChanged}>
                   Save
                 </button>
                 <button
@@ -164,10 +196,33 @@ class Profile extends Component {
                 >
                   Cancel
                 </button>
+              </form>
+              <div className="col-12">
+                <br />
+                <hr />
+                <div className="mb-3">
+                  <label htmlFor="address" className="form-label">
+                    Favorites
+                  </label>
+                  <ListGroup className="profile-favorites">
+                  {profile.favorites && profile.favorites.length ? profile.favorites.map(item => {
+                    return (
+                      <ListGroup.Item className="profile-favorites-item" key={item}>
+                        {item}
+                        <i class="fas fa-heart fa-lg float-end pt-1"></i>
+                      </ListGroup.Item>
+                    )
+                  }) : 
+                  <div className="text-center my-4">
+                    <i class="fas fa-heart-broken fa-7x my-2" style={{ color: "rgba(255,255,255,.3)" }}></i>
+                    <h3 style={{ color: "rgba(255,255,255,.3)" }}>No favorites yet.</h3>
+                  </div>}
+                  </ListGroup>
+                </div>
                 <div className="float-end">
                   <button
                     className="btn btn-danger"
-                    onClick={this.handleOpenModal}
+                    onClick={this.openDeleteModal}
                   >
                     Delete account
                   </button>
@@ -175,11 +230,11 @@ class Profile extends Component {
               </div>
             </div>
           </div>
-          <Modal show={this.state.modal} onHide={this.handleCloseModal}>
+          <Modal show={this.state.deleteModal} onHide={this.closeDeleteModal}>
             <Modal.Header closeButton>
               <Modal.Title>
-                <i className="fas fa-exclamation-triangle error-icon"></i> Delete
-                account
+                <i className="fas fa-exclamation-triangle error-icon"></i>{" "}
+                Delete account
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -201,11 +256,45 @@ class Profile extends Component {
               <small className="error-message m-0">
                 {authError ? authError : null}
               </small>
-              <button className="btn btn-light" onClick={this.handleCloseModal}>
+              <button className="btn btn-light" onClick={this.closeDeleteModal}>
                 Cancel
               </button>
               <button className="btn btn-danger" onClick={this.handleDeleteBtn}>
                 Confirm
+              </button>
+            </Modal.Footer>
+          </Modal>
+
+          <Modal show={this.state.updateModal} onHide={this.closeUpdateModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>
+                <i className="fas fa-info-circle info-icon"></i> Update profile
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <label>
+                To save and update your profile, we need to verify that you are
+                the owner of the account. <br></br>
+                <br></br>
+                Please confirm this action by entering your account password.
+              </label>
+            </Modal.Body>
+            <input
+              className="form-control"
+              type="password"
+              onChange={this.handleChange}
+              id="password"
+              style={{ width: "92%", marginLeft: "3.5%" }}
+            ></input>
+            <Modal.Footer>
+              <small className="error-message m-0">
+                {authError ? authError : null}
+              </small>
+              <button className="btn btn-light" onClick={this.closeUpdateModal}>
+                Cancel
+              </button>
+              <button className="btn btn-primary" onClick={this.handleUpdate}>
+                Update
               </button>
             </Modal.Footer>
           </Modal>
@@ -226,6 +315,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteUser: (password) => dispatch(deleteUser(password)),
+    updateProfile: (credentials, password) =>
+      dispatch(updateProfile(credentials, password)),
+    clearError: () => dispatch(clearError()),
   };
 };
 
