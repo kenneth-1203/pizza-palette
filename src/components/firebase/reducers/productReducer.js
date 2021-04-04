@@ -31,7 +31,7 @@ const productReducer = (state = initState, action) => {
     case actionTypes.CREATE_PRODUCT_ERROR:
       console.log("Create product error!", action.err);
       return state;
-    default: 
+    default:
       return state;
   }
 };

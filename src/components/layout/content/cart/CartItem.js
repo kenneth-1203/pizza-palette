@@ -47,6 +47,9 @@ const CartItem = ({ productData, removeFromCart, adjustQuantity, uid }) => {
             />
             <button
               className="btn btn-danger btn-delete"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Remove from cart"
               onClick={() => removeFromCart(productData.id, uid)}
             >
               <i className="fas fa-trash"></i>

@@ -29,7 +29,7 @@ class Navbar extends Component {
       prevProps.auth.uid !== this.props.auth.uid ||
       prevProps.cart !== this.props.cart
     )
-    this.setCartCount();
+      this.setCartCount();
   }
 
   toggleSidenav = () => {
@@ -66,7 +66,11 @@ class Navbar extends Component {
       <SignedOutNavbar />
     );
     const sidebarLinks = auth.uid ? (
-      <SignedInSidebar profile={profile} toggleSidenav={this.toggleSidenav} count={this.state.count} />
+      <SignedInSidebar
+        profile={profile}
+        toggleSidenav={this.toggleSidenav}
+        count={this.state.count}
+      />
     ) : (
       <SignedOutSidebar toggleSidenav={this.toggleSidenav} />
     );
@@ -86,28 +90,43 @@ class Navbar extends Component {
               <div className="d-flex justify-content-between">
                 <div className="col-md-10">
                   <ul className="navbar-nav justify-content-center">
-                    <li className="nav-item my-auto">
-                      <Link className="nav-link active" to="/">
-                        Home
-                      </Link>
-                    </li>
-                    <li className="nav-item my-auto">
-                      <Link className="nav-link" to="/menu">
-                        Menu
-                      </Link>
-                    </li>
-                    <li className="nav-item my-auto">
-                      <Link className="nav-link" to="/about">
-                        About
-                      </Link>
-                    </li>
                     {isAdmin(auth.uid) ? (
-                      <li className="nav-item my-auto">
-                        <Link className="nav-link" to="/create">
-                          Create
-                        </Link>
-                      </li>
-                    ) : null}
+                      <>
+                        <li className="nav-item my-auto">
+                          <Link className="nav-link" to="/create">
+                            Create
+                          </Link>
+                        </li>
+                        <li className="nav-item my-auto">
+                          <Link className="nav-link" to="/remove">
+                            Remove
+                          </Link>
+                        </li>
+                        <li className="nav-item my-auto">
+                          <Link className="nav-link" to="/menu">
+                            Menu
+                          </Link>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li className="nav-item my-auto">
+                          <Link className="nav-link active" to="/">
+                            Home
+                          </Link>
+                        </li>
+                        <li className="nav-item my-auto">
+                          <Link className="nav-link" to="/menu">
+                            Menu
+                          </Link>
+                        </li>
+                        <li className="nav-item my-auto">
+                          <Link className="nav-link" to="/about">
+                            About
+                          </Link>
+                        </li>
+                      </>
+                    )}
                     <li
                       className="btn btn-light nav-search d-flex align-items-center"
                       onClick={this.toggleSearch}
@@ -195,8 +214,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setCount: (count) => dispatch(setCount(count))
-  }
-}
+    setCount: (count) => dispatch(setCount(count)),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

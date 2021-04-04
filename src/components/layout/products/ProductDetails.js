@@ -28,8 +28,6 @@ const ProductDetails = ({ product }) => {
             <h3>{product.name}</h3>
             <p>{product.description}</p>
             <h5>RM {product.price}</h5>
-            <div className="d-flex justify-content-center my-3">
-            </div>
           </div>
         </div>
       </div>

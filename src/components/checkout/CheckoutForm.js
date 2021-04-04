@@ -9,9 +9,18 @@ import Logo from "../../assets/images/logo.png";
 
 import axios from "axios";
 
-const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
+const CheckoutForm = ({
+  profile,
+  auth,
+  checkout,
+  cart,
+  clearCart,
+  createPaymentData,
+}) => {
   const [success, setSuccess] = useState(false);
+  const [loadingPayment, setLoadingPayment] = useState(false);
   const [paymentData, setData] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -33,6 +42,7 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoadingPayment(true);
     const billingDetails = {
       address: {
         city: e.target.city.value,
@@ -63,17 +73,25 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
 
         if (response.data.success) {
           console.log("Payment successful!");
-          setData(response.data.paymentData.charges.data[0]);
           clearCart(auth.uid);
+          setData(response.data.paymentData.charges.data[0]);
           setSuccess(true);
         }
       } catch (error) {
+        setErrorMessage(
+          "An error occured during payment. Please try again later."
+        );
         console.log("Error", error);
       }
     } else {
+      setErrorMessage(
+        "An error occured during payment. Please try again later."
+      );
       console.log(error.message);
     }
   };
+
+  const spinner = <div className="mx-3 spinner-border" role="status"></div>;
 
   return (
     <div className="container">
@@ -240,7 +258,13 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
                 Save card information
               </label>
             </div>
-            <button className="m-2 btn btn-primary">Pay</button>
+            {errorMessage ? (
+              <small className="error-message">{errorMessage}</small>
+            ) : null}
+            <button className="m-2 btn btn-primary" disabled={loadingPayment}>
+              Pay
+            </button>
+            { loadingPayment ? spinner : null }
           </form>
         </div>
       ) : (
@@ -317,8 +341,7 @@ const CheckoutForm = ({ profile, auth, checkout, cart, clearCart }) => {
             <br />
             <div className="d-flex justify-content-between">
               <p className="float-start">
-                <b>Total:</b>&nbsp; RM{" "}
-                {checkout.total}
+                <b>Total:</b>&nbsp; RM {checkout.total}
               </p>
               <Link to="/">
                 <button className="float-end btn btn-primary">OK</button>

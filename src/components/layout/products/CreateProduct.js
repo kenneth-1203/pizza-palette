@@ -30,6 +30,7 @@ class CreateProduct extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
+    this.setState({ isLoading: true });
     const { name, description, price, image } = this.state;
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on(
@@ -57,13 +58,6 @@ class CreateProduct extends Component {
       }
     );
   };
-
-  renderSpinner = () => {
-    const { name, description, price, image } = this.state;
-    if (name !== "" && description !== "" && price !== "" && image !== "") {
-      this.setState({ isLoading: true });
-    }
-  }
 
   render() {
     const spinner = <div className="mx-3 spinner-border" role="status"></div>;

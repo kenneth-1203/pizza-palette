@@ -205,16 +205,16 @@ class Profile extends Component {
                     Favorites
                   </label>
                   <ListGroup className="profile-favorites">
-                  {profile.favorites && profile.favorites.length ? profile.favorites.map(item => {
+                  {profile.favorites && profile.favorites.length ? profile.favorites.map((item, index) => {
                     return (
-                      <ListGroup.Item className="profile-favorites-item" key={item}>
+                      <ListGroup.Item className="profile-favorites-item" key={index}>
                         {item}
-                        <i class="fas fa-heart fa-lg float-end pt-1"></i>
+                        <i className="fas fa-heart fa-lg float-end pt-1"></i>
                       </ListGroup.Item>
                     )
                   }) : 
                   <div className="text-center my-4">
-                    <i class="fas fa-heart-broken fa-7x my-2" style={{ color: "rgba(255,255,255,.3)" }}></i>
+                    <i className="fas fa-heart-broken fa-7x my-2" style={{ color: "rgba(255,255,255,.3)" }}></i>
                     <h3 style={{ color: "rgba(255,255,255,.3)" }}>No favorites yet.</h3>
                   </div>}
                   </ListGroup>

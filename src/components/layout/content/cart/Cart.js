@@ -68,7 +68,7 @@ const Cart = ({ auth, getTotal, cart }) => {
             <div className="col-12 col-md-8">
               <div className="d-flex justify-content-between">
                 <div>
-                  <h5>In Bag:</h5>
+                  <h5>In Cart:</h5>
                   <h5>Subtotal:</h5>
                   <h5>Delivery:</h5>
                   <h5>Total:</h5>
