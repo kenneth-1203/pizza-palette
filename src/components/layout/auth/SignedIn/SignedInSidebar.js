@@ -1,17 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { compose } from "redux";
 import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { Link, withRouter } from "react-router-dom";
 import { signOut } from "../../../firebase/actions/authActions";
+import { searchProducts } from "../../../firebase/actions/productActions";
 
-const SignedInSidebar = ({ signOut, toggleSidenav, profile, count }) => {
+const SignedInSidebar = ({
+  signOut,
+  toggleSidenav,
+  profile,
+  count,
+  products,
+  history,
+  searchProducts,
+}) => {
+  const [search, setSearch] = useState("");
+
   const handleSignOut = () => {
     toggleSidenav();
     signOut();
   };
 
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    searchProducts(products, search);
+    history.replace("/menu");
+  };
+
   return (
-    <React.Fragment>
+    <>
       <Link
         to="/profile"
         className="d-flex justify-content-center mx-auto nav-profile-btn text-center"
@@ -29,11 +52,14 @@ const SignedInSidebar = ({ signOut, toggleSidenav, profile, count }) => {
         <span id="searchInput">
           <i className="fas fa-search"></i>
         </span>
-        <input
-          type="text"
-          className="nav-search-input active"
-          style={{ minWidth: "100%" }}
-        />
+        <form action="submit" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            className="nav-search-input active"
+            onChange={handleChange}
+            style={{ minWidth: "100%" }}
+          />
+        </form>
       </li>
       <Link to="/" onClick={handleSignOut} className="text-center">
         <h5 className="nav-link">Sign Out</h5>
@@ -46,14 +72,25 @@ const SignedInSidebar = ({ signOut, toggleSidenav, profile, count }) => {
           ) : null}
         </h5>
       </Link>
-    </React.Fragment>
+    </>
   );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    products: state.firestore.ordered.products,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     signOut: () => dispatch(signOut()),
+    searchProducts: (products, search) =>
+      dispatch(searchProducts(products, search)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(SignedInSidebar);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([{ collection: "products" }])
+)(withRouter(SignedInSidebar));

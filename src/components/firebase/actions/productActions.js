@@ -36,3 +36,13 @@ export const removeProduct = (productId) => {
       });
   };
 };
+
+export const searchProducts = (products, search) => {
+  return {
+    type: actionTypes.SEARCH_PRODUCTS,
+    payload: {
+      products: products,
+      searchQuery: search
+    }
+  }
+}

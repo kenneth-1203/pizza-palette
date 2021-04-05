@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 
-import { Link } from "react-router-dom";
+import { compose } from "redux";
 import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { Link, withRouter } from "react-router-dom";
 import { isAdmin } from "../../firebase/actions/authActions";
 import { setCount } from "../../firebase/actions/shopActions";
+import { searchProducts } from "../../firebase/actions/productActions";
 
 import Logo from "../../../assets/images/company-logo.png";
 import SignedInNavbar from "../auth/SignedIn/SignedInNavbar";
@@ -18,18 +21,30 @@ class Navbar extends Component {
     expandSearch: false,
     search: "",
     isLoaded: false,
+    isMobile: false,
   };
 
   componentDidMount() {
     this.setCartCount();
+    window.addEventListener(
+      "resize",
+      () => {
+        this.setState({ isMobile: window.innerWidth < 992 });
+      },
+      false
+    );
   }
 
   componentDidUpdate(prevProps) {
     if (
       prevProps.auth.uid !== this.props.auth.uid ||
-      prevProps.cart !== this.props.cart
-    )
+      prevProps.cart !== this.props.cart ||
+      prevProps.products !== this.props.products
+    ) {
+      const { searchProducts, products } = this.props;
       this.setCartCount();
+      if (products !== undefined) searchProducts(products, this.state.search);
+    }
   }
 
   toggleSidenav = () => {
@@ -37,11 +52,18 @@ class Navbar extends Component {
   };
 
   toggleSearch = () => {
-    this.setState({ expandSearch: true });
+    this.setState({ expandSearch: !this.state.expandSearch });
   };
 
   handleChange = (e) => {
     this.setState({ search: e.target.value });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { searchProducts, products, history } = this.props;
+    searchProducts(products, this.state.search);
+    history.replace("/menu");
   };
 
   setCartCount = () => {
@@ -127,21 +149,25 @@ class Navbar extends Component {
                         </li>
                       </>
                     )}
-                    <li
-                      className="btn btn-light nav-search d-flex align-items-center"
-                      onClick={this.toggleSearch}
-                    >
-                      <span id="searchInput">
-                        <i className="fas fa-search"></i>
-                      </span>
-                      <input
-                        type="text"
-                        onChange={this.handleChange}
-                        className={`nav-search-input ${
-                          this.state.expandSearch ? "active" : ""
-                        }`}
-                      />
-                    </li>
+                    {!this.state.isMobile ? (
+                      <li
+                        className="btn btn-light nav-search d-flex align-items-center"
+                        onClick={this.toggleSearch}
+                      >
+                        <span id="searchInput">
+                          <i className="fas fa-search"></i>
+                        </span>
+                        <form onSubmit={this.handleSubmit} action="submit">
+                          <input
+                            type="text"
+                            onChange={this.handleChange}
+                            className={`nav-search-input ${
+                              this.state.expandSearch ? "active" : ""
+                            }`}
+                          />
+                        </form>
+                      </li>
+                    ) : null}
                   </ul>
                 </div>
                 <div className="col-sm-2 d-flex justify-content-end">
@@ -209,13 +235,19 @@ const mapStateToProps = (state) => {
     auth: state.firebase.auth,
     profile: state.firebase.profile,
     cart: state.shop.cart,
+    products: state.firestore.ordered.products,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setCount: (count) => dispatch(setCount(count)),
+    searchProducts: (products, search) =>
+      dispatch(searchProducts(products, search)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([{ collection: "products" }])
+)(withRouter(Navbar));

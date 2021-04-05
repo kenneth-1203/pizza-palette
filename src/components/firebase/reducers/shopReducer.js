@@ -106,12 +106,6 @@ const shopReducer = (state = initState, action) => {
         ...state,
         count: action.payload.count
       }
-      case actionTypes.CREATE_PAYMENT_DATA_SUCCESS:
-        console.log("Payment data has been created.");
-        return state;
-      case actionTypes.CREATE_PAYMENT_DATA_ERROR:
-        console.log("Error! Could not create payment data.", action.err.message);
-        return state;
     default:
       return state;
   }

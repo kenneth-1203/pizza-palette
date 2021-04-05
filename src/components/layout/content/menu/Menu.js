@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import Skeleton from "@yisheng90/react-loading";
 
@@ -10,14 +10,19 @@ import MenuNotifications from "./MenuNotifications";
 import ProductList from "../../products/ProductList";
 import Footer from "../../footer/Footer";
 
-const Menu = ({ products, auth, history }) => {
+const Menu = ({ products, auth, history, filtered }) => {
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  useEffect(() => {
+    setFilteredProducts(filtered);
+  }, [filtered])
+
   return (
     <>
       <div className="container pt-2">
         <div className="d-flex justify-content-end"></div>
         <div className="d-flex flex-wrap justify-content-evenly">
           {products ? (
-            <ProductList products={products} auth={auth} history={history} />
+            <ProductList products={filteredProducts} auth={auth} history={history} />
           ) : (
             <Skeleton
               className="mx-2 my-3 skeleton"
@@ -51,6 +56,7 @@ const mapStateToProps = (state) => {
   return {
     products: state.firestore.ordered.products,
     auth: state.firebase.auth,
+    filtered: state.product.filtered
   };
 };
 

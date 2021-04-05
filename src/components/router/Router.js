@@ -13,8 +13,9 @@ import ProtectedRoute from "../router/ProtectedRoute";
 
 class Router extends Component {
   componentWillMount() {
-    this.unlisten = this.props.history.listen((location, action) => {
-      this.props.clearError();
+    const { history, clearError } = this.props;
+    this.unlisten = history.listen((location, action) => {
+      clearError();
     });
   }
   componentWillUnmount() {

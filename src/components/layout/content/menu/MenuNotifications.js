@@ -18,7 +18,6 @@ class MenuNotifications extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps.count, this.props.count)
     if (prevProps.count !== this.props.count) this.cartToast(prevProps.count);
     if (
       prevProps.favorites &&
