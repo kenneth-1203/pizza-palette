@@ -150,11 +150,8 @@ class Navbar extends Component {
                       </>
                     )}
                     {!this.state.isMobile ? (
-                      <li
-                        className="btn btn-light nav-search d-flex align-items-center"
-                        onClick={this.toggleSearch}
-                      >
-                        <span id="searchInput">
+                      <li className="btn btn-light nav-search d-flex align-items-center">
+                        <span id="searchInput" onClick={this.toggleSearch}>
                           <i className="fas fa-search"></i>
                         </span>
                         <form onSubmit={this.handleSubmit} action="submit">

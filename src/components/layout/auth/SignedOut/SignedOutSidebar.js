@@ -21,6 +21,7 @@ const SignedOutSidebar = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     searchProducts(products, search);
+    toggleSidenav();
     history.replace("/menu");
   };
   

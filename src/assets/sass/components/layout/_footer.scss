@@ -1,5 +1,6 @@
 .footer {
-  position: sticky;
+  position: relative;
+  clear: both;
   height: calc(10em + 2vw);
   background: $darker-grey;
   margin-top: 2em;

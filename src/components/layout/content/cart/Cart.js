@@ -45,13 +45,13 @@ const Cart = ({ auth, getTotal, cart }) => {
           })
         ) : auth.uid ? (
           <div className="text-center">
-            <i className="far fa-frown-open fa-10x py-5" style={{ color: "rgba(255,255,255,.3)" }}></i>
-            <h3 style={{ color: "rgba(255,255,255,.3)" }}>Cart is empty.</h3>
+            <i className="far fa-frown-open fa-10x py-5 not-found"></i>
+            <h3 className="not-found">Cart is empty.</h3>
           </div>
         ) : (
           <div className="text-center">
-          <i className="fas fa-user-circle fa-10x py-5"  style={{ color: "rgba(255,255,255,.3)" }}></i>
-          <h3  style={{ color: "rgba(255,255,255,.3)" }}>Sign in to shop now.</h3>
+          <i className="fas fa-user-circle fa-10x py-5 not-found"></i>
+          <h3 className="not-found">Sign in to shop now.</h3>
           </div>
         )}
       </div>

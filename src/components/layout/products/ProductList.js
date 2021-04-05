@@ -3,10 +3,10 @@ import React from "react";
 import ProductCard from "./ProductCard";
 
 const ProductList = ({ products, auth, history }) => {
-  console.log(products)
+  console.log(products);
   return (
-    <React.Fragment>
-      {products !== undefined &&
+    <>
+      {products !== undefined && products.length ? (
         products.map((product) => {
           return (
             <ProductCard
@@ -17,8 +17,14 @@ const ProductList = ({ products, auth, history }) => {
               history={history}
             />
           );
-        })}
-    </React.Fragment>
+        })
+      ) : (
+        <div className="text-center">
+          <i className="fas fa-search fa-10x py-5 not-found"></i>
+          <h3 className="not-found">No products found.</h3>
+        </div>
+      )}
+    </>
   );
 };
 

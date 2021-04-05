@@ -214,8 +214,8 @@ class Profile extends Component {
                     )
                   }) : 
                   <div className="text-center my-4">
-                    <i className="fas fa-heart-broken fa-7x my-2" style={{ color: "rgba(255,255,255,.3)" }}></i>
-                    <h3 style={{ color: "rgba(255,255,255,.3)" }}>No favorites yet.</h3>
+                    <i className="fas fa-heart-broken fa-7x my-2 not-found"></i>
+                    <h3 className="not-found">No favorites yet.</h3>
                   </div>}
                   </ListGroup>
                 </div>

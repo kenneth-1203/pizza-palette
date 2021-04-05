@@ -19,7 +19,6 @@ const Menu = ({ products, auth, history, filtered }) => {
   return (
     <>
       <div className="container pt-2">
-        <div className="d-flex justify-content-end"></div>
         <div className="d-flex flex-wrap justify-content-evenly">
           {products ? (
             <ProductList products={filteredProducts} auth={auth} history={history} />
