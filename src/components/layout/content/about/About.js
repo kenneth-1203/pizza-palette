@@ -83,7 +83,7 @@ export default class About extends Component {
                   renamed the business Pizza Palette Inc. In 1978 the 200th
                   Pizza Palette store opened, and things really began to cook.
                   Pizza Palette offers Supreme Pizza, Breakfast Pizza, Sausage
-                  Pepperoni, Tomata Pizza, Ultimate Cheese, Classic Cheese,
+                  Pepperoni, Tomato Pizza, Ultimate Cheese, Classic Cheese,
                   Variety Pizza, Veggie Mania, Meat Paradise, The Original and
                   Aroma Pizza.
                 </p>
@@ -104,7 +104,7 @@ export default class About extends Component {
                   delivery company committed to upholding the industry in
                   product quality and operational excellence. Globally, Pizza
                   Palette Inc. operates a total network of more than 14,800
-                  owned and franchised stores throughout the U.S. and in over 85
+                  owned and franchised stores throughout Malaysia. and in over 85
                   markets. Pizza Palette internationally ranks in the top five
                   companies in online transactions.
                 </p>

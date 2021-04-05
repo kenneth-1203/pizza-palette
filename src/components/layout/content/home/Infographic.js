@@ -28,7 +28,7 @@ const Infographic = () => {
           <p>
             Started the first Pizza Palette restaurant in <b>Malaysia</b>, now
             we have globalized the restaurant around South East Asia and Europe.
-            Our merchandise has always been increasing all around the world for
+            Our franchise has always been increasing all around the world for
             everyone to have the opportunity to taste our delicious pizzas!
           </p>
         </div>
