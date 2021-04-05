@@ -28,7 +28,11 @@ class MenuNotifications extends Component {
 
   cartToast = (count) => {
     if (count !== undefined && (this.props.count + 2) % (count + 2) === 1) {
-      this.setState({ toast: true, message: "Added to cart", icon: "fa-shopping-bag" });
+      this.setState({
+        toast: true,
+        message: "Added to cart",
+        icon: "fa-shopping-bag",
+      });
       setTimeout(() => {
         this.setState({ toast: false });
       }, 2000);
@@ -36,8 +40,15 @@ class MenuNotifications extends Component {
   };
 
   favToast = (count) => {
-    if (count !== undefined && (this.props.favorites.length + 2) % (count + 2) === 1) {
-      this.setState({ toast: true, message: "Added to favorites", icon: "fa-heart" });
+    if (
+      count !== undefined &&
+      (this.props.favorites.length + 2) % (count + 2) === 1
+    ) {
+      this.setState({
+        toast: true,
+        message: "Added to favorites",
+        icon: "fa-heart",
+      });
       setTimeout(() => {
         this.setState({ toast: false });
       }, 2000);
@@ -46,13 +57,28 @@ class MenuNotifications extends Component {
 
   render() {
     return (
-      <Toast className={`notification my-2`} show={this.state.toast}>
-        <Toast.Header>
-          <i className={`notification-icon fas ${this.state.icon}`} style={{ marginRight: "1em" }}></i>
-          <strong className="float-start">{this.state.message}</strong>
-        </Toast.Header>
-        {/* <Toast.Body>See? Just like this.</Toast.Body> */}
-      </Toast>
+      <div
+        aria-live="polite"
+        aria-atomic="true"
+        style={{
+          position: "sticky",
+          bottom: "0",
+          right: "0",
+          padding: "3em",
+          float: "right",
+        }}
+      >
+        <Toast className={`notification my-2`} show={this.state.toast}>
+          <Toast.Header>
+            <i
+              className={`notification-icon fas ${this.state.icon}`}
+              style={{ marginRight: "1em" }}
+            ></i>
+            <strong className="float-start">{this.state.message}</strong>
+          </Toast.Header>
+          {/* <Toast.Body>See? Just like this.</Toast.Body> */}
+        </Toast>
+      </div>
     );
   }
 }

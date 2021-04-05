@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 
-import MenuNotifications from "./MenuNotifications";
+import Notification from "../../notification/Notification";
 import ProductList from "../../products/ProductList";
 import Footer from "../../footer/Footer";
 
@@ -14,14 +14,18 @@ const Menu = ({ products, auth, history, filtered }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   useEffect(() => {
     setFilteredProducts(filtered);
-  }, [filtered])
+  }, [filtered]);
 
   return (
     <>
       <div className="container pt-2">
         <div className="d-flex flex-wrap justify-content-evenly">
           {products ? (
-            <ProductList products={filteredProducts} auth={auth} history={history} />
+            <ProductList
+              products={filteredProducts}
+              auth={auth}
+              history={history}
+            />
           ) : (
             <Skeleton
               className="mx-2 my-3 skeleton"
@@ -33,19 +37,7 @@ const Menu = ({ products, auth, history, filtered }) => {
           )}
         </div>
       </div>
-      <div
-        aria-live="polite"
-        aria-atomic="true"
-        style={{
-          position: "sticky",
-          bottom: "0",
-          right: "0",
-          padding: "3em",
-          float: "right",
-        }}
-      >
-        <MenuNotifications />
-      </div>
+      <Notification />
       <Footer />
     </>
   );
@@ -55,7 +47,7 @@ const mapStateToProps = (state) => {
   return {
     products: state.firestore.ordered.products,
     auth: state.firebase.auth,
-    filtered: state.product.filtered
+    filtered: state.product.filtered,
   };
 };
 
