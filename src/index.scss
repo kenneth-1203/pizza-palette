@@ -3,6 +3,12 @@
   src: local("Montserrat"),
     url("./assets/fonts/Montserrat/Montserrat-SemiBold.ttf");
 }
+@font-face {
+  font-family: "Pacifico";
+  src: local("Pacifico"),
+    url("./assets/fonts/Pacifico/Pacifico-Regular.ttf");
+}
+
 @import "./assets/sass/abstracts/variables";
 @import "./assets/sass/abstracts/mixins";
 

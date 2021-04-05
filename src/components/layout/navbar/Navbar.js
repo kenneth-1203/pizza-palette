@@ -109,7 +109,7 @@ class Navbar extends Component {
               </div>
             </div>
             <div className="col-lg-6 col-md-10 col-12 py-3 mx-auto">
-              <div className="d-flex justify-content-between">
+              <div className="d-flex justify-content-evenly">
                 <div className="col-md-10">
                   <ul className="navbar-nav justify-content-center">
                     {isAdmin(auth.uid) ? (
