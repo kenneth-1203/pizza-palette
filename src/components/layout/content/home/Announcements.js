@@ -46,7 +46,9 @@ const Announcements = () => {
         <br />
         <b>
           * NOTE THAT ALL PERSONAL INFORMATION WILL BE KEPT FOR TESTING PURPOSES
-          ONLY.
+          ONLY. 
+          <br />
+          * Making payments do not work on mobile platforms.
         </b>{" "}
       </p>
     </>
