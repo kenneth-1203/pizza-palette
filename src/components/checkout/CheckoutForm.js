@@ -75,9 +75,11 @@ const CheckoutForm = ({
           console.log("Payment successful!");
           clearCart(auth.uid);
           setData(response.data.paymentData.charges.data[0]);
+          setLoadingPayment(false);
           setSuccess(true);
         }
       } catch (error) {
+        setLoadingPayment(false);
         setErrorMessage(
           "An error occured during payment. Please try again later."
         );
