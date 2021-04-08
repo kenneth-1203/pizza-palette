@@ -9,16 +9,19 @@ const Announcements = () => {
       <p>
         <b>READ ME:</b>
         <br />
-        Greetings, test users. Before testing out the system, especially for
-        ordering products, please follow the steps mentioned below:
-        <ol>
-          <li>Create an account and make sure you are signed in.</li>
-          <li>Add items to your cart on the Menu page.</li>
-          <li>
-            Go to the Cart page, hover your cursor on the summary footer in the
-            cart page, and click on the checkout button.
-          </li>
-        </ol>
+        Greetings, test users/developers. This notice is for local admin rights
+        only. Before testing out the system, especially for ordering products,
+        please follow the steps mentioned below:
+      </p>
+      <ol style={{ fontWeight: "300" }}>
+        <li>Create an account and make sure you are signed in.</li>
+        <li>Add items to your cart on the Menu page.</li>
+        <li>
+          Go to the Cart page, hover your cursor on the summary footer in the
+          cart page, and click on the checkout button.
+        </li>
+      </ol>
+      <p>
         <b>IMPORTANT:</b>
         <br />
         When directed to the checkout page, enter card information by using the
@@ -40,15 +43,12 @@ const Announcements = () => {
         >
           here
         </a>{" "}
-        for more information on basic test card numbers. Lastly, hope you like
-        what I've created for my final year project! Thank you for participating
-        and make sure to fill in the user evaluation form! :)
+        for more information on basic test card numbers.
         <br />
         <b>
           * NOTE THAT ALL PERSONAL INFORMATION WILL BE KEPT FOR TESTING PURPOSES
-          ONLY. 
-          <br />
-          * Making payments do not work on mobile platforms.
+          ONLY.
+          <br />* Making payments do not work on mobile platforms.
         </b>{" "}
       </p>
     </>

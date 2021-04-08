@@ -32,11 +32,13 @@ const productReducer = (state = initState, action) => {
       console.log("Create product error!", action.err);
       return state;
     case actionTypes.SEARCH_PRODUCTS:
-      let filteredProducts = action.payload.products.filter((product) => {
-        return product.name
-          .toLowerCase()
-          .includes(action.payload.searchQuery.toLowerCase());
-      });
+      let filteredProducts = action.payload.products
+        ? action.payload.products.filter((product) => {
+            return product.name
+              .toLowerCase()
+              .includes(action.payload.searchQuery.toLowerCase());
+          })
+        : "";
       return {
         ...state,
         filtered: filteredProducts,

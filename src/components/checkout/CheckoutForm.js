@@ -42,6 +42,7 @@ const CheckoutForm = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage(null);
     setLoadingPayment(true);
     const billingDetails = {
       address: {

@@ -35,15 +35,19 @@ class Navbar extends Component {
     );
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
+    const { searchProducts, products, history } = this.props;
     if (
       prevProps.auth.uid !== this.props.auth.uid ||
       prevProps.cart !== this.props.cart ||
       prevProps.products !== this.props.products
     ) {
-      const { searchProducts, products } = this.props;
       this.setCartCount();
-      if (products !== undefined) searchProducts(products, this.state.search);
+      searchProducts(products, "");
+    }
+    if (prevState.search !== this.state.search) {
+      searchProducts(products, this.state.search);
+      history.replace("/menu");
     }
   }
 
@@ -57,13 +61,6 @@ class Navbar extends Component {
 
   handleChange = (e) => {
     this.setState({ search: e.target.value });
-  };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { searchProducts, products, history } = this.props;
-    searchProducts(products, this.state.search);
-    history.replace("/menu");
   };
 
   setCartCount = () => {
@@ -80,7 +77,7 @@ class Navbar extends Component {
   };
 
   render() {
-    const { auth, profile } = this.props;
+    const { auth, profile, products, searchProducts } = this.props;
 
     const navbarLinks = auth.uid ? (
       <SignedInNavbar profile={profile} />
@@ -124,7 +121,10 @@ class Navbar extends Component {
                             Remove
                           </Link>
                         </li>
-                        <li className="nav-item my-auto">
+                        <li
+                          className="nav-item my-auto"
+                          onClick={() => searchProducts(products, "")}
+                        >
                           <Link className="nav-link" to="/menu">
                             Menu
                           </Link>
@@ -154,15 +154,14 @@ class Navbar extends Component {
                         <span id="searchInput" onClick={this.toggleSearch}>
                           <i className="fas fa-search"></i>
                         </span>
-                        <form onSubmit={this.handleSubmit} action="submit">
-                          <input
-                            type="text"
-                            onChange={this.handleChange}
-                            className={`nav-search-input ${
-                              this.state.expandSearch ? "active" : ""
-                            }`}
-                          />
-                        </form>
+                        <input
+                          type="text"
+                          placeholder="Search product..."
+                          onChange={this.handleChange}
+                          className={`nav-search-input ${
+                            this.state.expandSearch ? "active" : ""
+                          }`}
+                        />
                       </li>
                     ) : null}
                   </ul>

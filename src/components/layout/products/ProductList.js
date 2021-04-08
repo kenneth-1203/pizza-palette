@@ -3,7 +3,6 @@ import React from "react";
 import ProductCard from "./ProductCard";
 
 const ProductList = ({ products, auth, history }) => {
-  console.log(products);
   return (
     <>
       {products !== undefined && products.length ? (

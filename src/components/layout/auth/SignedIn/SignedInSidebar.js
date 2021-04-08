@@ -56,6 +56,7 @@ const SignedInSidebar = ({
         <form action="submit" onSubmit={handleSubmit}>
           <input
             type="text"
+            placeholder="Search product..."
             className="nav-search-input active"
             onChange={handleChange}
             style={{ minWidth: "100%" }}

@@ -37,6 +37,10 @@
         animation-duration: .2s;
         animation-fill-mode: forwards;
       }
+
+      &-sidebar {
+        display: block;
+      }
     }
   }
 
