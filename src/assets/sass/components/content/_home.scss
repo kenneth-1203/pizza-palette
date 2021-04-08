@@ -20,12 +20,12 @@
   font-feature-settings: "tnum", "tnum";
   margin: 0;
   padding: 0;
-  color: #fadb14;
   font-size: 20px;
   line-height: unset;
   outline: none;
-
+  
   &-star {
+    color: #fadb14;
     position: relative;
     display: inline-block;
 

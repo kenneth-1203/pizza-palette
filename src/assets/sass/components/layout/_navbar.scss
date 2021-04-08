@@ -111,6 +111,10 @@
     background: $grey;
     box-shadow: $button-shadow $shadow-color;
 
+    & i {
+      color: white;
+    }
+
     &:focus, 
     &:active:focus {
       background: $dark-grey;
