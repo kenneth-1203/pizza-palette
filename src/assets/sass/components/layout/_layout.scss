@@ -101,6 +101,10 @@
     &:disabled {
       box-shadow: $button-inset-shadow $darker-grey;
     }
+
+    &:hover {
+      background: $grey;
+    }
   }
 }
 
