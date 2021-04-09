@@ -54,7 +54,7 @@
     &:active:focus {
       color: $lighter-grey;
       background: $dark-blue;
-      box-shadow: inset $shadow-color;
+      box-shadow: $button-inset-shadow $dark-shadow-color;
     }
     
     &:active,

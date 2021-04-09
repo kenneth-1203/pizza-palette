@@ -14,12 +14,17 @@ import spinner from "../../../assets/animated/spinner.svg";
 const ProductDetails = ({
   product,
   products,
+  profile,
   auth,
   history,
   addToCart,
   addToFav,
 }) => {
+
   const [isLoading, handleLoad] = useState(true);
+
+  const favorite = auth.uid && profile.favorites ? profile.favorites.some(fav => fav === product.name) : false;
+
   if (product) {
     return (
       <>
@@ -66,11 +71,12 @@ const ProductDetails = ({
                   data-toggle="tooltip"
                   data-placement="top"
                   title="Add to favorites"
+                  disabled={favorite}
                   onClick={() =>
                     auth.uid ? addToFav(product) : history.push("/signin")
                   }
                 >
-                  <i className="far fa-heart"></i>
+                  <i className={`${favorite ? `fas` : `far`} fa-heart`}></i>
                 </button>
               </div>
             </div>
@@ -94,6 +100,7 @@ const mapStateToProps = (state, ownProps) => {
   const product = products ? products[id] : null;
   return {
     product: product,
+    profile: state.firebase.profile,
     products: state.firestore.ordered.products,
     auth: state.firebase.auth,
   };
