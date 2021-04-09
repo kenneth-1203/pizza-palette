@@ -86,15 +86,6 @@ const shopReducer = (state = initState, action) => {
         ...state,
         cart: adjustedCart,
       };
-    case actionTypes.GET_TOTAL:
-      return {
-        ...state,
-        checkout: {
-          subtotal: action.payload.subtotal,
-          delivery: action.payload.delivery,
-          total: action.payload.total,
-        },
-      };
     case actionTypes.CLEAR_CART:
       window.sessionStorage.removeItem(action.payload.uid);
       return {
@@ -104,8 +95,17 @@ const shopReducer = (state = initState, action) => {
     case actionTypes.SET_COUNT:
       return {
         ...state,
-        count: action.payload.count
-      }
+        count: action.payload.count,
+      };
+    case actionTypes.SET_CHECKOUT_DATA:
+      return {
+        ...state,
+        checkout: {
+          total: action.payload.total,
+          delivery: action.payload.delivery,
+          items: action.payload.items,
+        },
+      };
     default:
       return state;
   }

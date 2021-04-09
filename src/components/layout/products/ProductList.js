@@ -2,7 +2,7 @@ import React from "react";
 
 import ProductCard from "./ProductCard";
 
-const ProductList = ({ products, auth, history }) => {
+const ProductList = ({ products, profile, auth, history }) => {
   return (
     <>
       {products !== undefined && products.length ? (

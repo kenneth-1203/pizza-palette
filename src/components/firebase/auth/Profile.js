@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import { deleteUser, updateProfile, clearError } from "../actions/authActions";
+import {
+  deleteUser,
+  updateProfile,
+  clearError,
+  removeFromFav,
+} from "../actions/authActions";
 
 import Modal from "react-bootstrap/Modal";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -43,7 +48,7 @@ class Profile extends Component {
 
     if (prevProps.authError !== authError || authError === false) {
       if (authError) {
-        this.setState({ updateModal: true })
+        this.setState({ updateModal: true });
       } else {
         clearError();
         this.setState({ updateModal: false, inputChanged: false });
@@ -99,7 +104,7 @@ class Profile extends Component {
   };
 
   render() {
-    const { authError, profile } = this.props;
+    const { authError, profile, removeFromFav } = this.props;
     return (
       <div>
         <div className="container">
@@ -187,7 +192,11 @@ class Profile extends Component {
                     required
                   ></input>
                 </div>
-                <button className="btn btn-primary" type="submit" disabled={!this.state.inputChanged}>
+                <button
+                  className="btn btn-primary"
+                  type="submit"
+                  disabled={!this.state.inputChanged}
+                >
                   Save
                 </button>
                 <button
@@ -205,18 +214,30 @@ class Profile extends Component {
                     Favorites
                   </label>
                   <ListGroup className="profile-favorites">
-                  {profile.favorites && profile.favorites.length ? profile.favorites.map((item, index) => {
-                    return (
-                      <ListGroup.Item className="profile-favorites-item" key={index}>
-                        {item}
-                        <i className="fas fa-heart fa-lg float-end pt-1"></i>
-                      </ListGroup.Item>
-                    )
-                  }) : 
-                  <div className="text-center my-4">
-                    <i className="fas fa-heart-broken fa-7x my-2 not-found"></i>
-                    <h3 className="not-found">No favorites yet.</h3>
-                  </div>}
+                    {profile.favorites && profile.favorites.length ? (
+                      profile.favorites.map((item, index) => {
+                        return (
+                          <ListGroup.Item
+                            className="profile-favorites-item"
+                            key={index}
+                          >
+                            {item}
+                            <i
+                              className="fas fa-heart fa-lg float-end pt-1"
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Remove"
+                              onClick={() => removeFromFav(item)}
+                            ></i>
+                          </ListGroup.Item>
+                        );
+                      })
+                    ) : (
+                      <div className="text-center my-4">
+                        <i className="fas fa-heart-broken fa-7x my-2 not-found"></i>
+                        <h3 className="not-found">No favorites yet.</h3>
+                      </div>
+                    )}
                   </ListGroup>
                 </div>
                 <div className="float-end">
@@ -318,6 +339,7 @@ const mapDispatchToProps = (dispatch) => {
     updateProfile: (credentials, password) =>
       dispatch(updateProfile(credentials, password)),
     clearError: () => dispatch(clearError()),
+    removeFromFav: (product) => dispatch(removeFromFav(product)),
   };
 };
 

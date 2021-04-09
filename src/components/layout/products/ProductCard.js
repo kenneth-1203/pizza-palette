@@ -11,8 +11,7 @@ import spinner from "../../../assets/animated/spinner.svg";
 class ProductCard extends Component {
   state = {
     isLoading: true,
-    favorites: [],
-    admin: false
+    admin: false,
   };
 
   async componentDidMount() {
@@ -24,6 +23,7 @@ class ProductCard extends Component {
 
   render() {
     const {
+      profile,
       product,
       products,
       addToCart,
@@ -31,6 +31,8 @@ class ProductCard extends Component {
       auth,
       history,
     } = this.props;
+
+    const favorite = profile.favorites.some(fav => fav === product.name);
 
     return (
       <div className="mx-2 my-3 card">
@@ -67,12 +69,12 @@ class ProductCard extends Component {
                 data-toggle="tooltip"
                 data-placement="top"
                 title="Add to favorites"
-                disabled={this.state.admin}
+                disabled={favorite}
                 onClick={() =>
                   auth.uid ? addToFav(product) : history.push("/signin")
                 }
               >
-                <i className="far fa-heart"></i>
+                <i className={`${favorite ? `fas` : `far`} fa-heart`}></i>
               </button>
             </div>
             <p>RM {product.price}</p>
@@ -83,6 +85,12 @@ class ProductCard extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    profile: state.firebase.profile,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (productID, products, userID) =>
@@ -91,4 +99,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(ProductCard);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);

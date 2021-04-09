@@ -10,7 +10,7 @@ import Notification from "../../notification/Notification";
 import ProductList from "../../products/ProductList";
 import Footer from "../../footer/Footer";
 
-const Menu = ({ products, auth, history, filtered }) => {
+const Menu = ({ products, profile, auth, history, filtered }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   useEffect(() => {
     setFilteredProducts(filtered);
@@ -25,6 +25,7 @@ const Menu = ({ products, auth, history, filtered }) => {
               products={filteredProducts}
               auth={auth}
               history={history}
+              profile={profile}
             />
           ) : (
             <Skeleton
@@ -46,6 +47,7 @@ const Menu = ({ products, auth, history, filtered }) => {
 const mapStateToProps = (state) => {
   return {
     products: state.firestore.ordered.products,
+    profile: state.firebase.profile,
     auth: state.firebase.auth,
     filtered: state.product.filtered,
   };

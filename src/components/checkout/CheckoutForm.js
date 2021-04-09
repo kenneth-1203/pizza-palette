@@ -9,14 +9,7 @@ import Logo from "../../assets/images/logo.png";
 
 import axios from "axios";
 
-const CheckoutForm = ({
-  profile,
-  auth,
-  checkout,
-  cart,
-  clearCart,
-  createPaymentData,
-}) => {
+const CheckoutForm = ({ profile, auth, checkout, clearCart }) => {
   const [success, setSuccess] = useState(false);
   const [loadingPayment, setLoadingPayment] = useState(false);
   const [paymentData, setData] = useState(null);
@@ -95,7 +88,7 @@ const CheckoutForm = ({
   };
 
   const spinner = <div className="mx-3 spinner-border" role="status"></div>;
-
+  console.log(checkout);
   return (
     <div className="container">
       {!success ? (
@@ -267,7 +260,7 @@ const CheckoutForm = ({
             <button className="m-2 btn btn-primary" disabled={loadingPayment}>
               Pay
             </button>
-            { loadingPayment ? spinner : null }
+            {loadingPayment ? spinner : null}
           </form>
         </div>
       ) : (
@@ -285,10 +278,17 @@ const CheckoutForm = ({
           <form className="my-3 checkout-form checkout-form-success">
             <div className="d-flex justify-content-between">
               <div className="d-flex float-start">
-                <h3>Receipt</h3>
                 <label className="d-flex mt-1 mx-2 align-items-center checkout-status">
                   PAID
                 </label>
+                <h3>Receipt</h3>
+                <h3 className="checkout-receipt-url">
+                <a
+                href={paymentData.receipt_url}
+              >
+                {paymentData.created}
+              </a>
+              </h3>
               </div>
               <img
                 className="float-end"
@@ -314,28 +314,23 @@ const CheckoutForm = ({
               <b>Address:</b>&nbsp; {profile.address}
             </p>
             <hr />
-            <p>
-              <b>Receipt URL:</b>&nbsp;{" "}
-              <a
-                className="checkout-receipt-url"
-                href={paymentData.receipt_url}
-              >
-                {paymentData.created}
-              </a>
-            </p>
-            <hr />
-            {cart
-              ? cart.map((item) => {
+            {checkout.items
+              ? checkout.items.map((item, index) => {
                   return (
                     <div
                       key={item.id}
                       className="d-flex justify-content-between"
                     >
                       <div className="float-start">
-                        <p>{item.name}</p>
+                        <p>
+                          <b>{`${index + 1}. `}</b>&nbsp;{" "}
+                          {`${item.name}${
+                            item.quantity > 1 ? ` \t x \t ${item.quantity}` : ""
+                          }`}
+                        </p>
                       </div>
                       <div className="float-end">
-                        <p>{item.quantity * item.price}</p>
+                        <p>RM {item.quantity * item.price}</p>
                       </div>
                     </div>
                   );

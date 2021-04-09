@@ -58,7 +58,12 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: null,
       };
-    case actionTypes.ADD_TO_FAVORITES_ERROR:
+    case actionTypes.REMOVE_FROM_FAVORITES_SUCCESS:
+      return {
+        ...state,
+        authError: null,
+      };
+    case actionTypes.REMOVE_FROM_FAVORITES_ERROR:
       return {
         ...state,
         authError: action.err.message,

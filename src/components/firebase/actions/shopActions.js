@@ -33,17 +33,6 @@ export const adjustQuantity = (productID, value, adjustType, userID) => {
   };
 };
 
-export const getTotal = (subtotal, total, delivery) => {
-  return {
-    type: actionTypes.GET_TOTAL,
-    payload: {
-      subtotal: subtotal,
-      delivery: delivery,
-      total: total
-    }
-  }
-}
-
 export const clearCart = (userID) => {
   return {
     type: actionTypes.CLEAR_CART,
@@ -58,6 +47,17 @@ export const setCount = (count) => {
     type: actionTypes.SET_COUNT,
     payload: {
       count: count
+    }
+  }
+}
+
+export const setCheckoutData = (total, delivery, items) => {
+  return {
+    type: actionTypes.SET_CHECKOUT_DATA,
+    payload: {
+      total,
+      delivery,
+      items,
     }
   }
 }

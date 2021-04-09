@@ -4,6 +4,7 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { Link, withRouter } from "react-router-dom";
+
 import { isAdmin } from "../../firebase/actions/authActions";
 import { setCount } from "../../firebase/actions/shopActions";
 import { searchProducts } from "../../firebase/actions/productActions";

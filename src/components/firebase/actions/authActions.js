@@ -47,7 +47,7 @@ export const signUp = (newUser) => {
             initials: `${newUser.firstName[0]}${newUser.lastName[0]}`,
             contact: newUser.contact,
             address: newUser.address,
-            favorites: []
+            favorites: [],
           });
       })
       .then(() => {
@@ -76,6 +76,27 @@ export const addToFav = (product) => {
       })
       .catch((err) => {
         dispatch({ type: actionTypes.ADD_TO_FAVORITES_ERROR, err });
+      });
+  };
+};
+
+export const removeFromFav = (product) => {
+  return async (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    const userId = getState().firebase.auth.uid;
+    const doc = firestore.collection("users").doc(userId);
+    const data = await doc.get();
+    doc
+      .update({
+        favorites: data.data().favorites.filter(
+          (favorite) => favorite !== product
+        ),
+      })
+      .then(() => {
+        dispatch({ type: actionTypes.REMOVE_FROM_FAVORITES_SUCCESS });
+      })
+      .catch((err) => {
+        dispatch({ type: actionTypes.REMOVE_FROM_FAVORITES_ERROR, err });
       });
   };
 };

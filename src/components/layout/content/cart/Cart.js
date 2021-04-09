@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getTotal } from "../../../firebase/actions/shopActions";
+import { setCheckoutData } from "../../../firebase/actions/shopActions";
 
 import CartItem from "./CartItem";
 
-const Cart = ({ auth, getTotal, cart }) => {
+const Cart = ({ auth, setCheckoutData, cart }) => {
   const [subtotal, setSubtotal] = useState(0);
   const [delivery, setDelivery] = useState(0);
   const [total, setTotal] = useState(0);
@@ -89,7 +89,7 @@ const Cart = ({ auth, getTotal, cart }) => {
                 <Link
                   to="/checkout"
                   className="btn text-wrap checkout-btn my-2"
-                  onClick={() => getTotal(subtotal, total, delivery)}
+                  onClick={() => setCheckoutData(total, delivery, initCart)}
                 >
                   Checkout
                 </Link>
@@ -104,8 +104,8 @@ const Cart = ({ auth, getTotal, cart }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTotal: (subtotal, total, delivery) =>
-      dispatch(getTotal(subtotal, total, delivery)),
+    setCheckoutData: (total, delivery, items) =>
+      dispatch(setCheckoutData(total, delivery, items)),
   };
 };
 
