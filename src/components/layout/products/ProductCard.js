@@ -32,7 +32,7 @@ class ProductCard extends Component {
       history,
     } = this.props;
 
-    const favorite = profile.favorites.some(fav => fav === product.name);
+    const favorite = auth.uid && profile.favorites ? profile.favorites.some(fav => fav === product.name) : false;
 
     return (
       <div className="mx-2 my-3 card">
