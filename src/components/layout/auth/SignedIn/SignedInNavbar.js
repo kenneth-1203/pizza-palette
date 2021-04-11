@@ -10,9 +10,9 @@ const SignedInNavbar = ({ signOut, profile }) => {
       <li className="nav-item">
         <Link to="/" onClick={signOut} className="p-2 nav-link text-center">Sign Out</Link>
       </li>
-      <li className="nav-item d-flex flex-column justify-content-center">
-        <Link to="/profile" className="nav-profile-btn text-center">
-        <div className="nav-profile-initials pt-2">
+      <li className="nav-item">
+        <Link to="/profile" className="d-flex justify-content-center align-items-center nav-profile-btn">
+        <div className="nav-profile-initials">
           {profile.initials}
         </div>
         </Link>

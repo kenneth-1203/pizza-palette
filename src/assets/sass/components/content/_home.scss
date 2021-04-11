@@ -55,6 +55,11 @@
     font-size: calc(7em + 5vw);
     padding-left: 0.2em;
     padding-right: 0.2em;
+    filter: drop-shadow($icon-shadow $dark-shadow-color);
+  }
+
+  &-text {
+    text-shadow: $text-shadow $shadow-color;
   }
 }
 

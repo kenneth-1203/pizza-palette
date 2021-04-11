@@ -36,25 +36,25 @@ const Cart = ({ auth, setCheckoutData, cart }) => {
 
   return (
     <React.Fragment>
-      <div className="container cart-body px-0">
-        {initCart && initCart.length ? (
-          initCart.map((product) => {
+      {initCart && initCart.length ? (
+        <div className="container cart-body p-0">
+          {initCart.map((product) => {
             return (
               <CartItem key={product.id} productData={product} uid={auth.uid} />
             );
-          })
-        ) : auth.uid ? (
-          <div className="text-center">
-            <i className="far fa-frown-open fa-10x py-5 not-found"></i>
-            <h3 className="not-found">Cart is empty.</h3>
-          </div>
-        ) : (
-          <div className="text-center">
+          })}
+        </div>
+      ) : auth.uid ? (
+        <div className="text-center">
+          <i className="far fa-frown-open fa-10x py-5 not-found"></i>
+          <h3 className="not-found">Cart is empty.</h3>
+        </div>
+      ) : (
+        <div className="text-center">
           <i className="fas fa-user-circle fa-10x py-5 not-found"></i>
           <h3 className="not-found">Sign in to shop now.</h3>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
       {initCart && initCart.length ? (
         <div
           className="mx-auto checkout-footer"
@@ -63,7 +63,7 @@ const Cart = ({ auth, setCheckoutData, cart }) => {
           style={mouseOver ? { height: "calc(17em - 2vw)" } : null}
         >
           <h3 className="px-4 pt-3">Summary</h3>
-          <hr/>
+          <hr />
           <div className="row checkout-details">
             <div className="col-12 col-md-8">
               <div className="d-flex justify-content-between">
@@ -83,12 +83,12 @@ const Cart = ({ auth, setCheckoutData, cart }) => {
             </div>
             <div className="col-12 col-md-4">
               <div className="d-flex justify-content-center">
-                <Link to="/menu" className="btn text-wrap checkout-btn my-2">
+                <Link to="/menu" className="btn btn-light text-wrap m-2">
                   Add More
                 </Link>
                 <Link
                   to="/checkout"
-                  className="btn text-wrap checkout-btn my-2"
+                  className="btn btn-primary text-wrap my-2"
                   onClick={() => setCheckoutData(total, delivery, initCart)}
                 >
                   Checkout

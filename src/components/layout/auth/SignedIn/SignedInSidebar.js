@@ -38,7 +38,7 @@ const SignedInSidebar = ({
     <>
       <Link
         to="/profile"
-        className="d-flex justify-content-center mx-auto nav-profile-btn text-center"
+        className="d-flex justify-content-center mx-auto nav-profile-btn"
         onClick={toggleSidenav}
         style={{ width: "5rem", height: "5rem" }}
       >
@@ -56,7 +56,7 @@ const SignedInSidebar = ({
         <form action="submit" onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Search product..."
+            placeholder="Search by name..."
             className="nav-search-input active"
             onChange={handleChange}
             style={{ minWidth: "100%" }}

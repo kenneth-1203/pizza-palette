@@ -283,17 +283,16 @@ const CheckoutForm = ({ profile, auth, checkout, clearCart }) => {
                 </label>
                 <h3>Receipt</h3>
                 <h3 className="checkout-receipt-url">
-                <a
-                href={paymentData.receipt_url}
-              >
-                {paymentData.created}
-              </a>
-              </h3>
+                  <a href={paymentData.receipt_url}>{paymentData.created}</a>
+                </h3>
               </div>
               <img
                 className="float-end"
                 src={Logo}
-                style={{ height: "calc(1em + 2vw)" }}
+                style={{
+                  height: "calc(1em + 2vw)",
+                  filter: "drop-shadow(0 0 3px rgba(0,0,0,.5))",
+                }}
                 alt=""
               />
             </div>

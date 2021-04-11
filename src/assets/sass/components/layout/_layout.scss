@@ -85,8 +85,10 @@
   }
 
   &-light {
-    padding-top: .5rem !important;
-    padding-bottom: .5rem !important;
+      padding-top: .5em;
+      padding-bottom: .5em;
+      padding-left: 1em;
+      padding-right: 1em;
 
     &:active { background: $grey !important; }
     &:hover { background: $light-grey; }

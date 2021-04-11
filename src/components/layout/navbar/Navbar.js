@@ -157,7 +157,7 @@ class Navbar extends Component {
                         </span>
                         <input
                           type="text"
-                          placeholder="Search product..."
+                          placeholder="Search by name..."
                           onChange={this.handleChange}
                           className={`nav-search-input ${
                             this.state.expandSearch ? "active" : ""
