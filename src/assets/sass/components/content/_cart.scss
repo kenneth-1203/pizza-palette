@@ -11,8 +11,10 @@
     width: 80vw;
     height: calc(25rem + 5vw);
     overflow: auto;
-    box-shadow: $card-inset-shadow $shadow-color;
+    box-shadow: $container-inset-shadow $dark-shadow-color;
     border-radius: 20px;
+    background: rgba($dark-pale-blue, $alpha: .3);
+    backdrop-filter: blur(5px);
   }
 
   &-count {
@@ -31,7 +33,7 @@
     background: $dark-grey;
     border-radius: 20px;
     padding: 1em;
-    box-shadow: $card-shadow $shadow-color;
+    box-shadow: $item-shadow $shadow-color;
 
     &-description {
       display: block;
@@ -70,7 +72,7 @@
   &-footer {
     z-index: 4;
     background: $dark-pale-blue;
-    border: 1px solid rgba($lighter-grey, $alpha: .5);
+    border: 2px solid rgba($lighter-grey, $alpha: .3);
     border-radius: 2px solid $grey-pale-blue;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;

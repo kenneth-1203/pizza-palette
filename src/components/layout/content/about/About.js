@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Aos from "aos";
 
 import Logo from "../../../../assets/images/logo.png";
 import MenuPage1 from "../../../../assets/images/pp-menu-1.jpg";
@@ -12,6 +13,7 @@ export default class About extends Component {
   };
 
   componentDidMount() {
+    Aos.init({ duration: 1000 });
     window.addEventListener(
       "resize",
       () => {
@@ -21,12 +23,17 @@ export default class About extends Component {
     );
   }
 
+  componentDidUpdate() {
+    Aos.init({ duration: 1000 });
+  }
+
   render() {
     return (
       <>
         <div className="container">
           <div className="about">
             <div
+              data-aos="fade-right"
               className={`d-flex${
                 this.state.isMobile ? "" : " floated-iframe"
               }`}
@@ -40,7 +47,7 @@ export default class About extends Component {
                 allowFullScreen
               ></iframe>
             </div>
-            <div className="overview">
+            <div className="overview" data-aos="fade-left">
               <h2 className="pb-1">Overview</h2>
               <img className="py-1 floated-logo" src={Logo} alt="" />
               <div className="justify-text">
@@ -75,8 +82,8 @@ export default class About extends Component {
                   more to serve all pizza lovers nationwide.
                 </p>
                 <hr />
-                <h2>What We Offer</h2>
-                <p>
+                <h2 data-aos="fade-left">What We Offer</h2>
+                <p data-aos="fade-left">
                   Pizza Palette started with just one store called just
                   "Palette" bought by Kenneth for $500 in 1960. James traded his
                   half of the business to Tom in 1965, and as sole owner Tom
@@ -87,9 +94,9 @@ export default class About extends Component {
                   Variety Pizza, Veggie Mania, Meat Paradise, The Original and
                   Aroma Pizza.
                 </p>
-                <img className="adjust-menu" src={MenuPage2} alt="" />
-                <img className="adjust-menu" src={MenuPage1} alt="" />
-                <p>
+                <img className="adjust-menu" src={MenuPage2} alt="" data-aos="fade-left" />
+                <img className="adjust-menu" src={MenuPage1} alt="" data-aos="fade-left" />
+                <p data-aos="fade-right">
                   By 1983 there were 1,000 Pizza Palette stores, and in the same
                   year Pizza Palette opened its first international store in
                   Winnipeg, Canada, followed by its first store on the
@@ -98,17 +105,17 @@ export default class About extends Component {
                   making it the fastest-growing pizza company in the world, with
                   stores in the UK, Japan, and South America.
                 </p>
-                <p>
+                <p data-aos="fade-right">
                   Delivering more than 1 million pizzas a day worldwide, Pizza
                   Palette is the world’s leading and fastest growing pizza
                   delivery company committed to upholding the industry in
                   product quality and operational excellence. Globally, Pizza
                   Palette Inc. operates a total network of more than 14,800
-                  owned and franchised stores throughout Malaysia. and in over 85
-                  markets. Pizza Palette internationally ranks in the top five
-                  companies in online transactions.
+                  owned and franchised stores throughout Malaysia. and in over
+                  85 markets. Pizza Palette internationally ranks in the top
+                  five companies in online transactions.
                 </p>
-                <p>
+                <p data-aos="fade-right">
                   As at Q2 2017, Pizza Palette Malaysia is the largest Pizza
                   Palette market in Southeast Asia and fifth largest in Asia
                   Pacific. Established in 1997, Pizza Palette Malaysia is
@@ -125,7 +132,7 @@ export default class About extends Component {
                   satisfaction guarantee, 30 minute delivery guarantee and 15
                   minute take-away guarantee.
                 </p>
-                <p>
+                <p data-aos="fade-left">
                   Forging ahead as an e-commerce entity, Pizza Palette has led
                   many firsts in its digital platforms. Pizza Palette Malaysia
                   has leveraged on the digital world to the best of its
@@ -143,7 +150,7 @@ export default class About extends Component {
                   Brand Awards 2014, silver in 2015, bronze in 2016, Silver in
                   2017 and bronze in 2018.
                 </p>
-                <p>
+                <p data-aos="fade-right">
                   Pizza Palette Malaysia has grown by leaps and bounds since it
                   first began its operations in 1997. From a single store in USJ
                   with a headcount of 15 staffs, the pizza chain today has over

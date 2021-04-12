@@ -77,12 +77,11 @@ const CheckoutForm = ({ profile, auth, checkout, clearCart }) => {
         setErrorMessage(
           "An error occured during payment. Please try again later."
         );
-        console.log("Error", error);
       }
     } else {
-      setErrorMessage(
-        "An error occured during payment. Please try again later."
-      );
+      console.log("fired");
+      setLoadingPayment(false);
+      setErrorMessage(error.message);
       console.log(error.message);
     }
   };
@@ -275,13 +274,11 @@ const CheckoutForm = ({ profile, auth, checkout, clearCart }) => {
               to you.
             </label>
           </div>
-          <form className="my-3 checkout-form checkout-form-success">
+          <form className="my-3 checkout-form">
             <div className="d-flex justify-content-between">
               <div className="d-flex float-start">
-                <label className="d-flex mt-1 mx-2 align-items-center checkout-status">
-                  PAID
-                </label>
-                <h3>Receipt</h3>
+                <i className="fas fa-file-invoice-dollar fa-2x"></i>
+                <h3 className="px-3">Receipt:</h3>
                 <h3 className="checkout-receipt-url">
                   <a href={paymentData.receipt_url}>{paymentData.created}</a>
                 </h3>
@@ -335,14 +332,27 @@ const CheckoutForm = ({ profile, auth, checkout, clearCart }) => {
                   );
                 })
               : null}
-            <br />
             <div className="d-flex justify-content-between">
               <p className="float-start">
-                <b>Total:</b>&nbsp; RM {checkout.total}
+                <b>Delivery:</b>
+                <br />
+                <b>Total:</b>
               </p>
+              <div className="float-end">
+                <p>
+                  RM {checkout.delivery}
+                  <br />
+                  RM {checkout.total}
+                </p>
+              </div>
+            </div>
+            <div className="d-flex justify-content-between">
               <Link to="/">
-                <button className="float-end btn btn-primary">OK</button>
+                <button className="btn btn-primary">OK</button>
               </Link>
+              <label className="d-flex mt-1 mx-2 align-items-center checkout-status">
+                PAID
+              </label>
             </div>
           </form>
         </>
