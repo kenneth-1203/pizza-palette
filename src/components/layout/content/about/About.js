@@ -13,7 +13,7 @@ export default class About extends Component {
   };
 
   componentDidMount() {
-    Aos.init({ duration: 1000 });
+    Aos.init({ duration: 500 });
     window.addEventListener(
       "resize",
       () => {
@@ -21,10 +21,6 @@ export default class About extends Component {
       },
       false
     );
-  }
-
-  componentDidUpdate() {
-    Aos.init({ duration: 1000 });
   }
 
   render() {
