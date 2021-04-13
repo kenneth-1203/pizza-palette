@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Aos from "aos";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -17,6 +18,7 @@ class ProductCard extends Component {
   async componentDidMount() {
     const admin = await isAdmin();
     this.setState({ admin });
+    Aos.init({ duration: 500 });
   }
 
   handleLoad = () => this.setState({ isLoading: false });
@@ -35,7 +37,7 @@ class ProductCard extends Component {
     const favorite = auth.uid && profile.favorites ? profile.favorites.some(fav => fav === product.name) : false;
 
     return (
-      <div className="mx-2 my-3 card">
+      <div className="mx-2 my-3 card" data-aos="fade-up">
         <Link to={`/product/${product.id}`} key={product.id}>
           <img
             onLoad={this.handleLoad}

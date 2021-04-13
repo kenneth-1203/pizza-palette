@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Aos from "aos";
 
 import Coupons from "./Coupons";
 import Announcements from "./Announcements";
@@ -7,9 +8,14 @@ import Infographic from "./Infographic";
 import Footer from "../../footer/Footer";
 
 const Home = () => {
+
+  useEffect(() => {
+    Aos.init({ duration: 500 });
+  }, [])
+
   return (
     <>
-      <div className="container">
+      <div className="container" data-aos="fade-up">
         <Coupons />
         <Announcements />
         <hr className="my-5"/>

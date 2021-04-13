@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Aos from "aos";
 
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { clearCart } from "../firebase/actions/shopActions";
@@ -16,6 +17,10 @@ const CheckoutForm = ({ profile, auth, checkout, clearCart }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const stripe = useStripe();
   const elements = useElements();
+
+  useEffect(() => {
+    Aos.init({ duration: 500 });
+  }, [])
 
   const cardElementOptions = {
     style: {
@@ -91,7 +96,7 @@ const CheckoutForm = ({ profile, auth, checkout, clearCart }) => {
   return (
     <div className="container">
       {!success ? (
-        <div className="checkout-form">
+        <div className="checkout-form" data-aos="fade-up">
           <h1>
             <i className="fas fa-credit-card fa-sm"></i>&nbsp; Checkout
           </h1>
@@ -263,7 +268,7 @@ const CheckoutForm = ({ profile, auth, checkout, clearCart }) => {
           </form>
         </div>
       ) : (
-        <>
+        <div data-aos="fade-up">
           <div className="mx-auto" style={{ width: "80%" }}>
             <h1>
               <i className="fas fa-check fa-sm" style={{ color: "green" }}></i>
@@ -355,7 +360,7 @@ const CheckoutForm = ({ profile, auth, checkout, clearCart }) => {
               </label>
             </div>
           </form>
-        </>
+        </div>
       )}
     </div>
   );
