@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Aos from "aos";
 
 import { connect } from "react-redux";
 import { createProduct } from "../../firebase/actions/productActions";
@@ -12,6 +13,10 @@ class CreateProduct extends Component {
     image: "",
     isLoading: false
   };
+
+  componentDidMount() {
+    Aos.init({ duration: 500 });
+  }
 
   handleInputChange = (e) => {
     this.setState({
@@ -63,10 +68,10 @@ class CreateProduct extends Component {
     const spinner = <div className="mx-3 spinner-border" role="status"></div>;
 
     return (
-      <div className="container">
+      <div className="container" data-aos="fade-up">
         <div className="row">
         <div className="col-1"></div>
-          <div className="col-lg-6 col-md-7 col-sm-8">
+          <div className="col-lg-9 col-md-10 col-sm-11">
           <h1>Add New Product</h1>
             <form onSubmit={this.handleSubmit}>
               <div className="mb-3">

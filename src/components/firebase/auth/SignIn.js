@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Aos from "aos";
 
 import { connect } from "react-redux";
 
@@ -10,6 +11,10 @@ class SignIn extends Component {
     password: "",
   };
 
+  componentDidMount() {
+    Aos.init({ duration: 500 });
+  }
+  
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value,
@@ -25,7 +30,7 @@ class SignIn extends Component {
     const { authError } = this.props;
 
     return (
-      <div className="container">
+      <div className="container" data-aos="fade-up">
         <div className="row">
           <div className="col-sm-1"></div>
           <div className="col-12 col-lg-9 col-md-8 px-4">
