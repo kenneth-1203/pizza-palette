@@ -23,6 +23,17 @@ export default class About extends Component {
     );
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.isMobile !== this.state.isMobile)
+      window.addEventListener(
+        "resize",
+        () => {
+          this.setState({ isMobile: window.innerWidth < 992 });
+        },
+        false
+      );
+  }
+
   render() {
     return (
       <>
@@ -43,10 +54,17 @@ export default class About extends Component {
                 allowFullScreen
               ></iframe>
             </div>
-            <div className="overview" data-aos="fade-left">
-              <h2 className="pb-1">Overview</h2>
-              <img className="py-1 floated-logo" src={Logo} alt="" />
-              <div className="justify-text">
+            <div className="overview">
+              <h2 className="pb-1" data-aos="fade-left">
+                Overview
+              </h2>
+              <img
+                className="py-1 floated-logo"
+                data-aos="fade-left"
+                src={Logo}
+                alt=""
+              />
+              <div className="justify-text" data-aos="fade-left">
                 <p>
                   is a medium sized enterprise and pizza restaurant with more
                   than 2,000 stores in over 6 markets. Founded in 2010, our
@@ -67,8 +85,8 @@ export default class About extends Component {
                 </p>
               </div>
               <hr />
-              <h2>About Us</h2>
-              <div className="justify-text">
+              <h2 data-aos="fade-right">About Us</h2>
+              <div className="justify-text" data-aos="fade-right">
                 <p>
                   Pizza is an amazingly popular food and Pizza Palette's is one
                   of the leading pizzerias in Malaysia providing exceptional
@@ -82,7 +100,7 @@ export default class About extends Component {
                 <p data-aos="fade-left">
                   Pizza Palette started with just one store called just
                   "Palette" bought by Kenneth for $500 in 1960. James traded his
-                  half of the business to Tom in 1965, and as sole owner Tom
+                  half of the business to Tom in 1965, and as sole owner Kenneth
                   renamed the business Pizza Palette Inc. In 1978 the 200th
                   Pizza Palette store opened, and things really began to cook.
                   Pizza Palette offers Supreme Pizza, Breakfast Pizza, Sausage
@@ -90,8 +108,18 @@ export default class About extends Component {
                   Variety Pizza, Veggie Mania, Meat Paradise, The Original and
                   Aroma Pizza.
                 </p>
-                <img className="adjust-menu" src={MenuPage2} alt="" data-aos="fade-left" />
-                <img className="adjust-menu" src={MenuPage1} alt="" data-aos="fade-left" />
+                <img
+                  className="adjust-menu"
+                  src={MenuPage2}
+                  alt=""
+                  data-aos="fade-left"
+                />
+                <img
+                  className="adjust-menu"
+                  src={MenuPage1}
+                  alt=""
+                  data-aos="fade-left"
+                />
                 <p data-aos="fade-right">
                   By 1983 there were 1,000 Pizza Palette stores, and in the same
                   year Pizza Palette opened its first international store in

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Aos from "aos";
 
+import axios from "axios";
+import Confetti from "react-confetti";
+
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { clearCart } from "../firebase/actions/shopActions";
 import { connect } from "react-redux";
@@ -8,19 +11,24 @@ import { Link } from "react-router-dom";
 
 import Logo from "../../assets/images/logo.png";
 
-import axios from "axios";
-
 const CheckoutForm = ({ profile, auth, checkout, clearCart }) => {
   const [success, setSuccess] = useState(false);
   const [loadingPayment, setLoadingPayment] = useState(false);
   const [paymentData, setData] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [windowWidth, setWindowWidth] = useState();
+  const [windowHeight, setWindowHeight] = useState();
+
   const stripe = useStripe();
   const elements = useElements();
 
   useEffect(() => {
     Aos.init({ duration: 500 });
-  }, [])
+    if (window.innerWidth !== windowWidth) {
+      setWindowWidth(window.innerWidth);
+      setWindowHeight(window.innerHeight);
+    }
+  }, [windowWidth, windowHeight]);
 
   const cardElementOptions = {
     style: {
@@ -268,99 +276,121 @@ const CheckoutForm = ({ profile, auth, checkout, clearCart }) => {
           </form>
         </div>
       ) : (
-        <div data-aos="fade-up">
-          <div className="mx-auto" style={{ width: "80%" }}>
-            <h1>
-              <i className="fas fa-check fa-sm" style={{ color: "green" }}></i>
-              &nbsp; Thank You!
-            </h1>
-            <label>
-              Payment successful! Your order is being prepared and on it's way
-              to you.
-            </label>
-          </div>
-          <form className="my-3 checkout-form">
-            <div className="d-flex justify-content-between">
-              <div className="d-flex float-start">
-                <i className="fas fa-file-invoice-dollar fa-2x"></i>
-                <h3 className="px-3">Receipt:</h3>
-                <h3 className="checkout-receipt-url">
-                  <a href={paymentData.receipt_url}>{paymentData.created}</a>
-                </h3>
-              </div>
-              <img
-                className="float-end"
-                src={Logo}
-                style={{
-                  height: "calc(1em + 2vw)",
-                  filter: "drop-shadow(0 0 3px rgba(0,0,0,.5))",
-                }}
-                alt=""
-              />
-            </div>
-            <hr />
-            <p>
-              <b>Name:</b>&nbsp; {profile.firstName + " " + profile.lastName}
-            </p>
-            <hr />
-            <p>
-              <b>Email:</b>&nbsp; {auth.email}
-            </p>
-            <hr />
-            <p>
-              <b>Contact number:</b>&nbsp; {profile.contact}
-            </p>
-            <hr />
-            <p>
-              <b>Address:</b>&nbsp; {profile.address}
-            </p>
-            <hr />
-            {checkout.items
-              ? checkout.items.map((item, index) => {
-                  return (
-                    <div
-                      key={item.id}
-                      className="d-flex justify-content-between"
-                    >
-                      <div className="float-start">
-                        <p>
-                          <b>{`${index + 1}. `}</b>&nbsp;{" "}
-                          {`${item.name}${
-                            item.quantity > 1 ? ` \t x \t ${item.quantity}` : ""
-                          }`}
-                        </p>
-                      </div>
-                      <div className="float-end">
-                        <p>RM {item.quantity * item.price}</p>
-                      </div>
-                    </div>
-                  );
-                })
-              : null}
-            <div className="d-flex justify-content-between">
-              <p className="float-start">
-                <b>Delivery:</b>
-                <br />
-                <b>Total:</b>
-              </p>
-              <div className="float-end">
-                <p>
-                  RM {checkout.delivery}
-                  <br />
-                  RM {checkout.total}
-                </p>
-              </div>
-            </div>
-            <div className="d-flex justify-content-between">
-              <Link to="/">
-                <button className="btn btn-primary">OK</button>
-              </Link>
-              <label className="d-flex mt-1 mx-2 align-items-center checkout-status">
-                PAID
+        <>
+          <Confetti
+            width={window.innerWidth}
+            height={window.innerHeight}
+            numberOfPieces={50}
+          />
+          <div data-aos="fade-up">
+            <div className="mx-auto" style={{ width: "80%" }}>
+              <h1>
+                <i
+                  className="fas fa-check fa-sm"
+                  style={{ color: "green" }}
+                ></i>
+                &nbsp; Thank You!
+              </h1>
+              <label>
+                Payment successful! Your order is being prepared and on it's way
+                to you.
               </label>
             </div>
-          </form>
-        </div>
+            <form className="my-3 checkout-form">
+              {/* <div className="d-flex justify-content-between"> */}
+              <div className="row">
+                <div className="col-12 col-md-6">
+                  <div className="d-flex justify-content-start">
+                    <i className="fas fa-file-invoice-dollar fa-2x"></i>
+                    <h3 className="px-3">Receipt:</h3>
+                    <h3 className="checkout-receipt-url">
+                      <a href={paymentData.receipt_url}>
+                        {paymentData.created}
+                      </a>
+                    </h3>
+                  </div>
+                </div>
+                <div className="col-12 col-md-6">
+                  <div className="d-flex justify-content-end">
+                    <img
+                      className="float-end"
+                      src={Logo}
+                      style={{
+                        height: "calc(1em + 2vw)",
+                        filter: "drop-shadow(0 0 3px rgba(0,0,0,.5))",
+                      }}
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+              {/* </div> */}
+              <hr />
+              <p>
+                <b>Name:</b>&nbsp; {profile.firstName + " " + profile.lastName}
+              </p>
+              <hr />
+              <p>
+                <b>Email:</b>&nbsp; {auth.email}
+              </p>
+              <hr />
+              <p>
+                <b>Contact number:</b>&nbsp; {profile.contact}
+              </p>
+              <hr />
+              <p>
+                <b>Address:</b>&nbsp; {profile.address}
+              </p>
+              <hr />
+              {checkout.items
+                ? checkout.items.map((item, index) => {
+                    return (
+                      <div
+                        key={item.id}
+                        className="d-flex justify-content-between"
+                      >
+                        <div className="float-start">
+                          <p>
+                            <b>{`${index + 1}. `}</b>&nbsp;{" "}
+                            {`${item.name}${
+                              item.quantity > 1
+                                ? ` \t x \t ${item.quantity}`
+                                : ""
+                            }`}
+                          </p>
+                        </div>
+                        <div className="float-end">
+                          <p>RM {item.quantity * item.price}</p>
+                        </div>
+                      </div>
+                    );
+                  })
+                : null}
+              <div className="d-flex justify-content-between">
+                <p className="float-start">
+                  <b>Delivery:</b>
+                  <br />
+                  <b>Total:</b>
+                </p>
+                <div className="float-end">
+                  <p>
+                    RM {checkout.delivery}
+                    <br />
+                    RM {checkout.total}
+                  </p>
+                </div>
+              </div>
+              <div className="d-flex justify-content-between">
+                <Link to="/">
+                  <button className="btn btn-primary">OK</button>
+                </Link>
+                <label className="d-flex mt-1 mx-2 align-items-center checkout-status">
+                  PAID
+                </label>
+              </div>
+            </form>
+          </div>
+        </>
       )}
     </div>
   );

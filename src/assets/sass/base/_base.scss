@@ -13,6 +13,7 @@ body {
 }
 
 body {
+  overflow-x: hidden;
   color: white;
   background: $dark-grey;
   background-image: -webkit-linear-gradient(

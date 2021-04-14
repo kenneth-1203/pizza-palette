@@ -71,7 +71,8 @@
 .checkout {
   &-footer {
     z-index: 4;
-    background: $dark-pale-blue;
+    background: rgba($dark-pale-blue, $alpha: 0.7);
+    backdrop-filter: blur(5px);
     border: 2px solid rgba($lighter-grey, $alpha: .3);
     border-radius: 2px solid $grey-pale-blue;
     border-top-left-radius: 20px;

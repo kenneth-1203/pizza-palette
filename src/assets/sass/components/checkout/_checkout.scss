@@ -9,7 +9,8 @@
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    background: rgba($dark-pale-blue, $alpha: 0.9);
+    background: rgba($dark-pale-blue, $alpha: 0.7);
+    backdrop-filter: blur(5px);
     padding: 2em;
     border-radius: 10px;
     border: 2px solid rgba($lighter-grey, $alpha: .5);

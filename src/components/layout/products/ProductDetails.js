@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Aos from "aos";
 
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -20,15 +21,21 @@ const ProductDetails = ({
   addToCart,
   addToFav,
 }) => {
-
   const [isLoading, handleLoad] = useState(true);
 
-  const favorite = auth.uid && profile.favorites ? profile.favorites.some(fav => fav === product.name) : false;
+  useEffect(() => {
+    Aos.init({ duration: 500 });
+  });
+
+  const favorite =
+    auth.uid && profile.favorites
+      ? profile.favorites.some((fav) => fav === product.name)
+      : false;
 
   if (product) {
     return (
       <>
-        <div className="container">
+        <div className="container" data-aos="fade-up">
           <div className="text-center">
             <div
               className="col-6 mx-auto"
@@ -88,7 +95,16 @@ const ProductDetails = ({
   } else {
     return (
       <div className="container">
-        <p>Loading...</p>
+        <div className="text-center">
+          <img
+            src={spinner}
+            alt=""
+            style={{
+              height: "calc(5em + 20vw)",
+              width: "calc(5em + 25vw)",
+            }}
+          />
+        </div>
       </div>
     );
   }
