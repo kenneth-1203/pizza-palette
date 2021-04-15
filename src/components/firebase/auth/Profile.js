@@ -64,6 +64,7 @@ class Profile extends Component {
 
   handleUpdate = () => {
     const { updateProfile } = this.props;
+    clearError();
     updateProfile(
       {
         firstName: this.state.firstName,

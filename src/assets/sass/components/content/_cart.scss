@@ -68,42 +68,6 @@
   }
 }
 
-.checkout {
-  &-footer {
-    z-index: 4;
-    background: rgba($dark-pale-blue, $alpha: 0.7);
-    backdrop-filter: blur(5px);
-    border: 2px solid rgba($lighter-grey, $alpha: .3);
-    border-radius: 2px solid $grey-pale-blue;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    box-shadow: $footer-shadow $dark-shadow-color;
-    position: absolute;
-    overflow: hidden;
-    transform: translate(-50%, 0);
-    height: calc(3em + 1vw);
-    bottom: 0;
-    left: 50%;
-    width: 80vw;
-    transition: .2s;
-  }
-
-  &-value {
-    & h5 {
-      font-weight: 300;
-    }
-  }
-
-  &-details {
-    padding: 1.5em;
-    padding-bottom: 0;
-
-    & h5 {
-      text-shadow: $text-shadow $shadow-color;
-    }
-  }
-}
-
 .vert-line {
   display: inline-block;
   width: 1px;

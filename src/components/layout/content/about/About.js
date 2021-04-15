@@ -10,6 +10,7 @@ import Footer from "../../footer/Footer";
 export default class About extends Component {
   state = {
     isMobile: false,
+    windowWidth: 0,
   };
 
   componentDidMount() {
@@ -18,20 +19,20 @@ export default class About extends Component {
       "resize",
       () => {
         this.setState({ isMobile: window.innerWidth < 992 });
+        this.setState({ windowWidth: window.innerWidth });
       },
       false
     );
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.isMobile !== this.state.isMobile)
-      window.addEventListener(
-        "resize",
-        () => {
-          this.setState({ isMobile: window.innerWidth < 992 });
-        },
-        false
-      );
+  componentDidUpdate() {
+    window.addEventListener(
+      "resize",
+      () => {
+        this.setState({ isMobile: window.innerWidth < 992 });
+      },
+      false
+    );
   }
 
   render() {
