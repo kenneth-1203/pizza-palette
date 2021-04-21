@@ -100,7 +100,6 @@ const CheckoutForm = ({ profile, auth, checkout, clearCart }) => {
   };
 
   const spinner = <div className="mx-3 spinner-border" role="status"></div>;
-  console.log(checkout);
   return (
     <div className="container">
       {!success ? (

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Aos from "aos";
 
 import { connect } from "react-redux";
-import { signUp } from "../actions/authActions";
+import { signUp, clearError } from "../actions/authActions";
 
 class SignUp extends Component {
   state = {
@@ -12,10 +12,17 @@ class SignUp extends Component {
     lastName: "",
     contact: "",
     address: "",
+    isLoading: false,
   };
 
   componentDidMount() {
     Aos.init({ duration: 500 });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.authError !== this.props.authError) {
+      this.setState({ isLoading: false });
+    }
   }
 
   handleChange = (e) => {
@@ -26,11 +33,17 @@ class SignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const { clearError } = this.props;
+    clearError();
+    this.setState({
+      isLoading: true,
+    });
     this.props.signUp(this.state);
   };
 
   render() {
     const { authError } = this.props;
+    const spinner = <div className="mx-3 spinner-border" role="status"></div>;
 
     return (
       <div className="container" data-aos="fade-up">
@@ -52,6 +65,7 @@ class SignUp extends Component {
                       className="form-control"
                       id="firstName"
                       onChange={this.handleChange}
+                      required
                     ></input>
                   </div>
                 </div>
@@ -65,6 +79,7 @@ class SignUp extends Component {
                       className="form-control"
                       id="lastName"
                       onChange={this.handleChange}
+                      required
                     ></input>
                   </div>
                 </div>
@@ -80,6 +95,7 @@ class SignUp extends Component {
                       className="form-control"
                       id="email"
                       onChange={this.handleChange}
+                      required
                     ></input>
                   </div>
                 </div>
@@ -91,8 +107,10 @@ class SignUp extends Component {
                     <input
                       type="tel"
                       className="form-control"
+                      minLength="10"
                       id="contact"
                       onChange={this.handleChange}
+                      required
                     ></input>
                   </div>
                 </div>
@@ -106,6 +124,7 @@ class SignUp extends Component {
                   className="form-control"
                   id="address"
                   onChange={this.handleChange}
+                  required
                 ></input>
               </div>
               <div className="mb-3">
@@ -117,14 +136,20 @@ class SignUp extends Component {
                   className="form-control"
                   id="password"
                   onChange={this.handleChange}
+                  required
                 ></input>
               </div>
               <small className="error-message">
                 {authError ? authError : null}
               </small>
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={this.state.isLoading}
+              >
                 Create account
               </button>
+              {this.state.isLoading ? spinner : null}
             </form>
           </div>
         </div>
@@ -142,6 +167,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     signUp: (newUser) => dispatch(signUp(newUser)),
+    clearError: () => dispatch(clearError()),
   };
 };
 

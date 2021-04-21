@@ -3,18 +3,25 @@ import Aos from "aos";
 
 import { connect } from "react-redux";
 
-import { signIn } from "../../firebase/actions/authActions";
+import { signIn, clearError } from "../../firebase/actions/authActions";
 
 class SignIn extends Component {
   state = {
     email: "",
     password: "",
+    isLoading: false,
   };
 
   componentDidMount() {
     Aos.init({ duration: 500 });
   }
-  
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.authError !== this.props.authError) {
+      this.setState({ isLoading: false });
+    }
+  }
+
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value,
@@ -23,11 +30,14 @@ class SignIn extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const { clearError } = this.props;
+    clearError();
     this.props.signIn(this.state);
   };
 
   render() {
     const { authError } = this.props;
+    const spinner = <div className="mx-3 spinner-border" role="status"></div>;
 
     return (
       <div className="container" data-aos="fade-up">
@@ -47,6 +57,7 @@ class SignIn extends Component {
                   className="form-control"
                   id="email"
                   onChange={this.handleChange}
+                  required
                 ></input>
               </div>
               <div className="mb-3">
@@ -58,14 +69,20 @@ class SignIn extends Component {
                   className="form-control"
                   id="password"
                   onChange={this.handleChange}
+                  required
                 ></input>
               </div>
               <small className="error-message">
                 {authError ? authError : null}
               </small>
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={this.state.isLoading}
+              >
                 Sign in
               </button>
+              {this.state.isLoading ? spinner : null}
             </form>
           </div>
         </div>
@@ -83,6 +100,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     signIn: (creds) => dispatch(signIn(creds)),
+    clearError: () => dispatch(clearError()),
   };
 };
 
