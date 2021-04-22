@@ -11,6 +11,7 @@ export const createProduct = (product) => {
         description: product.description,
         price: product.price,
         image: product.image,
+        createdAt: new Date(),
       })
       .then(() => {
         dispatch({ type: actionTypes.CREATE_PRODUCT, product });
@@ -42,7 +43,7 @@ export const searchProducts = (products, search) => {
     type: actionTypes.SEARCH_PRODUCTS,
     payload: {
       products: products,
-      searchQuery: search
-    }
-  }
-}
+      searchQuery: search,
+    },
+  };
+};

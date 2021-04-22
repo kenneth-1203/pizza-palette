@@ -11,7 +11,7 @@ class CreateProduct extends Component {
     description: "",
     price: "",
     image: "",
-    isLoading: false
+    isLoading: false,
   };
 
   componentDidMount() {
@@ -40,7 +40,7 @@ class CreateProduct extends Component {
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on(
       "state_changed",
-      snapshot => {},
+      (snapshot) => {},
       (error) => {
         console.log(error);
       },
@@ -55,8 +55,8 @@ class CreateProduct extends Component {
             this.props.createProduct({
               name,
               description,
-              price, 
-              image: url
+              price,
+              image: url,
             });
             this.props.history.push("/menu");
           });
@@ -70,9 +70,9 @@ class CreateProduct extends Component {
     return (
       <div className="container" data-aos="fade-up">
         <div className="row">
-        <div className="col-1"></div>
+          <div className="col-1"></div>
           <div className="col-lg-9 col-md-10 col-sm-11">
-          <h1>Add New Product</h1>
+            <h1>Add New Product</h1>
             <form onSubmit={this.handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">
@@ -122,10 +122,15 @@ class CreateProduct extends Component {
                   required
                 ></input>
               </div>
-              <button type="submit" className="btn btn-primary" onClick={this.renderSpinner}>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={this.renderSpinner}
+                disabled={this.state.isLoading}
+              >
                 Create
               </button>
-              { this.state.isLoading ? spinner : null }
+              {this.state.isLoading ? spinner : null}
             </form>
           </div>
         </div>
