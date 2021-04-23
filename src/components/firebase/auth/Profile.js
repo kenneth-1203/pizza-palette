@@ -34,7 +34,7 @@ class Profile extends Component {
       address: profile.address,
       email: auth.email,
     });
-    Aos.init({ duration: 500 });
+    Aos.init({ duration: 700 });
   }
 
   componentDidUpdate(prevProps) {

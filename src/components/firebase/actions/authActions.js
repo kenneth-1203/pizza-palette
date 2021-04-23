@@ -88,9 +88,9 @@ export const removeFromFav = (product) => {
     const data = await doc.get();
     doc
       .update({
-        favorites: data.data().favorites.filter(
-          (favorite) => favorite !== product
-        ),
+        favorites: data
+          .data()
+          .favorites.filter((favorite) => favorite !== product),
       })
       .then(() => {
         dispatch({ type: actionTypes.REMOVE_FROM_FAVORITES_SUCCESS });
@@ -156,12 +156,12 @@ export const deleteUser = (password) => {
         user
           .reauthenticateWithCredential(cred)
           .then(() => {
-            user.delete();
             firestore
               .collection("users")
               .doc(userId)
               .delete()
               .then(() => {
+                user.delete();
                 window.sessionStorage.removeItem(userId);
                 dispatch({ type: actionTypes.DELETE_USER_SUCCESS });
               })

@@ -15,7 +15,7 @@ class CreateProduct extends Component {
   };
 
   componentDidMount() {
-    Aos.init({ duration: 500 });
+    Aos.init({ duration: 700 });
   }
 
   handleInputChange = (e) => {

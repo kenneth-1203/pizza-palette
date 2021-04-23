@@ -18,7 +18,7 @@ class ProductCard extends Component {
   async componentDidMount() {
     const admin = await isAdmin();
     this.setState({ admin });
-    Aos.init({ duration: 500 });
+    Aos.init({ duration: 700 });
   }
 
   handleLoad = () => this.setState({ isLoading: false });
@@ -34,7 +34,10 @@ class ProductCard extends Component {
       history,
     } = this.props;
 
-    const favorite = auth.uid && profile.favorites ? profile.favorites.some(fav => fav === product.name) : false;
+    const favorite =
+      auth.uid && profile.favorites
+        ? profile.favorites.some((fav) => fav === product.name)
+        : false;
 
     return (
       <div className="mx-2 my-3 card" data-aos="fade-up">

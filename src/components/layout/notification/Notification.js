@@ -65,7 +65,6 @@ class MenuNotifications extends Component {
           bottom: "0",
           right: "0",
           padding: "3em",
-          float: "right",
         }}
       >
         <Toast className={`notification my-2`} show={this.state.toast}>

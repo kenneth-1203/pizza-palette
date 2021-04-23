@@ -14,7 +14,7 @@ export default class About extends Component {
   };
 
   componentDidMount() {
-    Aos.init({ duration: 500 });
+    Aos.init({ duration: 700 });
     window.addEventListener(
       "resize",
       () => {

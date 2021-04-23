@@ -9,7 +9,7 @@ import SignUp from "../firebase/auth/SignUp";
 import Profile from "../firebase/auth/Profile";
 import CreateProduct from "../layout/products/CreateProduct";
 import RemoveProduct from "../layout/products/RemoveProduct";
-import CheckoutForm from "../checkout/CheckoutForm";
+import CheckoutForm from "../layout/checkout/CheckoutForm";
 
 class ProtectedRoute extends Component {
   render() {

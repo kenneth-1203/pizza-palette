@@ -13,7 +13,7 @@ class SignIn extends Component {
   };
 
   componentDidMount() {
-    Aos.init({ duration: 500 });
+    Aos.init({ duration: 700 });
   }
 
   componentDidUpdate(prevProps) {

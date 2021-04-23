@@ -5,11 +5,11 @@ import axios from "axios";
 import Confetti from "react-confetti";
 
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { clearCart } from "../firebase/actions/shopActions";
+import { clearCart } from "../../firebase/actions/shopActions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import Logo from "../../assets/images/logo.png";
+import Logo from "../../../assets/images/logo.png";
 
 const CheckoutForm = ({ profile, auth, checkout, clearCart }) => {
   const [success, setSuccess] = useState(false);
@@ -23,7 +23,7 @@ const CheckoutForm = ({ profile, auth, checkout, clearCart }) => {
   const elements = useElements();
 
   useEffect(() => {
-    Aos.init({ duration: 500 });
+    Aos.init({ duration: 700 });
     if (window.innerWidth !== windowWidth) {
       setWindowWidth(window.innerWidth);
       setWindowHeight(window.innerHeight);

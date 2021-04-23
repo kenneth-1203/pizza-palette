@@ -1,8 +1,9 @@
 .notification {
   background: $primary-green;
-  box-shadow: 0 0 10px 5px rgba($pale-green, $alpha: .5);
+  box-shadow: 0 0 10px 5px rgba($pale-green, $alpha: 0.5);
   width: calc(12em + 6vw);
-  
+  float: right;
+
   &-icon {
     color: white !important;
   }

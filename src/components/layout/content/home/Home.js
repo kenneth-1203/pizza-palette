@@ -8,19 +8,18 @@ import Infographic from "./Infographic";
 import Footer from "../../footer/Footer";
 
 const Home = () => {
-
   useEffect(() => {
-    Aos.init({ duration: 500 });
-  }, [])
+    Aos.init({ duration: 700 });
+  }, []);
 
   return (
     <>
       <div className="container" data-aos="fade-up">
         <Coupons />
         <Announcements />
-        <hr className="my-5"/>
+        <hr className="my-5" />
         <Infographic />
-        <hr className="my-5"/>
+        <hr className="my-5" />
         <Comments />
       </div>
       <Footer />

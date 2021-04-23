@@ -7,10 +7,9 @@ import { firestoreConnect } from "react-redux-firebase";
 import { removeProduct } from "../../firebase/actions/productActions";
 
 const RemoveProduct = ({ products, removeProduct }) => {
-
   useEffect(() => {
-    Aos.init({ duration: 500 });
-  }, [])
+    Aos.init({ duration: 700 });
+  }, []);
 
   return (
     <div className="container" data-aos="fade-up">
@@ -18,7 +17,10 @@ const RemoveProduct = ({ products, removeProduct }) => {
         <div className="col-1"></div>
         <div className="col-lg-9 col-md-10 col-sm-11">
           <h1>Remove Product</h1>
-          <ul className="list-group my-3" style={{ border: "2px solid #c0c0c0" }}>
+          <ul
+            className="list-group my-3"
+            style={{ border: "2px solid #c0c0c0" }}
+          >
             {products && products.length ? (
               products.map((product, index) => {
                 return (
