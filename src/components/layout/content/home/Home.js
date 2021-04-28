@@ -17,7 +17,7 @@ const Home = () => {
       <div className="container" data-aos="fade-up">
         <Coupons />
         <Announcements />
-        <hr className="my-5" />
+        <hr className="mt-5" />
         <Infographic />
         <hr className="my-5" />
         <Comments />
