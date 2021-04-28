@@ -7,7 +7,7 @@ import { addToCart } from "../../firebase/actions/shopActions";
 import { addToFav } from "../../firebase/actions/authActions";
 import { isAdmin } from "../../firebase/actions/authActions";
 
-import spinner from "../../../assets/animated/spinner.svg";
+import spinner from "../../../assets/svg/spinner.svg";
 
 class ProductCard extends Component {
   state = {

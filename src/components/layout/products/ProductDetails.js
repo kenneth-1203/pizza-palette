@@ -10,7 +10,7 @@ import { addToFav } from "../../firebase/actions/authActions";
 
 import Notification from "../notification/Notification";
 
-import spinner from "../../../assets/animated/spinner.svg";
+import spinner from "../../../assets/svg/spinner.svg";
 
 const ProductDetails = ({
   product,
