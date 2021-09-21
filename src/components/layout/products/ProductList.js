@@ -2,16 +2,22 @@ import React from "react";
 
 import ProductCard from "./ProductCard";
 
-const ProductList = ({ products, profile, auth, history }) => {
+const ProductList = ({ products, auth, history }) => {
   return (
     <>
       {products !== undefined && products.length ? (
         products.map((product) => {
+          const image = product.image.replace(
+            "https://firebasestorage.googleapis.com/v0/b/palette-store.appspot.com/",
+            "https://ik.imagekit.io/vcgvc3rhier/"
+          );
+          console.log(image);
           return (
             <ProductCard
               key={product.id}
               product={product}
               products={products}
+              image={image}
               auth={auth}
               history={history}
             />

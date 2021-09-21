@@ -32,6 +32,7 @@ class ProductCard extends Component {
       addToFav,
       auth,
       history,
+      image
     } = this.props;
 
     const favorite =
@@ -43,8 +44,9 @@ class ProductCard extends Component {
       <div className="mx-2 my-3 card" data-aos="fade-up">
         <Link to={`/product/${product.id}`} key={product.id}>
           <img
+            loading="lazy"
             onLoad={this.handleLoad}
-            src={this.state.isLoading ? spinner : product.image}
+            src={this.state.isLoading ? spinner : image}
             className="card-img-top"
             alt="productImage"
           />
