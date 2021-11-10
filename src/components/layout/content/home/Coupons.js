@@ -12,7 +12,7 @@ const Coupons = () => {
       <Carousel style={{ width: "50rem" }}>
         <Carousel.Item>
           <img
-            style={{ borderRadius: "20px" }}
+            style={{ borderRadius: "calc(.5rem + .4vw)" }}
             className="d-block w-75 mx-auto"
             src={Coupon1}
             alt="First slide"
@@ -29,7 +29,7 @@ const Coupons = () => {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            style={{ borderRadius: "20px" }}
+            style={{ borderRadius: "calc(.5rem + .4vw)" }}
             className="d-block w-75 mx-auto"
             src={Coupon3}
             alt="Third slide"
